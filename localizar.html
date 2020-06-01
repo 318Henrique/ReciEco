@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-bt">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="node_modules/bootstrap/compilados/bootstrap.css">
+        <link rel="stylesheet" href="style.css">
+
+
+
+        <!-- links paginas -->
+        <link rel="stylesheet" href="index.html">
+        <link rel="stylesheet" href="localizar.html">
+        <link rel="stylesheet" href="perfil.html">
+        <link rel="stylesheet" href="cadastro.html">       
+        <script type="text/javascript" src="valida.js"></script>
+        <title>Localizar</title>
+
+    </head>
+
+    <body class="bg-light">
+        
+        <!-- menu de navegação da pagina -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-success">
+
+            <!--div que fica a logomarca e o nome da aplicação -->
+            <div class="page-sidebar">
+
+                <div class="form-check text-center ml-2 ">
+
+                    <img src="icones/rec1.png" class="img-fluid mb-0" alt="Responsive image">
+
+                    <a class="navbar-brand h1 mb-0" href="index.html">ReciEco</a>
+
+                </div>
+
+            </div>
+            <!--Botão que recolhe quando o tamanho da tela e pequeno-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- lista do menu e botao de login a aplicação-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="localizar.html">Localizar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastro</a>
+                    </li>
+
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+
+                    <a class="btn btn-outline-light my-2 my-sm-0 mr-3" href="#" data-toggle="modal" data-target="#telalogin">Entrar</a>
+
+                </form>
+
+            </div>
+
+        </nav>
+        
+        
+        <!--contêiner do mapa -->
+        <div id="map">
+            
+            <script src="https://maps.google.com/maps/api/js?key=AIzaSyCKb5RlQfAw2DiQb_Gq0rIwCsiJv8P1bsQ&amp;callback=initMap"></script>
+            
+        </div>        
+        <!--Tela Login-->
+        <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content bg-light">
+
+                    <div class="modal-header btn btn-success">
+
+                        <h5 class="modal-title">Login ReciEco</h5>
+
+                        <button type="button" class="close" data-dismiss="modal">
+
+                            <span>&times;</span>
+
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form >
+
+                            <!-- primeira linha do formulario-->
+                            <div class="form-row" >
+
+                                <!-- segunda linha do formulario--> 
+                                <div class="form-group col-sm-12">    
+
+                                    <label for="inputUsuario">Usuário:</label>
+
+                                    <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail " required name=usuario>
+                                </div>
+
+                                <div class="form-group col-sm-12">    
+
+                                    <label> Senha:</label>
+
+                                    <input id="cpf_cnpj" type="password" class="form-control" maxlength="14" placeholder="Digite Sua Senha" required name=cpf/cnpj>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-sm-12">                        
+
+                                    <div class="form-row text-center ">
+
+                                        <div class="col-sm-12 " >
+
+                                            <button type="submit" class="btn btn-outline-success btn-block" >Entrar</button>
+
+                                        </div>
+
+                                        <div class="form-group col-sm-12">    
+
+                                            <a href="cadastro.html">Cadastro</a> | <a href="reculperarsenha">Esqueci Minha Senha</a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    </body>
+</html>

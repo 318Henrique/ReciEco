@@ -1,0 +1,387 @@
+@charset "UTF-8";
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09/04/2020, 10:22:13
+    Author     : Pacto
+*/
+
+/*.nbar label{
+    width: 250px;
+    padding: 25px;
+    background-color: #363b48;
+    display: block;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rd_tabs:checked ~ label{
+    background-color: #e54e43; 
+}
+
+.rd_tabs{
+    display: none;
+}
+
+.content{
+    border-top: 5px solid #e54e43;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    left: 0;
+}
+
+.rd_tabs:checked ~ .content{
+    display: block;
+}*/
+
+
+/*essa declaração indica que o conteiner mapa <div> (como ID map) vai ocupar 100% da altura do corpo HTML. 
+e as declarações de <body> e <html> )*/
+html, body, #map {
+  height: 100%;
+  margin: 0;
+  
+}
+
+/* Imagem da pagina home*/
+img {
+  height: 60%;
+  width: 50%;
+}
+
+
+/*aqui fica a parte de configuração dos icones da pagina de perfil
+onde o usuario pode escolher os tipos de residuos que ele gera*/
+/*cor amarela do botao metal*/
+.btn-outline-metal {
+  color: #D4E100;
+  background-color: transparent;
+  background-image: none;
+  border-color: #D4E100;
+}
+
+.btn-outline-metal:hover {
+  color: #fff;
+  background-color: #D4E100;
+  border-color: #D4E100;
+}
+
+.btn-outline-metal:focus, .btn-outline-metal.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+.btn-outline-metal.disabled, .btn-outline-metal:disabled {
+  color: #D4E100;
+  background-color: transparent;
+}
+
+.btn-outline-metal:not([disabled]):not(.disabled):active, .btn-outline-metal:not([disabled]):not(.disabled).active, .show > .btn-outline-metal.dropdown-toggle {
+  color: #fff;
+  background-color: #D4E100;
+  border-color: #D4E100;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+/*COR ROXA BOTAO RESIDUOS RADIOATIVOS*/
+.btn-outline-radioativo {
+  color: #6F37A1;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6F37A1;
+}
+
+.btn-outline-radioativo:hover {
+  color: #fff;
+  background-color: #6F37A1;
+  border-color: #6F37A1;
+}
+
+.btn-outline-radioativo:focus, .btn-outline-radioativo.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-radioativo.disabled, .btn-outline-radioativo:disabled {
+  color: #6F37A1;
+  background-color: transparent;
+}
+
+.btn-outline-radioativo:not([disabled]):not(.disabled):active, .btn-outline-radioativo:not([disabled]):not(.disabled).active,
+.show > .btn-outline-radioativo.dropdown-toggle {
+  color: #fff;
+  background-color: #6F37A1;
+  border-color: #6F37A1;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*COR MARROM BOTAO ORGANICOS*/
+.btn-outline-organicos {
+  color: #614802;
+  background-color: transparent;
+  background-image: none;
+  border-color: #614802;
+}
+
+.btn-outline-organicos:hover {
+  color: #fff;
+  background-color: #614802;
+  border-color: #614802;
+}
+
+.btn-outline-organicos:focus, .btn-outline-organicos.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-organicos.disabled, .btn-outline-organicos:disabled {
+  color: #614802;
+  background-color: transparent;
+}
+
+.btn-outline-organicos:not([disabled]):not(.disabled):active, .btn-outline-organicos:not([disabled]):not(.disabled).active,
+.show > .btn-outline-organicos.dropdown-toggle {
+  color: #fff;
+  background-color: #614802;
+  border-color: #614802;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*cor verde claro botao ferro-velho */
+.btn-outline-ferro-velho {
+  color: #6E8F79;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6E8F79;
+}
+
+.btn-outline-ferro-velho:hover {
+  color: #fff;
+  background-color: #6E8F79;
+  border-color: #6E8F79;
+}
+
+.btn-outline-ferro-velho:focus, .btn-outline-ferro-velho.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-ferro-velho.disabled, .btn-outline-ferro-velho:disabled {
+  color: #6E8F79;
+  background-color: transparent;
+}
+
+.btn-outline-ferro-velho:not([disabled]):not(.disabled):active, .btn-outline-ferro-velho:not([disabled]):not(.disabled).active,
+.show > .btn-outline-ferro-velho.dropdown-toggle {
+  color: #fff;
+  background-color: #6E8F79;
+  border-color: #6E8F79;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*cor rosa botao lampada flourescente*/
+.btn-outline-lampada {
+  color: #8F3062;
+  background-color: transparent;
+  background-image: none;
+  border-color: #8F3062;
+}
+
+.btn-outline-lampada:hover {
+  color: #fff;
+  background-color: #8F3062;
+  border-color: #8F3062;
+}
+
+.btn-outline-lampada:focus, .btn-outline-lampada.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-lampada.disabled, .btn-outline-lampada:disabled {
+  color: #8F3062;
+  background-color: transparent;
+}
+
+.btn-outline-lampada:not([disabled]):not(.disabled):active, .btn-outline-lampada:not([disabled]):not(.disabled).active,
+.show > .btn-outline-lampada.dropdown-toggle {
+  color: #fff;
+  background-color: #8F3062;
+  border-color: #8F3062;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-pneus {
+  color: #9E7441;
+  background-color: transparent;
+  background-image: none;
+  border-color: #9E7441;
+}
+
+.btn-outline-pneus:hover {
+  color: #fff;
+  background-color: #9E7441;
+  border-color: #9E7441;
+}
+
+.btn-outline-pneus:focus, .btn-outline-pneus.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-pneus.disabled, .btn-outline-pneus:disabled {
+  color: #9E7441;
+  background-color: transparent;
+}
+
+.btn-outline-pneus:not([disabled]):not(.disabled):active, .btn-outline-pneus:not([disabled]):not(.disabled).active,
+.show > .btn-outline-pneus.dropdown-toggle {
+  color: #fff;
+  background-color: #9E7441;
+  border-color: #9E7441;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*cor creme botao moveis*/
+.btn-outline-moveis {
+  color: #7C8DDA;
+  background-color: transparent;
+  background-image: none;
+  border-color: #7C8DDA;
+}
+
+.btn-outline-moveis:hover {
+  color: #fff;
+  background-color: #7C8DDA;
+  border-color: #7C8DDA;
+}
+
+.btn-outline-moveis:focus, .btn-outline-moveis.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-moveis.disabled, .btn-outline-moveis:disabled {
+  color: #7C8DDA;
+  background-color: transparent;
+}
+
+.btn-outline-moveis:not([disabled]):not(.disabled):active, .btn-outline-moveis:not([disabled]):not(.disabled).active,
+.show > .btn-outline-moveis.dropdown-toggle {
+  color: #fff;
+  background-color: #7C8DDA;
+  border-color: #7C8DDA;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*cor verde marron botao pilhas*/
+.btn-outline-pilhas {
+  color: #668A56;
+  background-color: transparent;
+  background-image: none;
+  border-color: #668A56;
+}
+
+.btn-outline-pilhas:hover {
+  color: #fff;
+  background-color: #668A56;
+  border-color: #668A56;
+}
+
+.btn-outline-pilhas:focus, .btn-outline-pilhas.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-pilhas.disabled, .btn-outline-pilhas:disabled {
+  color: #668A56;
+  background-color: transparent;
+}
+
+.btn-outline-pilhas:not([disabled]):not(.disabled):active, .btn-outline-pilhas:not([disabled]):not(.disabled).active,
+.show > .btn-outline-pilhas.dropdown-toggle {
+  color: #fff;
+  background-color: #668A56;
+  border-color: #668A56;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*cor vinho botao roupas*/
+.btn-outline-roupas-calcados {
+  color: #6E3001;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6E3001;
+}
+
+.btn-outline-roupas-calcados:hover {
+  color: #fff;
+  background-color: #6E3001;
+  border-color: #6E3001;
+}
+
+.btn-outline-roupas-calcados:focus, .btn-outline-roupas-calcados.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-roupas-calcados.disabled, .btn-outline-roupas-calcados:disabled {
+  color: #6E3001;
+  background-color: transparent;
+}
+
+.btn-outline-roupas-calcados:not([disabled]):not(.disabled):active, .btn-outline-roupas-calcados:not([disabled]):not(.disabled).active,
+.show > .btn-outline-roupas-calcados.dropdown-toggle {
+  color: #fff;
+  background-color: #6E3001;
+  border-color: #6E3001;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/*aqui inicia a estilização da pagina de cadastro e das abras de cadastro*/
+/*essa parte trabalha a estilização da tabela geral onde se define tamanho e organização da tela*/
+.nav_tabs{
+      width: 100%;
+      height: 100%;
+      margin: -10px auto;
+      background-color: #f8f9fa;
+      position: relative;
+    }
+    .nav_tabs ul{
+      list-style: none;
+    }
+    .nav_tabs ul li{
+      float: left;
+    }
+    /*aqui estiliza os botoes que mudam de cor conforme a escolha do tipo de ususrio*/
+    .nav_tabs label.botao{
+      border: 1px solid;
+      border-radius: 5px;
+      width: 100%;
+      padding: 10px;
+      background-color: #3fb059;
+      display: block;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+    }
+    .rd_tabs:checked ~ label{
+      background-color: #363b48;
+    }
+    .rd_tabs{
+      display: none;
+    }
+
+    /*esta parte controlrola a estilização de onde ficam os formulários de cada 
+    aba*/
+    .content{
+      border-top: 5px solid #363b48;
+      background-color: #f8f9fa;
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+    }
+    .content article{
+      padding: 10px;
+    }
+    .rd_tabs:checked ~ .content{
+      display: block;
+    }
