@@ -249,5 +249,21 @@
         <script src="node_modules/jquery/dist/jquery.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script>
+            const url = "https://recieco.herokuapp.com"
+            fetch(url, {
+                method: "POST",
+                body:{
+                    mail: "brunoleandrogb@outlook.com",
+                    password: "123"
+                }
+            }).then( content => {
+                alert("Estou logado")
+                console.log(content)
+            }).catch(error => {
+                alert('Deu ruim')
+                console.log(error)
+            })
+        </script>
     </body>
 </html>
