@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="cadastro.html">       
         <script type="text/javascript" src="valida.js"></script>
 
-	<title>Janelas </title>
+	<title>Cadastro</title>
 
 </head>
 <body class="telacadastro">
@@ -33,7 +33,7 @@
 
                 <div class="form-check text-center ml-2 ">
 
-                    <img src="icones/rec1.png" class="img-fluid mb-0" alt="Responsive image">
+                    <img src="icones/rec2.png" class="img-fluid mb-0" alt="Responsive image">
 
                     <a class="navbar-brand h1 mb-0" href="index.html">ReciEco</a>
 
@@ -74,537 +74,170 @@
 
         </nav>
 
+        <div class="container-fuid col-sm-7 formMain">
+            <h1>Formulário de Cadastro</h1>
+            <form action="ConexaoBancodeDados" method="get">
 
+                <!-- primeira linha do formulario-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="inputNome"> Tipo de Cadastro: </label>
+                        <select name="nome" class="form-control" required>
+                            <option>Gerador de Resíduos</option>
+                            <option>Catador de Resíduos</option>
+                            <option>Comprador de Resíduos</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="inputNome"> Nome: </label>
+                        <input name="nome" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" required>
+                    </div>
+                    <!-- segunda linha do formulario--> 
+                    <div class="form-group col-sm-6">    
 
-	<nav class="nav_tabs">
-		<ul>
-			<li>
-				<input type="radio" name="tabs" class="rd_tabs" id="tab1" checked>
-				<label class="botao" for="tab1">Cadastro Gerador de Resíduos</label>
-				<div class="content">
-					
-					<article>
-						<!--formulario de cadastro do sistema-->
-        <div class="container-fluid">
+                        <label for="inputUsuario">Usuário:</label>
 
-            <div class="row">
+                        <input name="usuario" type="text" class="form-control"  maxlength="14" placeholder="Usuário" required>
 
-                <div class="col-12 text-center my-5">
+                    </div>
 
-                    <h1 class="display-4">Cadastro do Gerador de Resíduos</h1><div class="row">
+                    <div class="form-group col-sm-6">    
+
+                        <label> CPF/CNPJ:</label>
+
+                        <input name="cpf_cnpj" id="cpf_cnpj" type="text" class="form-control" maxlength="14" placeholder="Somente Números" required>
 
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row justify-content-center">
+                <!-- terceira linha do formulario-->
+                <div class="form-row">
 
-            <div class="col-11 col-lg-6">
+                    <div class="form-group col-sm-3">    
 
-                <form action="ConexaoBancodeDados" method="get">
+                        <label for="inputTelefone">Whatsapp: </label>
 
-                    <!-- primeira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">
-
-                            <label for="inputNome"> Nome: </label>
-
-                            <input name="nome" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" required>
-
-                        </div>
-                        <!-- segunda linha do formulario--> 
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputUsuario">Usuário:</label>
-
-                            <input name="usuario" type="text" class="form-control"  maxlength="14" placeholder="Usuário" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label> CPF/CNPJ:</label>
-
-                            <input name="cpf_cnpj" id="cpf_cnpj" type="text" class="form-control" maxlength="14" placeholder="Somente Números" required>
-
-                        </div>
-
-                        <script>
-                            function validar(cpf_cnpj) {
-                                // Valida
-                                var valida = valida_cpf_cnpj(cpf_cnpj);
-
-                                // Testa a validação
-                                if (valida) {
-
-                                } else {
-                                    alert('CPF/CNPJ INVALIDO');
-                                }
-
-
-                            }
-
-                            /*
-                             verifica_cpf_cnpj,Verifica se é CPF ou CNPJ*/
-                            function verifica_cpf_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invá¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-                                // Verifica CPF
-                                if (valor.length === 11) {
-                                    return 'CPF';
-                                }
-
-                                // Verifica CNPJ
-                                else if (valor.length === 14) {
-                                    return 'CNPJ';
-                                }
-
-                                // Não retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // verifica_cpf_cnpj
-
-                            /*
-                             calc_digitos_posicoes
-                             
-                             Multiplica dí­gitos vezes posições
-                             
-                             @param string digitos Os digitos desejados
-                             @param string posicoes A posição que vai iniciar a regressão
-                             @param string soma_digitos A soma das multiplicações entre posições e dígitos
-                             
-                             
-                             
-                             @return string Os dí­gitos enviados concatenados com o Algorítimo 
-                             */
-                            function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
-
-                                // Garante que o valor são uma string
-                                digitos = digitos.toString();
-
-                                // Faz a soma dos dí­gitos com a posição
-                                // Ex. para 10 posições:
-                                //   0    2    5    4    6    2    8    8   4
-                                // x10   x9   x8   x7   x6   x5   x4   x3  x2
-                                //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
-                                for (var i = 0; i < digitos.length; i++) {
-
-                                    // Preenche a soma com o dígito vezes a posição
-                                    soma_digitos = soma_digitos + (digitos[i] * posicoes);
-
-                                    // Subtrai 1 da posição
-                                    posicoes--;
-
-                                    // Parte  para CNPJ
-                                    // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
-                                    if (posicoes < 2) {
-                                        // Retorno a posiÃ§Ã£o para 9
-                                        posicoes = 9;
-                                    }
-                                }
-
-                                // Captura o resto da divisão entre soma_digitos dividido por 11
-                                // Ex.: 196 % 11 = 9
-                                soma_digitos = soma_digitos % 11;
-
-                                // Verifica se soma_digitos são menor que 2
-                                if (soma_digitos < 2) {
-                                    // soma_digitos agora serÃ¡ zero
-                                    soma_digitos = 0;
-                                } else {
-                                    // Se for maior que 2, o resultado Ã© 11 menos soma_digitos
-                                    // Ex.: 11 - 9 = 2
-                                    // Nosso dÃ­gito procurado Ã© 2
-                                    soma_digitos = 11 - soma_digitos;
-                                }
-
-                                // Concatena mais um dÃ­gito aos primeiro nove dÃ­gitos
-                                // Ex.: 025462884 + 2 = 0254628842
-                                var cpf = digitos + soma_digitos;
-
-                                // Retorna
-                                return cpf;
-
-                            } // calc_digitos_posicoes
-
-                            /*
-                             Valida CPF
-                             
-                             Valida se for CPF
-                             
-                             @param  string cpf O CPF com ou sem pontos e traÃ§o
-                             @return bool True para CPF correto - False para CPF incorreto
-                             */
-                            function valida_cpf(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Captura os 9 primeiros dÃ­gitos do CPF
-                                // Ex.: 02546288423 = 025462884
-                                var digitos = valor.substr(0, 9);
-
-                                // Faz o cÃ¡lculo dos 9 primeiros dÃ­gitos do CPF para obter o primeiro dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(digitos);
-
-                                // Faz o cÃ¡lculo dos 10 dÃ­gitos do CPF para obter o Ãºltimo dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
-
-
-
-
-                                // Verifica se o novo CPF gerado Ã© idÃªntico ao CPF enviado
-                                if (novo_cpf === valor) {
-                                    // CPF vÃ¡lido
-                                    return true;
-                                } else {
-                                    // CPF invÃ¡lido
-                                    return false;
-                                }
-
-                            } // valida_cpf
-
-                            /*
-                             valida_cnpj
-                             
-                             Valida se for um CNPJ
-                             
-                             @param string cnpj
-                             @return bool true para CNPJ correto
-                             */
-                            function valida_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // O valor original
-                                var cnpj_original = valor;
-
-                                // Captura os primeiros 12 nÃºmeros do CNPJ
-                                var primeiros_numeros_cnpj = valor.substr(0, 12);
-
-                                // Faz o primeiro cÃ¡lculo
-                                var primeiro_calculo = calc_digitos_posicoes(primeiros_numeros_cnpj, 5);
-
-                                // O segundo cÃ¡lculo Ã© a mesma coisa do primeiro, porÃ©m, comeÃ§a na posiÃ§Ã£o 6
-
-
-
-                                var segundo_calculo = calc_digitos_posicoes(primeiro_calculo, 6);
-
-                                // Concatena o segundo dÃ­gito ao CNPJ
-                                var cnpj = segundo_calculo;
-
-                                // Verifica se o CNPJ gerado Ã© idÃªntico ao enviado
-                                if (cnpj === cnpj_original) {
-                                    return true;
-                                }
-
-                                // Retorna falso por padrÃ£o
-                                return false;
-
-                            } // valida_cnpj
-
-                            /*
-                             valida_cpf_cnpj
-                             
-                             Valida o CPF ou CNPJ
-                             
-                             @access public
-                             @return bool true para vÃ¡lido, false para invÃ¡lido
-                             */
-                            function valida_cpf_cnpj(valor) {
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-                                    // Retorna true para cpf vÃ¡lido
-                                    return valida_cpf(valor);
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-                                    // Retorna true para CNPJ vÃ¡lido
-                                    return valida_cnpj(valor);
-                                }
-
-                                // NÃ£o retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // valida_cpf_cnpj
-
-                            /*
-                             formata_cpf_cnpj
-                             
-                             Formata um CPF ou CNPJ
-                             
-                             @access public
-                             @return string CPF ou CNPJ formatado
-                             */
-                            function formata_cpf_cnpj(valor) {
-
-                                // O valor formatado
-                                var formatado = false;
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-
-                                    // Verifica se o CPF Ã© vÃ¡lido
-                                    if (valida_cpf(valor)) {
-
-                                        // Formata o CPF ###.###.###-##
-                                        formatado = valor.substr(0, 3) + '.';
-                                        formatado += valor.substr(3, 3) + '.';
-                                        formatado += valor.substr(6, 3) + '-';
-                                        formatado += valor.substr(9, 2) + '';
-
-                                    }
-
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-
-                                    // Verifica se o CNPJ Ã© vÃ¡lido
-                                    if (valida_cnpj(valor)) {
-
-                                        // Formata o CNPJ ##.###.###/####-##
-                                        formatado = valor.substr(0, 2) + '.';
-                                        formatado += valor.substr(2, 3) + '.';
-                                        formatado += valor.substr(5, 3) + '/';
-                                        formatado += valor.substr(8, 4) + '-';
-                                        formatado += valor.substr(12, 14) + '';
-
-                                    }
-
-                                }
-
-                                // Retorna o valor 
-                                return formatado;
-
-                            } // formata_cpf_cnpj
-
-                        </script>
-                    </div>
-
-                    <!-- terceira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputTelefone">Whatsapp: </label>
-
-                            <input name="telefone" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-9">    
-
-                            <label for="inputE-mail">E-mail:</label>
-
-                            <input name="email" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" required>
-
-                        </div>
+                        <input name="telefone" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" required>
 
                     </div>
 
-                    <!-- Quarta linha do formulario-->  
-                    <div class="form-row">
+                    <div class="form-group col-sm-9">    
 
-                        <div class="form-group col-sm-12">
+                        <label for="inputE-mail">E-mail:</label>
 
-                            <label for="inputEndereco"> Endereço:</label>
-
-                            <input name="endereco" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" required>
-
-                        </div>
-
-                        <!--Quinta linha do Formulário-->
-                        <div class="form-group col-sm-3">    
-
-                            <label>Número:</label>
-
-                            <input name="numero" type="text" class="form-control" placeholder="Número" maxlength="6" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputBairro">Bairro:</label>
-
-                            <input name="bairro" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputCep">CEP:</label>
-
-                            <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="CEP" required>
-
-                        </div>
-                    </div>
-
-                    <!--Sexta linha do Formulário-->
-                    <div class="form-row">                          
-
-                        <div class="form-group col-sm-8">    
-
-                            <label for="inputCidade">Cidade:</label>
-
-                            <input name="cidade" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label for="inputEst" >Estado:</label>
-
-                            <select id="inputEst" name="estado" class="form-control">
-                                <option>Seu Estado</option>
-                                <option>Acre (AC)</option>
-                                <option>Alagoas (AL)</option>
-                                <option>Amapá (AP)</option>
-                                <option>Amazonas (AM)</option>
-                                <option>Bahia (BA)</option>
-                                <option>Ceará (CE)</option>
-                                <option>Distrito Federal (DF)</option>
-                                <option>Espírito Santo (ES)</option>
-                                <option>Goiás (GO)</option>
-                                <option>Maranhão (MA)</option>
-                                <option>Mato Grosso (MT)</option>
-                                <option>Mato Grosso do Sul (MS)</option>
-                                <option>Minas Gerais (MG)</option>
-                                <option>Pará (PA)</option>
-                                <option>Paraíba (PB)</option>
-                                <option>Paraná (PR)</option>
-                                <option>Pernambuco (PE)</option>
-                                <option>Piauí (PI)</option>
-                                <option>Rio de Janeiro (RJ)</option>
-                                <option>Rio Grande do Norte (RN)</option>
-                                <option>Rio Grande do Sul (RS)</option>
-                                <option>Rondônia (RO)</option>
-                                <option>Roraima (RR)</option>
-                                <option>Santa Catarina (SC)</option>
-                                <option>São Paulo (SP)</option>
-                                <option>Sergipe (SE)</option>
-                                <option>Tocantins (TO)</option>
-                            </select>
-
-                        </div>
-
-                        <!--Oitava Linha do Formulário-->
-                        <div class="form-control-file col-sm-4">    
-                            <label>Buscar Localização:</label>
-                            <button type="button" onclick="getLocation1()" class="btn btn-outline-secondary btn-block ">Clique Aqui</button>
-
-                        </div>
-
-                        <div class="form-group col-sm-4" >    
-
-                            <label>Latitude:</label><br>
-
-                            <input id="lat1" name="latitude1" readonly=“true” class="form-control">
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label>Longitude:</label><br/>
-
-                            <input id="long1" name="longitude1" readonly=“true” class="form-control">
-
-                        </div>
-
-                    </div>
-                    <script>
-                        var lat1 = document.getElementById("lat1");
-                        var long1 = document.getElementById("long1");
-                        function getLocation1() {
-                            if (navigator.geolocation) {
-                                navigator.geolocation.getCurrentPosition(showPosition);
-                            } else {
-                                lat1.innerHTML = "O seu navegador não suporta Geolocalização.";
-                                long1.innerHTML = "O seu navegador não suporta Geolocalização.";
-                            }
-                        }
-                        function showPosition(position) {
-                            lat1.value = +position.coords.latitude;
-                            long1.value = +position.coords.longitude;
-                        }
-                    </script>
-
-                    <!--Nona Linha do Formulário-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputSenha">Senha:</label>
-
-                            <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputConfirmasenha">Confirme Sua Senha:</label>
-
-                            <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" required>
-
-                        </div>
+                        <input name="email" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" required>
 
                     </div>
 
-                    <!--Décima Linha do Formulário-->
-                    <div class="form-row">
+                </div>
 
-                        <div class="form-group col-sm-12">                        
+                <!-- Quarta linha do formulario-->  
+                <div class="form-row">
+                    <div class="form-group col-sm-3">    
 
-                            <div class="form-row text-center my-5">
+                        <label for="inputCep">CEP:</label>
+                        <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="12345000" required>
 
-                                <div class="col-sm-12 " >
+                    </div>
 
-                                    <button onclick="validar(getElementById('cpf_cnpj').value)" type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
+                    <!--Quinta linha do Formulário-->
+                    <div class="form-group col-sm-3">    
 
-                                </div>
+                        <label>Número:</label>
+
+                        <input name="numero" type="text" class="form-control" placeholder="Número" maxlength="6" required>
+
+                    </div>
+
+                    <div class="form-group col-sm-6">    
+
+                        <label for="inputBairro">Bairro:</label>
+
+                        <input name="bairro" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" required>
+
+                    </div>
+                    <div class="form-group col-sm-12">
+
+                        <label for="inputEndereco"> Endereço:</label>
+
+                        <input name="endereco" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" required>
+
+                    </div>
+                </div>
+
+                <!--Sexta linha do Formulário-->
+                <div class="form-row">                          
+
+                    <div class="form-group col-sm-8">    
+
+                        <label for="inputCidade">Cidade:</label>
+
+                        <input name="cidade" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" required>
+
+                    </div>
+
+                    <div class="form-group col-sm-4">    
+
+                        <label for="inputEst" >Estado:</label>
+                        <input name="Estado" id="inputEst" type="text" class="form-control"  placeholder="Estado" maxlength="40" required>
+
+                    </div>
+
+                    <!--Oitava Linha do Formulário-->
+                    <!-- <div class="form-control-file col-sm-4">    
+                        <label>Buscar Localização:</label>
+                        <button type="button" class="btn btn-outline-secondary btn-block ">Clique Aqui</button>
+                    </div> -->
+
+                    <div class="form-group col-sm-4" >    
+
+                        <label>Latitude:</label><br>
+
+                        <input type="" id="lat" name="latitude" readonly=“true” class="form-control">
+
+                    </div>
+
+                    <div class="form-group col-sm-4">    
+
+                        <label>Longitude:</label><br/>
+
+                        <input id="long" name="longitude" readonly=“true” class="form-control">
+
+                    </div>
+
+                </div>
+
+                <!--Nona Linha do Formulário-->
+                <div class="form-row">
+
+                    <div class="form-group col-sm-4">
+
+                        <label for="inputSenha">Senha:</label>
+
+                        <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" required>
+
+                    </div>
+
+                    <div class="form-group col-sm-4">
+
+                        <label for="inputConfirmasenha">Confirme Sua Senha:</label>
+
+                        <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" required>
+
+                    </div>
+
+                </div>
+
+                <!--Décima Linha do Formulário-->
+                <div class="form-row">
+
+                    <div class="form-group col-sm-12">                        
+
+                        <div class="form-row text-center my-5">
+
+                            <div class="col-sm-12 " >
+
+                                <button onclick="validar(getElementById('cpf_cnpj').value)" type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
 
                             </div>
 
@@ -612,1105 +245,10 @@
 
                     </div>
 
-                </form>
-
-            </div>
-
-        </div> 
-					</article>
-				</div> 
-
-			</li>
-			<li>
-				<input type="radio" name="tabs" class="rd_tabs" id="tab2">
-				<label class="botao" for="tab2">Cadastro Catador de Resíduos</label>
-				<div class="content">
-					<article>
-						<div class="container-fluid">
-
-            <div class="row">
-
-                <div class="col-12 text-center my-5">
-
-                    <h1 class="display-4">Cadastro do Catador de Resíduos</h1><div class="row">
-
-                    </div>
                 </div>
-            </div>
+
+            </form>
         </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-11 col-lg-6">
-
-                <form action="ConexaoBancodeDados" method="get">
-
-                    <!-- primeira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">
-
-                            <label for="inputNome"> Nome: </label>
-
-                            <input name="nome" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" required>
-
-                        </div>
-                        <!-- segunda linha do formulario--> 
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputUsuario">Usuário:</label>
-
-                            <input name="usuario" type="text" class="form-control"  maxlength="14" placeholder="Usuário" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label> CPF/CNPJ:</label>
-
-                            <input name="cpf_cnpj" id="cpf_cnpj" type="text" class="form-control" maxlength="14" placeholder="Somente Números" required>
-
-                        </div>
-
-                        <script>
-                            function validar(cpf_cnpj) {
-                                // Valida
-                                var valida = valida_cpf_cnpj(cpf_cnpj);
-
-                                // Testa a validação
-                                if (valida) {
-
-                                } else {
-                                    alert('CPF/CNPJ INVALIDO');
-                                }
-
-
-                            }
-
-                            /*
-                             verifica_cpf_cnpj,Verifica se é CPF ou CNPJ*/
-                            function verifica_cpf_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invá¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-                                // Verifica CPF
-                                if (valor.length === 11) {
-                                    return 'CPF';
-                                }
-
-                                // Verifica CNPJ
-                                else if (valor.length === 14) {
-                                    return 'CNPJ';
-                                }
-
-                                // Não retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // verifica_cpf_cnpj
-
-                            /*
-                             calc_digitos_posicoes
-                             
-                             Multiplica dí­gitos vezes posições
-                             
-                             @param string digitos Os digitos desejados
-                             @param string posicoes A posição que vai iniciar a regressão
-                             @param string soma_digitos A soma das multiplicações entre posições e dígitos
-                             
-                             
-                             
-                             @return string Os dí­gitos enviados concatenados com o Algorítimo 
-                             */
-                            function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
-
-                                // Garante que o valor são uma string
-                                digitos = digitos.toString();
-
-                                // Faz a soma dos dí­gitos com a posição
-                                // Ex. para 10 posições:
-                                //   0    2    5    4    6    2    8    8   4
-                                // x10   x9   x8   x7   x6   x5   x4   x3  x2
-                                //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
-                                for (var i = 0; i < digitos.length; i++) {
-
-                                    // Preenche a soma com o dígito vezes a posição
-                                    soma_digitos = soma_digitos + (digitos[i] * posicoes);
-
-                                    // Subtrai 1 da posição
-                                    posicoes--;
-
-                                    // Parte  para CNPJ
-                                    // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
-                                    if (posicoes < 2) {
-                                        // Retorno a posiÃ§Ã£o para 9
-                                        posicoes = 9;
-                                    }
-                                }
-
-                                // Captura o resto da divisão entre soma_digitos dividido por 11
-                                // Ex.: 196 % 11 = 9
-                                soma_digitos = soma_digitos % 11;
-
-                                // Verifica se soma_digitos são menor que 2
-                                if (soma_digitos < 2) {
-                                    // soma_digitos agora serÃ¡ zero
-                                    soma_digitos = 0;
-                                } else {
-                                    // Se for maior que 2, o resultado Ã© 11 menos soma_digitos
-                                    // Ex.: 11 - 9 = 2
-                                    // Nosso dÃ­gito procurado Ã© 2
-                                    soma_digitos = 11 - soma_digitos;
-                                }
-
-                                // Concatena mais um dÃ­gito aos primeiro nove dÃ­gitos
-                                // Ex.: 025462884 + 2 = 0254628842
-                                var cpf = digitos + soma_digitos;
-
-                                // Retorna
-                                return cpf;
-
-                            } // calc_digitos_posicoes
-
-                            /*
-                             Valida CPF
-                             
-                             Valida se for CPF
-                             
-                             @param  string cpf O CPF com ou sem pontos e traÃ§o
-                             @return bool True para CPF correto - False para CPF incorreto
-                             */
-                            function valida_cpf(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Captura os 9 primeiros dÃ­gitos do CPF
-                                // Ex.: 02546288423 = 025462884
-                                var digitos = valor.substr(0, 9);
-
-                                // Faz o cÃ¡lculo dos 9 primeiros dÃ­gitos do CPF para obter o primeiro dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(digitos);
-
-                                // Faz o cÃ¡lculo dos 10 dÃ­gitos do CPF para obter o Ãºltimo dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
-
-
-
-
-                                // Verifica se o novo CPF gerado Ã© idÃªntico ao CPF enviado
-                                if (novo_cpf === valor) {
-                                    // CPF vÃ¡lido
-                                    return true;
-                                } else {
-                                    // CPF invÃ¡lido
-                                    return false;
-                                }
-
-                            } // valida_cpf
-
-                            /*
-                             valida_cnpj
-                             
-                             Valida se for um CNPJ
-                             
-                             @param string cnpj
-                             @return bool true para CNPJ correto
-                             */
-                            function valida_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // O valor original
-                                var cnpj_original = valor;
-
-                                // Captura os primeiros 12 nÃºmeros do CNPJ
-                                var primeiros_numeros_cnpj = valor.substr(0, 12);
-
-                                // Faz o primeiro cÃ¡lculo
-                                var primeiro_calculo = calc_digitos_posicoes(primeiros_numeros_cnpj, 5);
-
-                                // O segundo cÃ¡lculo Ã© a mesma coisa do primeiro, porÃ©m, comeÃ§a na posiÃ§Ã£o 6
-
-
-
-                                var segundo_calculo = calc_digitos_posicoes(primeiro_calculo, 6);
-
-                                // Concatena o segundo dÃ­gito ao CNPJ
-                                var cnpj = segundo_calculo;
-
-                                // Verifica se o CNPJ gerado Ã© idÃªntico ao enviado
-                                if (cnpj === cnpj_original) {
-                                    return true;
-                                }
-
-                                // Retorna falso por padrÃ£o
-                                return false;
-
-                            } // valida_cnpj
-
-                            /*
-                             valida_cpf_cnpj
-                             
-                             Valida o CPF ou CNPJ
-                             
-                             @access public
-                             @return bool true para vÃ¡lido, false para invÃ¡lido
-                             */
-                            function valida_cpf_cnpj(valor) {
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-                                    // Retorna true para cpf vÃ¡lido
-                                    return valida_cpf(valor);
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-                                    // Retorna true para CNPJ vÃ¡lido
-                                    return valida_cnpj(valor);
-                                }
-
-                                // NÃ£o retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // valida_cpf_cnpj
-
-                            /*
-                             formata_cpf_cnpj
-                             
-                             Formata um CPF ou CNPJ
-                             
-                             @access public
-                             @return string CPF ou CNPJ formatado
-                             */
-                            function formata_cpf_cnpj(valor) {
-
-                                // O valor formatado
-                                var formatado = false;
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-
-                                    // Verifica se o CPF Ã© vÃ¡lido
-                                    if (valida_cpf(valor)) {
-
-                                        // Formata o CPF ###.###.###-##
-                                        formatado = valor.substr(0, 3) + '.';
-                                        formatado += valor.substr(3, 3) + '.';
-                                        formatado += valor.substr(6, 3) + '-';
-                                        formatado += valor.substr(9, 2) + '';
-
-                                    }
-
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-
-                                    // Verifica se o CNPJ Ã© vÃ¡lido
-                                    if (valida_cnpj(valor)) {
-
-                                        // Formata o CNPJ ##.###.###/####-##
-                                        formatado = valor.substr(0, 2) + '.';
-                                        formatado += valor.substr(2, 3) + '.';
-                                        formatado += valor.substr(5, 3) + '/';
-                                        formatado += valor.substr(8, 4) + '-';
-                                        formatado += valor.substr(12, 14) + '';
-
-                                    }
-
-                                }
-
-                                // Retorna o valor 
-                                return formatado;
-
-                            } // formata_cpf_cnpj
-
-                        </script>
-                    </div>
-
-                    <!-- terceira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputTelefone">Whatsapp: </label>
-
-                            <input name="telefone" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-9">    
-
-                            <label for="inputE-mail">E-mail:</label>
-
-                            <input name="email" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" required>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Quarta linha do formulario-->  
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">
-
-                            <label for="inputEndereco"> Endereço:</label>
-
-                            <input name="endereco" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" required>
-
-                        </div>
-
-                        <!--Quinta linha do Formulário-->
-                        <div class="form-group col-sm-3">    
-
-                            <label>Número:</label>
-
-                            <input name="numero" type="text" class="form-control" placeholder="Número" maxlength="6" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputBairro">Bairro:</label>
-
-                            <input name="bairro" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputCep">CEP:</label>
-
-                            <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="CEP" required>
-
-                        </div>
-                    </div>
-
-                    <!--Sexta linha do Formulário-->
-                    <div class="form-row">                          
-
-                        <div class="form-group col-sm-8">    
-
-                            <label for="inputCidade">Cidade:</label>
-
-                            <input name="cidade" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label for="inputEst" >Estado:</label>
-
-                            <select id="inputEst" name="estado" class="form-control">
-                                <option>Seu Estado</option>
-                                <option>Acre (AC)</option>
-                                <option>Alagoas (AL)</option>
-                                <option>Amapá (AP)</option>
-                                <option>Amazonas (AM)</option>
-                                <option>Bahia (BA)</option>
-                                <option>Ceará (CE)</option>
-                                <option>Distrito Federal (DF)</option>
-                                <option>Espírito Santo (ES)</option>
-                                <option>Goiás (GO)</option>
-                                <option>Maranhão (MA)</option>
-                                <option>Mato Grosso (MT)</option>
-                                <option>Mato Grosso do Sul (MS)</option>
-                                <option>Minas Gerais (MG)</option>
-                                <option>Pará (PA)</option>
-                                <option>Paraíba (PB)</option>
-                                <option>Paraná (PR)</option>
-                                <option>Pernambuco (PE)</option>
-                                <option>Piauí (PI)</option>
-                                <option>Rio de Janeiro (RJ)</option>
-                                <option>Rio Grande do Norte (RN)</option>
-                                <option>Rio Grande do Sul (RS)</option>
-                                <option>Rondônia (RO)</option>
-                                <option>Roraima (RR)</option>
-                                <option>Santa Catarina (SC)</option>
-                                <option>São Paulo (SP)</option>
-                                <option>Sergipe (SE)</option>
-                                <option>Tocantins (TO)</option>
-                            </select>
-
-                        </div>
-
-                        <!--Oitava Linha do Formulário-->
-                        <div class="form-control-file col-sm-4">    
-                            <label>Buscar Localização:</label>
-                            <button type="button" onclick="getLocation2()" class="btn btn-outline-secondary btn-block ">Clique Aqui</button>
-
-                        </div>
-
-                        <div class="form-group col-sm-4" >    
-
-                            <label>Latitude:</label><br>
-
-                            <input type="" id="lat2" name="latitude2" readonly=“true” class="form-control">
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label>Longitude:</label><br/>
-
-                            <input id="long2" name="longitude2" readonly=“true” class="form-control">
-
-                        </div>
-
-                    </div>
-                    <script>
-                        var lat2 = document.getElementById("lat2");
-                        var long2 = document.getElementById("long2");
-                        function getLocation2() {
-                            if (navigator.geolocation) {
-                                navigator.geolocation.getCurrentPosition(showPosition);
-                            } else {
-                                lat2.innerHTML = "O seu navegador não suporta Geolocalização.";
-                                long2.innerHTML = "O seu navegador não suporta Geolocalização.";
-                            }
-                        }
-                        function showPosition(position) {
-                            lat2.value = +position.coords.latitude;
-                            long2.value = +position.coords.longitude;
-                        }
-                    </script>
-
-                    <!--Nona Linha do Formulário-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputSenha">Senha:</label>
-
-                            <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputConfirmasenha">Confirme Sua Senha:</label>
-
-                            <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" required>
-
-                        </div>
-
-                    </div>
-
-                    <!--Décima Linha do Formulário-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">                        
-
-                            <div class="form-row text-center my-5">
-
-                                <div class="col-sm-12 " >
-
-                                    <button onclick="validar(getElementById('cpf_cnpj').value)" type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div> 
-					</article>
-				</div>
-			</li>
-			<li>
-				<input type="radio" name="tabs" class="rd_tabs" id="tab3">
-				<label class="botao" for="tab3">Cadastro Comprador de Resíduos</label>
-				<div class="content">
-					<article>
-						<div class="container-fluid">
-
-            <div class="row">
-
-                <div class="col-12 text-center my-5">
-
-                    <h1 class="display-4">Cadastro do Comprador de Resíduos</h1><div class="row">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-11 col-lg-6">
-
-                <form action="ConexaoBancodeDados" method="get">
-
-                    <!-- primeira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">
-
-                            <label for="inputNome"> Nome: </label>
-
-                            <input name="nome" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" required>
-
-                        </div>
-                        <!-- segunda linha do formulario--> 
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputUsuario">Usuário:</label>
-
-                            <input name="usuario" type="text" class="form-control"  maxlength="14" placeholder="Usuário" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label> CPF/CNPJ:</label>
-
-                            <input name="cpf_cnpj" id="cpf_cnpj" type="text" class="form-control" maxlength="14" placeholder="Somente Números" required>
-
-                        </div>
-
-                        <script>
-                            function validar(cpf_cnpj) {
-                                // Valida
-                                var valida = valida_cpf_cnpj(cpf_cnpj);
-
-                                // Testa a validação
-                                if (valida) {
-
-                                } else {
-                                    alert('CPF/CNPJ INVALIDO');
-                                }
-
-
-                            }
-
-                            /*
-                             verifica_cpf_cnpj,Verifica se é CPF ou CNPJ*/
-                            function verifica_cpf_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invá¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-                                // Verifica CPF
-                                if (valor.length === 11) {
-                                    return 'CPF';
-                                }
-
-                                // Verifica CNPJ
-                                else if (valor.length === 14) {
-                                    return 'CNPJ';
-                                }
-
-                                // Não retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // verifica_cpf_cnpj
-
-                            /*
-                             calc_digitos_posicoes
-                             
-                             Multiplica dí­gitos vezes posições
-                             
-                             @param string digitos Os digitos desejados
-                             @param string posicoes A posição que vai iniciar a regressão
-                             @param string soma_digitos A soma das multiplicações entre posições e dígitos
-                             
-                             
-                             
-                             @return string Os dí­gitos enviados concatenados com o Algorítimo 
-                             */
-                            function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
-
-                                // Garante que o valor são uma string
-                                digitos = digitos.toString();
-
-                                // Faz a soma dos dí­gitos com a posição
-                                // Ex. para 10 posições:
-                                //   0    2    5    4    6    2    8    8   4
-                                // x10   x9   x8   x7   x6   x5   x4   x3  x2
-                                //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
-                                for (var i = 0; i < digitos.length; i++) {
-
-                                    // Preenche a soma com o dígito vezes a posição
-                                    soma_digitos = soma_digitos + (digitos[i] * posicoes);
-
-                                    // Subtrai 1 da posição
-                                    posicoes--;
-
-                                    // Parte  para CNPJ
-                                    // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
-                                    if (posicoes < 2) {
-                                        // Retorno a posiÃ§Ã£o para 9
-                                        posicoes = 9;
-                                    }
-                                }
-
-                                // Captura o resto da divisão entre soma_digitos dividido por 11
-                                // Ex.: 196 % 11 = 9
-                                soma_digitos = soma_digitos % 11;
-
-                                // Verifica se soma_digitos são menor que 2
-                                if (soma_digitos < 2) {
-                                    // soma_digitos agora serÃ¡ zero
-                                    soma_digitos = 0;
-                                } else {
-                                    // Se for maior que 2, o resultado Ã© 11 menos soma_digitos
-                                    // Ex.: 11 - 9 = 2
-                                    // Nosso dÃ­gito procurado Ã© 2
-                                    soma_digitos = 11 - soma_digitos;
-                                }
-
-                                // Concatena mais um dÃ­gito aos primeiro nove dÃ­gitos
-                                // Ex.: 025462884 + 2 = 0254628842
-                                var cpf = digitos + soma_digitos;
-
-                                // Retorna
-                                return cpf;
-
-                            } // calc_digitos_posicoes
-
-                            /*
-                             Valida CPF
-                             
-                             Valida se for CPF
-                             
-                             @param  string cpf O CPF com ou sem pontos e traÃ§o
-                             @return bool True para CPF correto - False para CPF incorreto
-                             */
-                            function valida_cpf(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Captura os 9 primeiros dÃ­gitos do CPF
-                                // Ex.: 02546288423 = 025462884
-                                var digitos = valor.substr(0, 9);
-
-                                // Faz o cÃ¡lculo dos 9 primeiros dÃ­gitos do CPF para obter o primeiro dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(digitos);
-
-                                // Faz o cÃ¡lculo dos 10 dÃ­gitos do CPF para obter o Ãºltimo dÃ­gito
-                                var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
-
-
-
-
-                                // Verifica se o novo CPF gerado Ã© idÃªntico ao CPF enviado
-                                if (novo_cpf === valor) {
-                                    // CPF vÃ¡lido
-                                    return true;
-                                } else {
-                                    // CPF invÃ¡lido
-                                    return false;
-                                }
-
-                            } // valida_cpf
-
-                            /*
-                             valida_cnpj
-                             
-                             Valida se for um CNPJ
-                             
-                             @param string cnpj
-                             @return bool true para CNPJ correto
-                             */
-                            function valida_cnpj(valor) {
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // O valor original
-                                var cnpj_original = valor;
-
-                                // Captura os primeiros 12 nÃºmeros do CNPJ
-                                var primeiros_numeros_cnpj = valor.substr(0, 12);
-
-                                // Faz o primeiro cÃ¡lculo
-                                var primeiro_calculo = calc_digitos_posicoes(primeiros_numeros_cnpj, 5);
-
-                                // O segundo cÃ¡lculo Ã© a mesma coisa do primeiro, porÃ©m, comeÃ§a na posiÃ§Ã£o 6
-
-
-
-                                var segundo_calculo = calc_digitos_posicoes(primeiro_calculo, 6);
-
-                                // Concatena o segundo dÃ­gito ao CNPJ
-                                var cnpj = segundo_calculo;
-
-                                // Verifica se o CNPJ gerado Ã© idÃªntico ao enviado
-                                if (cnpj === cnpj_original) {
-                                    return true;
-                                }
-
-                                // Retorna falso por padrÃ£o
-                                return false;
-
-                            } // valida_cnpj
-
-                            /*
-                             valida_cpf_cnpj
-                             
-                             Valida o CPF ou CNPJ
-                             
-                             @access public
-                             @return bool true para vÃ¡lido, false para invÃ¡lido
-                             */
-                            function valida_cpf_cnpj(valor) {
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-                                    // Retorna true para cpf vÃ¡lido
-                                    return valida_cpf(valor);
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-                                    // Retorna true para CNPJ vÃ¡lido
-                                    return valida_cnpj(valor);
-                                }
-
-                                // NÃ£o retorna nada
-                                else {
-                                    return false;
-                                }
-
-                            } // valida_cpf_cnpj
-
-                            /*
-                             formata_cpf_cnpj
-                             
-                             Formata um CPF ou CNPJ
-                             
-                             @access public
-                             @return string CPF ou CNPJ formatado
-                             */
-                            function formata_cpf_cnpj(valor) {
-
-                                // O valor formatado
-                                var formatado = false;
-
-                                // Verifica se Ã© CPF ou CNPJ
-                                var valida = verifica_cpf_cnpj(valor);
-
-                                // Garante que o valor Ã© uma string
-                                valor = valor.toString();
-
-                                // Remove caracteres invÃ¡lidos do valor
-                                valor = valor.replace(/[^0-9]/g, '');
-
-
-                                // Valida CPF
-                                if (valida === 'CPF') {
-
-                                    // Verifica se o CPF Ã© vÃ¡lido
-                                    if (valida_cpf(valor)) {
-
-                                        // Formata o CPF ###.###.###-##
-                                        formatado = valor.substr(0, 3) + '.';
-                                        formatado += valor.substr(3, 3) + '.';
-                                        formatado += valor.substr(6, 3) + '-';
-                                        formatado += valor.substr(9, 2) + '';
-
-                                    }
-
-                                }
-
-                                // Valida CNPJ
-                                else if (valida === 'CNPJ') {
-
-                                    // Verifica se o CNPJ Ã© vÃ¡lido
-                                    if (valida_cnpj(valor)) {
-
-                                        // Formata o CNPJ ##.###.###/####-##
-                                        formatado = valor.substr(0, 2) + '.';
-                                        formatado += valor.substr(2, 3) + '.';
-                                        formatado += valor.substr(5, 3) + '/';
-                                        formatado += valor.substr(8, 4) + '-';
-                                        formatado += valor.substr(12, 14) + '';
-
-                                    }
-
-                                }
-
-                                // Retorna o valor 
-                                return formatado;
-
-                            } // formata_cpf_cnpj
-
-                        </script>
-                    </div>
-
-                    <!-- terceira linha do formulario-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputTelefone">Whatsapp: </label>
-
-                            <input name="telefone" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-9">    
-
-                            <label for="inputE-mail">E-mail:</label>
-
-                            <input name="email" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" required>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Quarta linha do formulario-->  
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">
-
-                            <label for="inputEndereco"> Endereço:</label>
-
-                            <input name="endereco" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" required>
-
-                        </div>
-
-                        <!--Quinta linha do Formulário-->
-                        <div class="form-group col-sm-3">    
-
-                            <label>Número:</label>
-
-                            <input name="numero" type="text" class="form-control" placeholder="Número" maxlength="6" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-6">    
-
-                            <label for="inputBairro">Bairro:</label>
-
-                            <input name="bairro" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-3">    
-
-                            <label for="inputCep">CEP:</label>
-
-                            <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="CEP" required>
-
-                        </div>
-                    </div>
-
-                    <!--Sexta linha do Formulário-->
-                    <div class="form-row">                          
-
-                        <div class="form-group col-sm-8">    
-
-                            <label for="inputCidade">Cidade:</label>
-
-                            <input name="cidade" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label for="inputEst" >Estado:</label>
-
-                            <select id="inputEst" name="estado" class="form-control">
-                                <option>Seu Estado</option>
-                                <option>Acre (AC)</option>
-                                <option>Alagoas (AL)</option>
-                                <option>Amapá (AP)</option>
-                                <option>Amazonas (AM)</option>
-                                <option>Bahia (BA)</option>
-                                <option>Ceará (CE)</option>
-                                <option>Distrito Federal (DF)</option>
-                                <option>Espírito Santo (ES)</option>
-                                <option>Goiás (GO)</option>
-                                <option>Maranhão (MA)</option>
-                                <option>Mato Grosso (MT)</option>
-                                <option>Mato Grosso do Sul (MS)</option>
-                                <option>Minas Gerais (MG)</option>
-                                <option>Pará (PA)</option>
-                                <option>Paraíba (PB)</option>
-                                <option>Paraná (PR)</option>
-                                <option>Pernambuco (PE)</option>
-                                <option>Piauí (PI)</option>
-                                <option>Rio de Janeiro (RJ)</option>
-                                <option>Rio Grande do Norte (RN)</option>
-                                <option>Rio Grande do Sul (RS)</option>
-                                <option>Rondônia (RO)</option>
-                                <option>Roraima (RR)</option>
-                                <option>Santa Catarina (SC)</option>
-                                <option>São Paulo (SP)</option>
-                                <option>Sergipe (SE)</option>
-                                <option>Tocantins (TO)</option>
-                            </select>
-
-                        </div>
-
-                        <!--Oitava Linha do Formulário-->
-                        <div class="form-control-file col-sm-4">    
-                            <label>Buscar Localização:</label>
-                            <button type="button" onclick="getLocation3()" class="btn btn-outline-secondary btn-block ">Clique Aqui</button>
-
-                        </div>
-
-                        <div class="form-group col-sm-4" >    
-
-                            <label>Latitude:</label><br>
-
-                            <input type="" id="lat3" name="latitude3" readonly=“true” class="form-control">
-
-                        </div>
-
-                        <div class="form-group col-sm-4">    
-
-                            <label>Longitude:</label><br/>
-
-                            <input id="long3" name="longitude3" readonly=“true” class="form-control">
-
-                        </div>
-
-                    </div>
-                    <script>
-                        var lat3 = document.getElementById("lat3");
-                        var long3 = document.getElementById("long3");
-                        function getLocation3() {
-                            if (navigator.geolocation) {
-                                navigator.geolocation.getCurrentPosition(showPosition);
-                            } else {
-                                lat3.innerHTML = "O seu navegador não suporta Geolocalização.";
-                                long3.innerHTML = "O seu navegador não suporta Geolocalização.";
-                            }
-                        }
-                        function showPosition(position) {
-                            lat3.value = +position.coords.latitude;
-                            long3.value = +position.coords.longitude;
-                        }
-                    </script>
-
-                    <!--Nona Linha do Formulário-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputSenha">Senha:</label>
-
-                            <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" required>
-
-                        </div>
-
-                        <div class="form-group col-sm-4">
-
-                            <label for="inputConfirmasenha">Confirme Sua Senha:</label>
-
-                            <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" required>
-
-                        </div>
-
-                    </div>
-
-                    <!--Décima Linha do Formulário-->
-                    <div class="form-row">
-
-                        <div class="form-group col-sm-12">                        
-
-                            <div class="form-row text-center my-5">
-
-                                <div class="col-sm-12 " >
-
-                                    <button onclick="validar(getElementById('cpf_cnpj').value)" type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div> 
-					</article>
-				</div> 
-			</li>
-		</ul>
-
-	</nav>
-
-
-
-
-
-
-
 
         <!--Tela que vai aparecer para o usuário escolher o tipo de cadastro 
     que ele deseja ter de gerador, catador ou comprador de resíduos-->
@@ -1787,8 +325,6 @@
             </div>
 
         </div>
-        
-        <!--Tela Login-->
         <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
 
             <div class="modal-dialog" role="document">
@@ -1866,8 +402,557 @@
 
         </div>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>
+
+            function addValuesInputs (data){
+                const {logradouro, bairro, localidade, uf, } = data;
+                console.log(data)
+
+                const inputAddress = document.querySelector("#inputEndereco");
+                const inputBairro = document.querySelector("#inputBairro");
+                const inputCidade = document.querySelector("#inputCidade");
+                const inputUf = document.querySelector("#inputEst");
+
+                inputAddress.value = logradouro;
+                inputBairro.value = bairro;
+                inputCidade.value = localidade;
+                inputUf.value = uf;
+            }
+            function getCep(cep){
+                const url = `https://viacep.com.br/ws/${cep}/json/`;
+                const requisition = new XMLHttpRequest();
+                requisition.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        const content = requisition.responseText
+                        addValuesInputs(JSON.parse(content))
+                    }
+                };
+                requisition.open("GET", url, true);
+                requisition.send();
+            }
+            const inputCep = document.querySelector('#inputCep');
+            inputCep.addEventListener('change', () => {
+                if(inputCep.value.length === 8)
+                {
+                    getCep(inputCep.value)
+                }
+            })
+
+            // latitude/longitude
+            const lat = document.getElementById("lat");
+            const long = document.getElementById("long");
+
+            window.addEventListener('load', getLocation())
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    lat.innerHTML = "O seu navegador não suporta Geolocalização.";
+                    long.innerHTML = "O seu navegador não suporta Geolocalização.";
+                }
+            }
+            function showPosition(position) {
+                lat.value = +position.coords.latitude;
+                long.value = +position.coords.longitude;
+            }
+
+            // validações cpf/cnpj
+
+            function validar(cpf_cnpj) {
+                // Valida
+                var valida = valida_cpf_cnpj(cpf_cnpj);
+
+                // Testa a validação
+                if (valida) {
+
+                } else {
+                    alert('CPF/CNPJ INVALIDO');
+                }
+
+
+            }
+
+            /*
+             verifica_cpf_cnpj,Verifica se é CPF ou CNPJ*/
+            function verifica_cpf_cnpj(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invá¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+                // Verifica CPF
+                if (valor.length === 11) {
+                    return 'CPF';
+                }
+
+                // Verifica CNPJ
+                else if (valor.length === 14) {
+                    return 'CNPJ';
+                }
+
+                // Não retorna nada
+                else {
+                    return false;
+                }
+
+            } // verifica_cpf_cnpj
+
+            /*
+             calc_digitos_posicoes
+             
+             Multiplica dí­gitos vezes posições
+             
+             @param string digitos Os digitos desejados
+             @param string posicoes A posição que vai iniciar a regressão
+             @param string soma_digitos A soma das multiplicações entre posições e dígitos
+             
+             
+             
+             @return string Os dí­gitos enviados concatenados com o Algorítimo 
+             */
+            function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
+
+                // Garante que o valor são uma string
+                digitos = digitos.toString();
+
+                // Faz a soma dos dí­gitos com a posição
+                // Ex. para 10 posições:
+                //   0    2    5    4    6    2    8    8   4
+                // x10   x9   x8   x7   x6   x5   x4   x3  x2
+                //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
+                for (var i = 0; i < digitos.length; i++) {
+
+                    // Preenche a soma com o dígito vezes a posição
+                    soma_digitos = soma_digitos + (digitos[i] * posicoes);
+
+                    // Subtrai 1 da posição
+                    posicoes--;
+
+                    // Parte  para CNPJ
+                    // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
+                    if (posicoes < 2) {
+                        // Retorno a posiÃ§Ã£o para 9
+                        posicoes = 9;
+                    }
+                }
+
+                // Captura o resto da divisão entre soma_digitos dividido por 11
+                // Ex.: 196 % 11 = 9
+                soma_digitos = soma_digitos % 11;
+
+                // Verifica se soma_digitos são menor que 2
+                if (soma_digitos < 2) {
+                    // soma_digitos agora serÃ¡ zero
+                    soma_digitos = 0;
+                } else {
+                    // Se for maior que 2, o resultado Ã© 11 menos soma_digitos
+                    // Ex.: 11 - 9 = 2
+                    // Nosso dÃ­gito procurado Ã© 2
+                    soma_digitos = 11 - soma_digitos;
+                }
+
+                // Concatena mais um dÃ­gito aos primeiro nove dÃ­gitos
+                // Ex.: 025462884 + 2 = 0254628842
+                var cpf = digitos + soma_digitos;
+
+                // Retorna
+                return cpf;
+
+            } // calc_digitos_posicoes
+
+            /*
+             Valida CPF
+             
+             Valida se for CPF
+             
+             @param  string cpf O CPF com ou sem pontos e traÃ§o
+             @return bool True para CPF correto - False para CPF incorreto
+             */
+            function valida_cpf(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // Captura os 9 primeiros dÃ­gitos do CPF
+                // Ex.: 02546288423 = 025462884
+                var digitos = valor.substr(0, 9);
+
+                // Faz o cÃ¡lculo dos 9 primeiros dÃ­gitos do CPF para obter o primeiro dÃ­gito
+                var novo_cpf = calc_digitos_posicoes(digitos);
+
+                // Faz o cÃ¡lculo dos 10 dÃ­gitos do CPF para obter o Ãºltimo dÃ­gito
+                var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
+
+
+
+
+                // Verifica se o novo CPF gerado Ã© idÃªntico ao CPF enviado
+                if (novo_cpf === valor) {
+                    // CPF vÃ¡lido
+                    return true;
+                } else {
+                    // CPF invÃ¡lido
+                    return false;
+                }
+
+            } // valida_cpf
+
+            /*
+             valida_cnpj
+             
+             Valida se for um CNPJ
+             
+             @param string cnpj
+             @return bool true para CNPJ correto
+             */
+            function valida_cnpj(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // O valor original
+                var cnpj_original = valor;
+
+                // Captura os primeiros 12 nÃºmeros do CNPJ
+                var primeiros_numeros_cnpj = valor.substr(0, 12);
+
+                // Faz o primeiro cÃ¡lculo
+                var primeiro_calculo = calc_digitos_posicoes(primeiros_numeros_cnpj, 5);
+                var segundo_calculo = calc_digitos_posicoes(primeiro_calculo, 6);
+                var cnpj = segundo_calculo;
+                if (cnpj === cnpj_original) {
+                    return true;
+                }
+                return false;
+
+            }
+            function valida_cpf_cnpj(valor) {
+
+                var valida = verifica_cpf_cnpj(valor);
+                valor = valor.toString();
+                valor = valor.replace(/[^0-9]/g, '');
+
+                if (valida === 'CPF') {
+                    return valida_cpf(valor);
+                }
+
+                // Valida CNPJ
+                else if (valida === 'CNPJ') {
+                    return valida_cnpj(valor);
+                }
+                else {
+                    return false;
+                }
+
+            }
+            function formata_cpf_cnpj(valor) {
+
+                // O valor formatado
+                var formatado = false;
+
+                // Verifica se Ã© CPF ou CNPJ
+                var valida = verifica_cpf_cnpj(valor);
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // Valida CPF
+                if (valida === 'CPF') {
+
+                    // Verifica se o CPF Ã© vÃ¡lido
+                    if (valida_cpf(valor)) {
+
+                        // Formata o CPF ###.###.###-##
+                        formatado = valor.substr(0, 3) + '.';
+                        formatado += valor.substr(3, 3) + '.';
+                        formatado += valor.substr(6, 3) + '-';
+                        formatado += valor.substr(9, 2) + '';
+
+                    }
+
+                }
+
+                // Valida CNPJ
+                else if (valida === 'CNPJ') {
+
+                    // Verifica se o CNPJ Ã© vÃ¡lido
+                    if (valida_cnpj(valor)) {
+
+                        // Formata o CNPJ ##.###.###/####-##
+                        formatado = valor.substr(0, 2) + '.';
+                        formatado += valor.substr(2, 3) + '.';
+                        formatado += valor.substr(5, 3) + '/';
+                        formatado += valor.substr(8, 4) + '-';
+                        formatado += valor.substr(12, 14) + '';
+
+                    }
+
+                }
+
+                // Retorna o valor 
+                return formatado;
+
+            } // formata_cpf_cnpj
+
+
+            function validar(cpf_cnpj) {
+                // Valida
+                var valida = valida_cpf_cnpj(cpf_cnpj);
+
+                // Testa a validação
+                if (valida) {
+
+                } else {
+                    alert('CPF/CNPJ INVALIDO');
+                }
+
+
+            }
+
+            function verifica_cpf_cnpj(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invá¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+                // Verifica CPF
+                if (valor.length === 11) {
+                    return 'CPF';
+                }
+
+                // Verifica CNPJ
+                else if (valor.length === 14) {
+                    return 'CNPJ';
+                }
+
+                // Não retorna nada
+                else {
+                    return false;
+                }
+
+            }
+
+            function calc_digitos_posicoes(digitos, posicoes = 10, soma_digitos = 0) {
+
+                // Garante que o valor são uma string
+                digitos = digitos.toString();
+
+                // Faz a soma dos dí­gitos com a posição
+                // Ex. para 10 posições:
+                //   0    2    5    4    6    2    8    8   4
+                // x10   x9   x8   x7   x6   x5   x4   x3  x2
+                //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
+                for (var i = 0; i < digitos.length; i++) {
+
+                    // Preenche a soma com o dígito vezes a posição
+                    soma_digitos = soma_digitos + (digitos[i] * posicoes);
+
+                    // Subtrai 1 da posição
+                    posicoes--;
+
+                    // Parte  para CNPJ
+                    // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
+                    if (posicoes < 2) {
+                        // Retorno a posiÃ§Ã£o para 9
+                        posicoes = 9;
+                    }
+                }
+
+                // Captura o resto da divisão entre soma_digitos dividido por 11
+                // Ex.: 196 % 11 = 9
+                soma_digitos = soma_digitos % 11;
+
+                // Verifica se soma_digitos são menor que 2
+                if (soma_digitos < 2) {
+                    // soma_digitos agora serÃ¡ zero
+                    soma_digitos = 0;
+                } else {
+                    // Se for maior que 2, o resultado Ã© 11 menos soma_digitos
+                    // Ex.: 11 - 9 = 2
+                    // Nosso dÃ­gito procurado Ã© 2
+                    soma_digitos = 11 - soma_digitos;
+                }
+
+                // Concatena mais um dÃ­gito aos primeiro nove dÃ­gitos
+                // Ex.: 025462884 + 2 = 0254628842
+                var cpf = digitos + soma_digitos;
+
+                // Retorna
+                return cpf;
+
+            } // calc_digitos_posicoes
+
+            function valida_cpf(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // Captura os 9 primeiros dÃ­gitos do CPF
+                // Ex.: 02546288423 = 025462884
+                var digitos = valor.substr(0, 9);
+
+                // Faz o cÃ¡lculo dos 9 primeiros dÃ­gitos do CPF para obter o primeiro dÃ­gito
+                var novo_cpf = calc_digitos_posicoes(digitos);
+
+                // Faz o cÃ¡lculo dos 10 dÃ­gitos do CPF para obter o Ãºltimo dÃ­gito
+                var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
+
+
+
+
+                // Verifica se o novo CPF gerado Ã© idÃªntico ao CPF enviado
+                if (novo_cpf === valor) {
+                    // CPF vÃ¡lido
+                    return true;
+                } else {
+                    // CPF invÃ¡lido
+                    return false;
+                }
+
+            } // valida_cpf
+
+            function valida_cnpj(valor) {
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // O valor original
+                var cnpj_original = valor;
+
+                // Captura os primeiros 12 nÃºmeros do CNPJ
+                var primeiros_numeros_cnpj = valor.substr(0, 12);
+
+                // Faz o primeiro cÃ¡lculo
+                var primeiro_calculo = calc_digitos_posicoes(primeiros_numeros_cnpj, 5);
+
+                // O segundo cÃ¡lculo Ã© a mesma coisa do primeiro, porÃ©m, comeÃ§a na posiÃ§Ã£o 6
+
+
+
+                var segundo_calculo = calc_digitos_posicoes(primeiro_calculo, 6);
+
+                // Concatena o segundo dÃ­gito ao CNPJ
+                var cnpj = segundo_calculo;
+
+                // Verifica se o CNPJ gerado Ã© idÃªntico ao enviado
+                if (cnpj === cnpj_original) {
+                    return true;
+                }
+
+                // Retorna falso por padrÃ£o
+                return false;
+
+            } // valida_cnpj
+
+            function valida_cpf_cnpj(valor) {
+
+                // Verifica se Ã© CPF ou CNPJ
+                var valida = verifica_cpf_cnpj(valor);
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // Valida CPF
+                if (valida === 'CPF') {
+                    // Retorna true para cpf vÃ¡lido
+                    return valida_cpf(valor);
+                }
+
+                // Valida CNPJ
+                else if (valida === 'CNPJ') {
+                    // Retorna true para CNPJ vÃ¡lido
+                    return valida_cnpj(valor);
+                }
+
+                // NÃ£o retorna nada
+                else {
+                    return false;
+                }
+
+            } // valida_cpf_cnpj
+            function formata_cpf_cnpj(valor) {
+
+                // O valor formatado
+                var formatado = false;
+
+                // Verifica se Ã© CPF ou CNPJ
+                var valida = verifica_cpf_cnpj(valor);
+
+                // Garante que o valor Ã© uma string
+                valor = valor.toString();
+
+                // Remove caracteres invÃ¡lidos do valor
+                valor = valor.replace(/[^0-9]/g, '');
+
+
+                // Valida CPF
+                if (valida === 'CPF') {
+
+                    // Verifica se o CPF Ã© vÃ¡lido
+                    if (valida_cpf(valor)) {
+
+                        // Formata o CPF ###.###.###-##
+                        formatado = valor.substr(0, 3) + '.';
+                        formatado += valor.substr(3, 3) + '.';
+                        formatado += valor.substr(6, 3) + '-';
+                        formatado += valor.substr(9, 2) + '';
+
+                    }
+
+                }
+
+                // Valida CNPJ
+                else if (valida === 'CNPJ') {
+
+                    // Verifica se o CNPJ Ã© vÃ¡lido
+                    if (valida_cnpj(valor)) {
+
+                        // Formata o CNPJ ##.###.###/####-##
+                        formatado = valor.substr(0, 2) + '.';
+                        formatado += valor.substr(2, 3) + '.';
+                        formatado += valor.substr(5, 3) + '/';
+                        formatado += valor.substr(8, 4) + '-';
+                        formatado += valor.substr(12, 14) + '';
+
+                    }
+
+                }
+
+                // Retorna o valor 
+                return formatado;
+
+            } // formata_cpf_cnpj
+
+        </script>
         <script src="node_modules/jquery/dist/jquery.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>

@@ -23,16 +23,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
         var optionsMap = {
                     center : coordinate,
-                    zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    zoom: 17,
+                    mapTypeId: 'satellite'
         };
 
         var map = new google.maps.Map(target, optionsMap);
-
+        
         var configMarker = {
                              position : coordinate,
                              map : map,
                              title: "Você Está Aqui!"
+                             
                             };
 
         var marker = new google.maps.Marker(configMarker);

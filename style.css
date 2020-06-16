@@ -9,37 +9,6 @@ and open the template in the editor.
     Author     : Pacto
 */
 
-/*.nbar label{
-    width: 250px;
-    padding: 25px;
-    background-color: #363b48;
-    display: block;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-}
-
-.rd_tabs:checked ~ label{
-    background-color: #e54e43; 
-}
-
-.rd_tabs{
-    display: none;
-}
-
-.content{
-    border-top: 5px solid #e54e43;
-    background-color: #fff;
-    display: none;
-    position: absolute;
-    left: 0;
-}
-
-.rd_tabs:checked ~ .content{
-    display: block;
-}*/
-
-
 /*essa declaração indica que o conteiner mapa <div> (como ID map) vai ocupar 100% da altura do corpo HTML. 
 e as declarações de <body> e <html> )*/
 html, body, #map {
@@ -48,44 +17,14 @@ html, body, #map {
   
 }
 
-/* Imagem da pagina home*/
-img {
-  height: 60%;
-  width: 50%;
+#imgindex{
+  width: 100%;
 }
 
 
 /*aqui fica a parte de configuração dos icones da pagina de perfil
 onde o usuario pode escolher os tipos de residuos que ele gera*/
 /*cor amarela do botao metal*/
-.btn-outline-metal {
-  color: #D4E100;
-  background-color: transparent;
-  background-image: none;
-  border-color: #D4E100;
-}
-
-.btn-outline-metal:hover {
-  color: #fff;
-  background-color: #D4E100;
-  border-color: #D4E100;
-}
-
-.btn-outline-metal:focus, .btn-outline-metal.focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-}
-
-.btn-outline-metal.disabled, .btn-outline-metal:disabled {
-  color: #D4E100;
-  background-color: transparent;
-}
-
-.btn-outline-metal:not([disabled]):not(.disabled):active, .btn-outline-metal:not([disabled]):not(.disabled).active, .show > .btn-outline-metal.dropdown-toggle {
-  color: #fff;
-  background-color: #D4E100;
-  border-color: #D4E100;
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-}
 
 /*COR ROXA BOTAO RESIDUOS RADIOATIVOS*/
 .btn-outline-radioativo {
@@ -349,7 +288,7 @@ onde o usuario pode escolher os tipos de residuos que ele gera*/
     .nav_tabs ul li{
       float: left;
     }
-    /*aqui estiliza os botoes que mudam de cor conforme a escolha do tipo de ususrio*/
+    /*aqui estiliza os botoes que mudam de cor conforme a escolha do tipo de usuario*/
     .nav_tabs label.botao{
       border: 1px solid;
       border-radius: 5px;
@@ -368,7 +307,7 @@ onde o usuario pode escolher os tipos de residuos que ele gera*/
       display: none;
     }
 
-    /*esta parte controlrola a estilização de onde ficam os formulários de cada 
+    /*esta parte controla a estilização de onde ficam os formulários de cada 
     aba*/
     .content{
       border-top: 5px solid #363b48;
@@ -385,3 +324,21 @@ onde o usuario pode escolher os tipos de residuos que ele gera*/
     .rd_tabs:checked ~ .content{
       display: block;
     }
+
+    /* estilo do formulario */
+.formMain{
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  margin: auto;
+}
+.formMain h1{
+  margin: 20px 0px
+}
+
+@media(max-width: 1000px){
+  .formMain{
+    width: 95vw;
+  }
+}
