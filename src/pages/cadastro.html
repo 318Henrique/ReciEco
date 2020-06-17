@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--  meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../node_modules/bootstrap/compilados/bootstrap.css">
+        <link rel="stylesheet" href="../styles/style.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<title>Cadastro</title>
+
+</head>
+<body class="telacadastro">
+        
+        <!-- menu de navegação da pagina -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-success">
+
+            <!--div que fica a logomarca e o nome da aplicação -->
+            <div class="page-sidebar">
+
+                <div class="form-check text-center ml-2 ">
+
+                    <img src="../assets/rec2.png" class="img-fluid mb-0" alt="Responsive image">
+
+                    <a class="navbar-brand h1 mb-0" href="/">ReciEco</a>
+
+                </div>
+
+            </div>
+            <!--Botão que recolhe quando o tamanho da tela e pequeno-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- lista do menu e botao de login a aplicação-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="localizar.html">Localizar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastro</a>
+                    </li>
+
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+
+                    <a class="btn btn-outline-light my-2 my-sm-0 mr-3" href="#" data-toggle="modal" data-target="#telalogin">Entrar</a>
+
+                </form>
+
+            </div>
+
+        </nav>
+
+        <div class="container-fuid col-sm-7 formMain">
+            <h1>Formulário de Cadastro</h1>
+            <form formData>
+
+                <!-- primeira linha do formulario-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="inputNome"> Tipo de Cadastro: </label>
+                        <select name="nome" class="form-control" >
+                            <option>Gerador de Resíduos</option>
+                            <option>Catador de Resíduos</option>
+                            <option>Comprador de Resíduos</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="inputNome"> Nome: </label>
+                        <input name="nome" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" >
+                    </div>
+
+                    
+                    <!-- segunda linha do formulario--> 
+                    <div class="form-group col-lg-3 col-md-6 col-sm-6"> 
+                        <label for="exampleRadios1">Tipo de pessoa</label>
+                        <select handleFieldDocument class="form-control" >
+                            <option value="cpf">CPF</option>
+                            <option value="cnpj">CNPJ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6"> 
+                            <label>Número do seu <span handleTextDocumentIdentification>cpf</span></label>
+                            <input name="numberDocumentChoise" numberDocumentIdentification type="text" class="form-control" id="inputCNPJ"  maxlength="11
+                            " placeholder="Somente Números">
+                    </div>
+                </div>
+                
+
+                <!-- terceira linha do formulario-->
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">    
+
+                        <label for="inputTelefone">Whatsapp: </label>
+
+                        <input name="telefone" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" >
+
+                    </div>
+
+                    <div class="form-group col-sm-9">    
+
+                        <label for="inputE-mail">E-mail:</label>
+
+                        <input name="email" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" >
+
+                    </div>
+
+                </div>
+
+                <!-- Quarta linha do formulario-->  
+                <div class="form-row">
+                    <div class="form-group col-sm-3">    
+
+                        <label for="inputCep">CEP:</label>
+                        <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="12345000" >
+
+                    </div>
+
+                    <!--Quinta linha do Formulário-->
+                    <div class="form-group col-sm-3">    
+
+                        <label>Número:</label>
+
+                        <input name="numero" type="text" class="form-control" placeholder="Número" maxlength="6" >
+
+                    </div>
+
+                    <div class="form-group col-sm-6">    
+
+                        <label for="inputBairro">Bairro:</label>
+
+                        <input name="bairro" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" >
+
+                    </div>
+                    <div class="form-group col-sm-12">
+
+                        <label for="inputEndereco"> Endereço:</label>
+
+                        <input name="endereco" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" >
+
+                    </div>
+                </div>
+
+                <!--Sexta linha do Formulário-->
+                <div class="form-row">                          
+
+                    <div class="form-group col-sm-8">    
+
+                        <label for="inputCidade">Cidade:</label>
+
+                        <input name="cidade" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" >
+
+                    </div>
+
+                    <div class="form-group col-sm-4">    
+
+                        <label for="inputEst" >Estado:</label>
+                        <input name="Estado" id="inputEst" type="text" class="form-control"  placeholder="Estado" maxlength="40" >
+
+                    </div>
+
+                    <!--Oitava Linha do Formulário-->
+                    <!-- <div class="form-control-file col-sm-4">    
+                        <label>Buscar Localização:</label>
+                        <button type="button" class="btn btn-outline-secondary btn-block ">Clique Aqui</button>
+                    </div> -->
+
+                    <div class="form-group col-sm-4" >    
+
+                        <label>Latitude:</label><br>
+
+                        <input type="" id="lat" name="latitude" readonly=“true” class="form-control">
+
+                    </div>
+
+                    <div class="form-group col-sm-4">    
+
+                        <label>Longitude:</label><br/>
+
+                        <input id="long" name="longitude" readonly=“true” class="form-control">
+
+                    </div>
+
+                </div>
+
+                <!--Nona Linha do Formulário-->
+                <div class="form-row">
+
+                    <div class="form-group col-sm-4">
+
+                        <label for="inputSenha">Senha:</label>
+
+                        <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" >
+
+                    </div>
+
+                    <div class="form-group col-sm-4">
+
+                        <label for="inputConfirmasenha">Confirme Sua Senha:</label>
+
+                        <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" >
+
+                    </div>
+
+                </div>
+
+                <!--Décima Linha do Formulário-->
+                <div class="form-row">
+
+                    <div class="form-group col-sm-12">                        
+
+                        <div class="form-row text-center my-5">
+
+                            <div class="col-sm-12 " >
+
+                                <button type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+        <!--Tela que vai aparecer para o usuário escolher o tipo de cadastro 
+    que ele deseja ter de gerador, catador ou comprador de resíduos-->
+
+        <div class="modal fade btn" id="telacadastro" tabindex="-1" role="dialog">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content bg-gradient-light">
+
+                    <div class="modal-header btn btn-success ">
+
+                        <h5 class="modal-title">Selecione seu tipo de usuário</h5>
+
+                        <button type="button" class="close" data-dismiss="modal">
+
+                            <span>&times;</span>
+
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content bg-light">
+
+                    <div class="modal-header btn btn-success">
+
+                        <h5 class="modal-title">Login ReciEco</h5>
+
+                        <button type="button" class="close" data-dismiss="modal">
+
+                            <span>&times;</span>
+
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form >
+
+                            <!-- primeira linha do formulario-->
+                            <div class="form-row" >
+
+                                <!-- segunda linha do formulario--> 
+                                <div class="form-group col-sm-12">    
+
+                                    <label for="inputUsuario">Usuário:</label>
+
+                                    <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail "  name=usuario>
+                                </div>
+
+                                <div class="form-group col-sm-12">    
+
+                                    <label> Senha:</label>
+
+                                    <input id="cpf_cnpj" type="password" class="form-control" maxlength="14" placeholder="Digite Sua Senha"  name=cpf/cnpj>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-sm-12">                        
+
+                                    <div class="form-row text-center ">
+
+                                        <div class="col-sm-12 " >
+
+                                            <button type="submit" class="btn btn-outline-success btn-block" >Entrar</button>
+
+                                        </div>
+
+                                        <div class="form-group col-sm-12">    
+
+                                            <a href="cadastro.html">Cadastro</a> | <a href="reculperarsenha">Esqueci Minha Senha</a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+
+            function addValuesInputs (data){
+                const {logradouro, bairro, localidade, uf, } = data;
+                console.log(data)
+
+                const inputAddress = document.querySelector("#inputEndereco");
+                const inputBairro = document.querySelector("#inputBairro");
+                const inputCidade = document.querySelector("#inputCidade");
+                const inputUf = document.querySelector("#inputEst");
+
+                inputAddress.value = logradouro;
+                inputBairro.value = bairro;
+                inputCidade.value = localidade;
+                inputUf.value = uf;
+            }
+            function getCep(cep){
+                const url = `https://viacep.com.br/ws/${cep}/json/`;
+                const requisition = new XMLHttpRequest();
+                requisition.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        const content = requisition.responseText
+                        addValuesInputs(JSON.parse(content))
+                    }
+                };
+                requisition.open("GET", url, true);
+                requisition.send();
+            }
+            const inputCep = document.querySelector('#inputCep');
+            inputCep.addEventListener('change', () => {
+                if(inputCep.value.length === 8)
+                {
+                    getCep(inputCep.value)
+                }
+            })
+
+            // latitude/longitude
+            const lat = document.getElementById("lat");
+            const long = document.getElementById("long");
+
+            window.addEventListener('load', getLocation())
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    lat.innerHTML = "O seu navegador não suporta Geolocalização.";
+                    long.innerHTML = "O seu navegador não suporta Geolocalização.";
+                }
+            }
+            function showPosition(position) {
+                lat.value = +position.coords.latitude;
+                long.value = +position.coords.longitude;
+            }
+
+
+            const handleFieldDocument = document.querySelector('[handleFieldDocument]');
+            handleFieldDocument.addEventListener('change', event => {
+                const numberDocumentIdentification = document.querySelector('[numberDocumentIdentification]');
+                const handleTextDocumentIdentification = document.querySelector('[handleTextDocumentIdentification]')
+                
+                const valeuFieldDocument = handleFieldDocument.value;
+                handleTextDocumentIdentification.innerHTML = valeuFieldDocument;
+                if(valeuFieldDocument === 'cpf')
+                numberDocumentIdentification.maxLength = 11
+
+                else
+                numberDocumentIdentification.maxLength = 14
+            })
+
+            const formData = document.querySelector('[formData]');
+            formData.addEventListener('submit', (event) => {
+                event.preventDefault();
+                // const registerType = event.srcElement[0].value
+                // const personName = event.srcElement[1].valeu;
+
+                // como armazenar os dados dentro de um loop forin
+
+                const data = {};
+
+                for (const key in event.srcElement) {
+                    const fieldName = event.srcElement[key].name;
+                }
+
+                const url = "https://recieco.herokuapp.com/signup/"
+                // axios({
+                //     method: 'post',
+                //     url: url,
+                //     // headers: {
+                //     //     'auth': token
+                //     // },
+                //     data: {
+                //         person_name: personName,
+                //         registerType: "Gerador de Resíduos",
+                //         cpf: "03698881110",
+                //         whatsapp: "65992336042",
+                //         mail: "brunoleansd@outlook.com",
+                //         zipcode: "78310000",
+                //         address: "rua angela prestes zanon",
+                //         number_address: "406w",
+                //         neghborhood: "cidade verde",
+                //         city: "comodoro",
+                //         state: "mt",
+                //         coordLatitude: "123.23",
+                //         coordLongitude: "123.3",
+                //         password: "123"
+                //     }
+                // }).then( content => {                
+                //     console.log(content.data)
+                // }).catch(error => {
+                //     alert('Deu ruim')
+                //     console.log(error)
+                // })
+            })
+
+
+        </script>
+
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    </body>
+</html>

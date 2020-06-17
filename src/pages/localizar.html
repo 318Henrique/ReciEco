@@ -1,25 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-bt">
     <head>
-
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
+        <link rel="stylesheet" href="../../node_modules/bootstrap/compilados/bootstrap.css">
+        <link rel="stylesheet" href="../styles/style.css">
         
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="node_modules/bootstrap/compilados/bootstrap.css">
-        <link rel="stylesheet" href="style.css">
-
-
-
-        <!-- links paginas -->
-        <link rel="stylesheet" href="index.html">
-        <link rel="stylesheet" href="localizar.html">
-        <link rel="stylesheet" href="perfil.html">
-        <link rel="stylesheet" href="cadastro.html">       
-        <script type="text/javascript" src="valida.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKb5RlQfAw2DiQb_Gq0rIwCsiJv8P1bsQ&callback=initMap&libraries=&v=weekly" defer></script>
+        <script type="text/javascript" src="../scripts/getlocation.js"></script>
         <title>Localizar</title>
 
     </head>
@@ -34,9 +25,9 @@
 
                 <div class="form-check text-center ml-2 ">
 
-                    <img src="icones/rec2.png" class="img-fluid mb-0" alt="Responsive image">
+                    <img src="../assets/rec2.png" class="img-fluid mb-0" alt="Responsive image">
 
-                    <a class="navbar-brand h1 mb-0" href="index.html">ReciEco</a>
+                    <a class="navbar-brand h1 mb-0" href="/">ReciEco</a>
 
                 </div>
 
@@ -52,7 +43,7 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
@@ -77,11 +68,7 @@
         
         
         <!--contêiner do mapa -->
-        <div id="map">
-            
-            <script src="https://maps.google.com/maps/api/js?key=AIzaSyCKb5RlQfAw2DiQb_Gq0rIwCsiJv8P1bsQ&amp;callback=initMap"></script>
-            
-        </div>        
+        <div id="map"></div>        
         <!--Tela Login-->
         <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
 
@@ -162,8 +149,8 @@
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules/popper.js/dist/umd/popper.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 </html>
