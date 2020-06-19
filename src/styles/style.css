@@ -17,12 +17,13 @@ html, body, #map {
   
 }
 
+#carouselSite{
+  margin-top: 66px;
+}
 
-.textfoto{
-    border-color: #363b48;
-  }
-
-
+#formcadastro{
+  margin-top: 66px;
+}
 /*aqui fica a parte de configuração dos icones da pagina de perfil
 onde o usuario pode escolher os tipos de residuos que ele gera*/
 /*cor amarela do botao metal*/
