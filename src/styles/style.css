@@ -17,9 +17,10 @@ html, body, #map {
   
 }
 
-#imgindex{
-  width: 100%;
-}
+
+.textfoto{
+    border-color: #363b48;
+  }
 
 
 /*aqui fica a parte de configuração dos icones da pagina de perfil
