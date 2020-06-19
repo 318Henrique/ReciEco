@@ -21,6 +21,12 @@ html, body, #map {
   margin-top: 66px;
 }
 
+#imgcadastro{
+  width: 250px;
+  height: 100px;
+  
+}
+
 #formcadastro{
   margin-top: 66px;
 }
