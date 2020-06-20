@@ -7,12 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="node_modules/bootstrap/compilados/bootstrap.css">
-        <link rel="stylesheet" href="node_modules/bootstrap/compilados/style.css">
+        <link rel="stylesheet" href="../../node_modules/bootstrap/compilados/bootstrap.css">
         <link rel="stylesheet" href="../styles/style.css">
          
-        <script type="text/javascript" src="valida.js"></script>
-
+        
         <title>Perfil</title>
 
     </head>
@@ -27,7 +25,7 @@
 
                 <div class="form-check text-center ml-2 ">
 
-                    <img src="icones/rec2.png" class="img-fluid mb-0" alt="Responsive image">
+                    <img src="../assets/rec2.png" class="img-fluid mb-0" alt="Responsive image">
 
                     <a class="navbar-brand h1 mb-0" href="index.html">ReciEco</a>
 
@@ -45,7 +43,7 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
@@ -76,27 +74,13 @@
 
                 <div class="row">
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-primary btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-primary btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/2-papel.png"><br/>Papel
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-3">
-
-                        <div class="form-check text-center ">
-
-                            <label class="form-check-label ml-1 btn btn-outline-danger btn-block">
-
-                                <input class="form-check-input" type="checkbox"><img class="img-fluid mb-0" src="icones/9-plastico.png"><br/>Plástico
+                                <input class="form-check-input" type="checkbox" ><img id="imgPerfil" class="img-fluid mb-0" src="../assets/2-papel.png"><br/>Papel
 
                             </label>
 
@@ -104,27 +88,13 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-success btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-danger btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/8-vidros.png"><br/>Vidro
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-3">
-
-                        <div class="form-check text-center ">
-
-                            <label class="form-check-label ml-1 btn btn-outline-metal btn-block">
-
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/1-metal.png"><br/>Metal
+                                <input class="form-check-input" type="checkbox"><img id="imgPerfil" class="img-fluid mb-0" src="../assets/9-plastico.png"><br/>Plástico
 
                             </label>
 
@@ -132,27 +102,13 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-pneus btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-success btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/11-pneus.png"><br/>Pneus
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-3">
-
-                        <div class="form-check text-center ">
-
-                            <label class="form-check-label ml-1 btn btn-outline-pilhas btn-block">
-
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/12-pilhas.png"><br/>Pilhas
+                                <input class="form-check-input" type="checkbox" ><img id="imgPerfil" class="img-fluid mb-0" src="../assets/8-vidros.png"><br/>Vidro
 
                             </label>
 
@@ -160,13 +116,13 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-dark btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-metal btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/6-madeira.png"><br/>Madeira
+                                <input class="form-check-input" type="checkbox" ><img id="imgPerfil" class="img-fluid mb-0" src="../assets/1-metal.png"><br/>Metal
 
                             </label>
 
@@ -174,13 +130,55 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-organicos btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-pneus btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/5-organicos.png"><br/>Orgânicos
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/11-pneus.png"><br/>Pneus
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+
+                        <div class="form-check">
+
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-pilhas btn-block">
+
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/12-pilhas.png"><br/>Pilhas
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+
+                        <div class="form-check">
+
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-dark btn-block">
+
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/6-madeira.png"><br/>Madeira
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+
+                        <div class="form-check">
+
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-organicos btn-block">
+
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/5-organicos.png"><br/>Orgânicos
 
                             </label>
 
@@ -189,27 +187,13 @@
                     </div>
 
                     <!--linha 02-->
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-warning btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-warning btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/4-residuos-perigosos.png"><br/>Resíduos Perigosos
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-3">
-
-                        <div class="form-check text-center ">
-
-                            <label class="form-check-label ml-1 btn btn-outline-radioativo btn-block">
-
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/7-radioativos.png "><br/>Resíduos Radioativos
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/4-residuos-perigosos.png"><br/>Resíduos Perigosos
 
                             </label>
 
@@ -217,13 +201,13 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-secondary btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-radioativo btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/3-nao-reciclaveis.png"><br/>Não Recicláveis
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/7-radioativos.png "><br/>Resíduos Radioativos
 
                             </label>
 
@@ -231,13 +215,27 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-lampada btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-secondary btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/10-lampadas-flourecentes.png"><br/>Lâmpadas Flourecentes
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/3-nao-reciclaveis.png"><br/>Não Recicláveis
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
+
+                        <div class="form-check">
+
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-lampada btn-block">
+
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/10-lampadas-flourecentes.png"><br/>Lâmpadas Flourecentes
 
                             </label>
 
@@ -246,13 +244,13 @@
                     </div>
 
                     <!--linha 03-->                   
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-ferro-velho btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-ferro-velho btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/15-ferro-velho.png"><br/>Ferro Velho
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/15-ferro-velho.png"><br/>Ferro Velho
 
                             </label>
 
@@ -260,13 +258,13 @@
 
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-moveis btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-moveis btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/14-moveis-usados.png"><br/>Moveis Usados
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/14-moveis-usados.png"><br/>Moveis Usados
 
                             </label>
 
@@ -275,13 +273,14 @@
                     </div>
 
                     <!--linha 04-->
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-6">
 
-                        <div class="form-check text-center ">
+                        <div class="form-check">
 
-                            <label class="form-check-label ml-1 btn btn-outline-roupas-calcados btn-block">
+                            <label id="iconePerfil" class="form-check-label ml-1 btn btn-outline-roupas-calcados btn-block">
 
-                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="icones/13-roupascalcados.png"><br/>Roupas/Calçados
+                                <input class="form-check-input" type="checkbox" ><img class="img-fluid mb-0" src="../assets/13-roupascalcados.png"><br/>Roupas/
+                                Calçados
 
                             </label>
 
@@ -297,7 +296,6 @@
 
 
 
-        <!--Tela Login-->
         <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
 
             <div class="modal-dialog" role="document">
@@ -328,14 +326,14 @@
 
                                     <label for="inputUsuario">Usuário:</label>
 
-                                    <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail " required name=usuario>
+                                    <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail "  name=usuario>
                                 </div>
 
                                 <div class="form-group col-sm-12">    
 
                                     <label> Senha:</label>
 
-                                    <input id="cpf_cnpj" type="password" class="form-control" maxlength="14" placeholder="Digite Sua Senha" required name=cpf/cnpj>
+                                    <input id="cpf_cnpj" type="password" class="form-control" maxlength="14" placeholder="Digite Sua Senha"  name=cpf/cnpj>
 
                                 </div>
 
@@ -377,8 +375,8 @@
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules/popper.js/dist/umd/popper.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 </html>

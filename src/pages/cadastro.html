@@ -207,7 +207,7 @@
 
                         <label for="inputSenha">Senha:</label>
 
-                        <input name="senha" id="Senha" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" >
+                        <input name="senha" id="password" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" >
 
                     </div>
 
@@ -215,7 +215,7 @@
 
                         <label for="inputConfirmasenha">Confirme Sua Senha:</label>
 
-                        <input name="confirma_senha" id="Confirma_senha" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" >
+                        <input name="confirma_senha" id="confirm_password" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" >
 
                     </div>
 
@@ -243,36 +243,7 @@
             </form>
         </div>
 
-        <!--Tela que vai aparecer para o usuário escolher o tipo de cadastro 
-    que ele deseja ter de gerador, catador ou comprador de resíduos-->
-
-        <div class="modal fade btn" id="telacadastro" tabindex="-1" role="dialog">
-
-            <div class="modal-dialog" role="document">
-
-                <div class="modal-content bg-gradient-light">
-
-                    <div class="modal-header btn btn-success ">
-
-                        <h5 class="modal-title">Selecione seu tipo de usuário</h5>
-
-                        <button type="button" class="close" data-dismiss="modal">
-
-                            <span>&times;</span>
-
-                        </button>
-
-                    </div>
-
-                    <div class="modal-body">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        
         <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
 
             <div class="modal-dialog" role="document">
@@ -351,6 +322,19 @@
         </div>
 
         <script>
+            var password = document.getElementById("password"),
+            confirm_password = document.getElementById("confirm_password");
+
+            function validatePassword(){
+             if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Senhas diferentes!");
+            } else {
+            confirm_password.setCustomValidity('');
+            }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
 
             function addValuesInputs (data){
                 const {logradouro, bairro, localidade, uf, } = data;

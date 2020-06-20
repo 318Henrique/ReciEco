@@ -21,7 +21,7 @@ html, body, #map {
   margin-top: 66px;
 }
 
-#imgcadastro{
+#imgcadastroindex{
   width: 250px;
   height: 100px;
   
@@ -30,9 +30,50 @@ html, body, #map {
 #formcadastro{
   margin-top: 66px;
 }
+
+
+#iconePerfil{
+  width: 170px;
+  height:140px;
+}
+
+#imgPerfil{
+  width: 60%;
+  height:80%;
+}
 /*aqui fica a parte de configuração dos icones da pagina de perfil
 onde o usuario pode escolher os tipos de residuos que ele gera*/
-/*cor amarela do botao metal*/
+
+/*COR AMARELO BOTAO METAL*/
+.btn-outline-metal {
+  color: #ceeb2b;
+  background-color: transparent;
+  background-image: none;
+  border-color: #ceeb2b;
+}
+
+.btn-outline-metal:hover {
+  color: #fff;
+  background-color: #ceeb2b;
+  border-color: #ceeb2b;
+}
+
+.btn-outline-metal:focus, .btn-outline-metal.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-metal.disabled, .btn-outline-metal:disabled {
+  color: #ceeb2b;
+  background-color: transparent;
+}
+
+.btn-outline-metal:not([disabled]):not(.disabled):active, .btn-outline-metal:not([disabled]):not(.disabled).active,
+.show > .btn-outline-metal.dropdown-toggle {
+  color: #fff;
+  background-color: #ceeb2b;
+  border-color: #ceeb2b;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
 
 /*COR ROXA BOTAO RESIDUOS RADIOATIVOS*/
 .btn-outline-radioativo {
