@@ -14,17 +14,20 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         var map = new google.maps.Map(target, optionsMap);
-        
+
         var configMarker = {
                              position : coordinate,
                              map : map,
+                             animation: google.maps.Animation.DROP,
                              title: "Você Está Aqui!"
-                             
                             };
 
         var marker = new google.maps.Marker(configMarker);
+        
 
+ 
     });
+
 });
 
 
