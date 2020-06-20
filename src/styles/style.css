@@ -33,13 +33,13 @@ html, body, #map {
 
 
 #iconePerfil{
-  width: 170px;
-  height:140px;
+  width: 106px;
+  height:100px;
 }
 
 #imgPerfil{
   width: 60%;
-  height:80%;
+  height:50%;
 }
 /*aqui fica a parte de configuração dos icones da pagina de perfil
 onde o usuario pode escolher os tipos de residuos que ele gera*/
