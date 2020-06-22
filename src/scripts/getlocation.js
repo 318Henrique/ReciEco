@@ -23,12 +23,13 @@ document.addEventListener('DOMContentLoaded', function(){
                             };
 
         var marker = new google.maps.Marker(configMarker);
-        
-
  
     });
-
 });
+
+function initMap(){
+
+}
 
 
 

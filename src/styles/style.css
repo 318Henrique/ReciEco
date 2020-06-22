@@ -37,293 +37,10 @@ html, body, #map {
   height:100px;
 }
 
-#imgPerfil{
-  width: 60%;
-  height:50%;
-}
-/*aqui fica a parte de configuração dos icones da pagina de perfil
-onde o usuario pode escolher os tipos de residuos que ele gera*/
-
-/*COR AMARELO BOTAO METAL*/
-.btn-outline-metal {
-  color: #ceeb2b;
-  background-color: transparent;
-  background-image: none;
-  border-color: #ceeb2b;
+.patternColorResidues{
+  border: 1px solid #ddd
 }
 
-.btn-outline-metal:hover {
-  color: #fff;
-  background-color: #ceeb2b;
-  border-color: #ceeb2b;
-}
-
-.btn-outline-metal:focus, .btn-outline-metal.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-metal.disabled, .btn-outline-metal:disabled {
-  color: #ceeb2b;
-  background-color: transparent;
-}
-
-.btn-outline-metal:not([disabled]):not(.disabled):active, .btn-outline-metal:not([disabled]):not(.disabled).active,
-.show > .btn-outline-metal.dropdown-toggle {
-  color: #fff;
-  background-color: #ceeb2b;
-  border-color: #ceeb2b;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*COR ROXA BOTAO RESIDUOS RADIOATIVOS*/
-.btn-outline-radioativo {
-  color: #6F37A1;
-  background-color: transparent;
-  background-image: none;
-  border-color: #6F37A1;
-}
-
-.btn-outline-radioativo:hover {
-  color: #fff;
-  background-color: #6F37A1;
-  border-color: #6F37A1;
-}
-
-.btn-outline-radioativo:focus, .btn-outline-radioativo.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-radioativo.disabled, .btn-outline-radioativo:disabled {
-  color: #6F37A1;
-  background-color: transparent;
-}
-
-.btn-outline-radioativo:not([disabled]):not(.disabled):active, .btn-outline-radioativo:not([disabled]):not(.disabled).active,
-.show > .btn-outline-radioativo.dropdown-toggle {
-  color: #fff;
-  background-color: #6F37A1;
-  border-color: #6F37A1;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*COR MARROM BOTAO ORGANICOS*/
-.btn-outline-organicos {
-  color: #614802;
-  background-color: transparent;
-  background-image: none;
-  border-color: #614802;
-}
-
-.btn-outline-organicos:hover {
-  color: #fff;
-  background-color: #614802;
-  border-color: #614802;
-}
-
-.btn-outline-organicos:focus, .btn-outline-organicos.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-organicos.disabled, .btn-outline-organicos:disabled {
-  color: #614802;
-  background-color: transparent;
-}
-
-.btn-outline-organicos:not([disabled]):not(.disabled):active, .btn-outline-organicos:not([disabled]):not(.disabled).active,
-.show > .btn-outline-organicos.dropdown-toggle {
-  color: #fff;
-  background-color: #614802;
-  border-color: #614802;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*cor verde claro botao ferro-velho */
-.btn-outline-ferro-velho {
-  color: #6E8F79;
-  background-color: transparent;
-  background-image: none;
-  border-color: #6E8F79;
-}
-
-.btn-outline-ferro-velho:hover {
-  color: #fff;
-  background-color: #6E8F79;
-  border-color: #6E8F79;
-}
-
-.btn-outline-ferro-velho:focus, .btn-outline-ferro-velho.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-ferro-velho.disabled, .btn-outline-ferro-velho:disabled {
-  color: #6E8F79;
-  background-color: transparent;
-}
-
-.btn-outline-ferro-velho:not([disabled]):not(.disabled):active, .btn-outline-ferro-velho:not([disabled]):not(.disabled).active,
-.show > .btn-outline-ferro-velho.dropdown-toggle {
-  color: #fff;
-  background-color: #6E8F79;
-  border-color: #6E8F79;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*cor rosa botao lampada flourescente*/
-.btn-outline-lampada {
-  color: #8F3062;
-  background-color: transparent;
-  background-image: none;
-  border-color: #8F3062;
-}
-
-.btn-outline-lampada:hover {
-  color: #fff;
-  background-color: #8F3062;
-  border-color: #8F3062;
-}
-
-.btn-outline-lampada:focus, .btn-outline-lampada.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-lampada.disabled, .btn-outline-lampada:disabled {
-  color: #8F3062;
-  background-color: transparent;
-}
-
-.btn-outline-lampada:not([disabled]):not(.disabled):active, .btn-outline-lampada:not([disabled]):not(.disabled).active,
-.show > .btn-outline-lampada.dropdown-toggle {
-  color: #fff;
-  background-color: #8F3062;
-  border-color: #8F3062;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-pneus {
-  color: #9E7441;
-  background-color: transparent;
-  background-image: none;
-  border-color: #9E7441;
-}
-
-.btn-outline-pneus:hover {
-  color: #fff;
-  background-color: #9E7441;
-  border-color: #9E7441;
-}
-
-.btn-outline-pneus:focus, .btn-outline-pneus.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-pneus.disabled, .btn-outline-pneus:disabled {
-  color: #9E7441;
-  background-color: transparent;
-}
-
-.btn-outline-pneus:not([disabled]):not(.disabled):active, .btn-outline-pneus:not([disabled]):not(.disabled).active,
-.show > .btn-outline-pneus.dropdown-toggle {
-  color: #fff;
-  background-color: #9E7441;
-  border-color: #9E7441;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*cor creme botao moveis*/
-.btn-outline-moveis {
-  color: #7C8DDA;
-  background-color: transparent;
-  background-image: none;
-  border-color: #7C8DDA;
-}
-
-.btn-outline-moveis:hover {
-  color: #fff;
-  background-color: #7C8DDA;
-  border-color: #7C8DDA;
-}
-
-.btn-outline-moveis:focus, .btn-outline-moveis.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-moveis.disabled, .btn-outline-moveis:disabled {
-  color: #7C8DDA;
-  background-color: transparent;
-}
-
-.btn-outline-moveis:not([disabled]):not(.disabled):active, .btn-outline-moveis:not([disabled]):not(.disabled).active,
-.show > .btn-outline-moveis.dropdown-toggle {
-  color: #fff;
-  background-color: #7C8DDA;
-  border-color: #7C8DDA;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*cor verde marron botao pilhas*/
-.btn-outline-pilhas {
-  color: #668A56;
-  background-color: transparent;
-  background-image: none;
-  border-color: #668A56;
-}
-
-.btn-outline-pilhas:hover {
-  color: #fff;
-  background-color: #668A56;
-  border-color: #668A56;
-}
-
-.btn-outline-pilhas:focus, .btn-outline-pilhas.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-pilhas.disabled, .btn-outline-pilhas:disabled {
-  color: #668A56;
-  background-color: transparent;
-}
-
-.btn-outline-pilhas:not([disabled]):not(.disabled):active, .btn-outline-pilhas:not([disabled]):not(.disabled).active,
-.show > .btn-outline-pilhas.dropdown-toggle {
-  color: #fff;
-  background-color: #668A56;
-  border-color: #668A56;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*cor vinho botao roupas*/
-.btn-outline-roupas-calcados {
-  color: #6E3001;
-  background-color: transparent;
-  background-image: none;
-  border-color: #6E3001;
-}
-
-.btn-outline-roupas-calcados:hover {
-  color: #fff;
-  background-color: #6E3001;
-  border-color: #6E3001;
-}
-
-.btn-outline-roupas-calcados:focus, .btn-outline-roupas-calcados.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.btn-outline-roupas-calcados.disabled, .btn-outline-roupas-calcados:disabled {
-  color: #6E3001;
-  background-color: transparent;
-}
-
-.btn-outline-roupas-calcados:not([disabled]):not(.disabled):active, .btn-outline-roupas-calcados:not([disabled]):not(.disabled).active,
-.show > .btn-outline-roupas-calcados.dropdown-toggle {
-  color: #fff;
-  background-color: #6E3001;
-  border-color: #6E3001;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-/*aqui inicia a estilização da pagina de cadastro e das abras de cadastro*/
-/*essa parte trabalha a estilização da tabela geral onde se define tamanho e organização da tela*/
 .nav_tabs{
       width: 100%;
       height: 100%;
@@ -386,8 +103,165 @@ onde o usuario pode escolher os tipos de residuos que ele gera*/
   margin: 20px 0px
 }
 
-@media(max-width: 1000px){
+.boxSelectResidues{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.papel{
+  border-color: rgb(4, 49, 250);
+  color: rgb(4, 49, 250);
+
+}
+.plastico{
+  border-color: rgb(150, 0, 0);
+  color: rgb(150, 0, 0);
+}
+.vidro{
+  border-color: rgba(5, 141, 0, 0.959);
+  color: rgb(5, 153, 0);
+}
+.metal{
+  border-color: rgb(230, 247, 1);
+  color: rgb(30, 247, 1);
+}
+.pneu{
+  border-color: rgb(129, 116, 57);
+  color: rgb(129, 116, 57);
+}
+.pilhas{
+  border-color: rgb(95, 146, 60);
+  color: rgb(95, 146, 60);
+}
+.madeira{
+  border-color: rgb(2, 2, 2);
+  color: rgb(2,2,2);
+}
+.organico{
+  border-color: rgba(88, 70, 8, 0.973);
+  color: rgb(88, 70, 8, 0.973);
+}
+.residuos-perigosos{
+  border-color: rgb(253, 160, 20);
+  color: rgb(253, 160, 20);
+}
+.residuos-radioativos{
+  border-color: rgb(114, 105, 141);
+  color: rgb(114, 105, 141);
+}
+.nao-reciclaveis{
+  border-color: rgb(155, 155, 155);
+  color: rgb(155, 155, 155);
+}
+.ferro-velho{
+  border-color: rgb(142, 199, 135);
+  color: rgb(142, 199, 135);
+}
+.moveis-usados{
+  border-color: rgb(125, 107, 145);
+  color: rgb(125, 107, 145);
+}
+.roupas-calcados{
+  border-color: rgb(136, 30, 26);
+  color: rgb(136, 30, 26);
+}
+.lampadas-flourecentes{
+  border-color: rgb(170, 32, 101);
+  color: rgb(170, 32, 101);
+}
+
+.papel-actived{
+  background: rgb(4, 49, 250);
+}
+.plastico-actived{
+  background: rgb(150, 0, 0);
+}
+.vidro-actived{
+  background: rgb(5, 153, 0);
+}
+.metal-actived{
+  background: rgb(230, 247, 1);
+}
+.pneu-actived{
+  background: rgb(129, 116, 57);
+}
+.pilhas-actived{
+  background: rgb(95, 146, 60);
+}
+.madeira-actived{
+  background: rgb(2, 2, 2);
+}
+.organico-actived{
+  background: rgba(88, 70, 8, 0.973);
+}
+.residuos-perigosos-actived{
+  background: rgb(253, 160, 20);
+}
+.residuos-radioativos-actived{
+  background: rgb(114, 105, 141);
+}
+.nao-reciclaveis-actived{
+  background: rgb(155, 155, 155);
+}
+.ferro-velho-actived{
+  background: rgb(142, 199, 135);
+}
+.moveis-usados-actived{
+  background: rgb(125, 107, 145);
+}
+.roupas-calcados-actived{
+  background: rgb(136, 30, 26);
+}
+.lampadas-flourecentes-actived{
+  background: rgb(170, 32, 101);
+}
+
+.boxIcon{
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
+  border-radius: 10px;
+}
+
+#imgResidues{
+  width: 90px;
+  height: 90px;
+  margin: auto;
+}
+
+.boxIcon span{
+  display: block;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+@media(max-width: 720px){
+  .boxSelectResidues{
+    grid-template-columns: 1fr;
+  }
+  .boxSelectResidues .boxIcon{
+    width: 100%;
+    min-width: 100%;
+    padding: 0px;
+  }
+  #imgResidues{
+    height: 100px;
+  }
+}
+
+@media(min-width: 721px) and (max-width: 1000px){
   .formMain{
     width: 95vw;
+  }
+
+  .boxSelectResidues{
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
