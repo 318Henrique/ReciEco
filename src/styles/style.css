@@ -3,7 +3,6 @@
   box-sizing: border-box;
 }
 
-
 html, body, #map {
   height: 100%;
   margin: 0;
@@ -18,10 +17,9 @@ html, body, #map {
   
 }
 
-#formcadastro{
-  margin-top: 66px;
+#forCadastro{
+margin-top: 60px;
 }
-
 
 #iconePerfil{
   width: 106px;
