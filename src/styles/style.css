@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 
+
 html, body, #map {
   height: 100%;
   margin: 0;
@@ -216,7 +217,7 @@ html, body, #map {
 
 @media(max-width: 570px){
   .boxSelectResidues{
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
