@@ -79,45 +79,95 @@ handleFieldDocument.addEventListener('change', event => {
     numberDocumentIdentification.maxLength = 14
 })
 
-const formData = document.querySelector('[formData]');
-formData.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    // const personName = event.srcElement[1].valeu;
-    const formChildren = event.srcElement;
-    for (const key in formChildren) {
-        const childre = formChildren[key];
-        console.log(childre.value, childre.name, childre.id)
-    }
+function handleDataSignUp(data){
+    const {typeDocument, numberDocumentChoise, ...rest} = data;
+    const newObject = {}
+    newObject[typeDocument] = numberDocumentChoise;
+    return Object.assign(rest, newObject)
+}
 
+function _storageSignUp(data){
     const url = "https://recieco.herokuapp.com/signup/";
-    const data = {
-        person_name: registerType,
-        registerType: "Gerador de Resíduos",
-        cpf: "03698881110",
-        whatsapp: "65992336042",
-        mail: "brunoleansd@outlook.com",
-        zipcode: "78310000",
-        address: "rua angela prestes zanon",
-        number_address: "406w",
-        neghborhood: "cidade verde",
-        city: "comodoro",
-        state: "mt",
-        coordLatitude: "123.23",
-        coordLongitude: "123.3",
-        password: "123"
-    };
     // const registerPerson = await axios({
     //     method: 'post',
     //     url: url,
     //     data: data
     // })
+}
+
+const dataForm = document.querySelectorAll('[formField]');
+const submitForm = document.querySelector('[submitForm]');
+submitForm.addEventListener('click', () => {
+    const _data = {};
+    let errorFill = false;
+    for (const key in dataForm) {
+        const fieldForm = dataForm[key];
+        const {name, value} = fieldForm;
+        if(value === '' || value === undefined)
+        {
+            errorFill = true;
+            fieldForm.classList.add("errorFieldForm")
+            fieldForm.addEventListener('change', content => {
+                if(content.value !== '' || content.value !== undefined)
+                fieldForm.classList.remove('errorFieldForm')
+            })
+        }
+
+        else
+        _data[name] = value;
+
+        // aqui vc vai colocar o nome do ultimo input para fazer parar o loop
+        if(name === 'residues')
+        break;
+    }
+
+    if(!errorFill){
+        const responseHandleDataSignUp = handleDataSignUp(_data)
+        console.log(responseHandleDataSignUp)
+        // _storageSignUp(_data)
+    }
 })
 
+function toStringForInput(arrayData){
+    return arrayData.toString();
+}
+
+function removeValueInputResidues(data, valueSearch){
+    const verifyIfExists = data.filter(value => value !== valueSearch)
+    return verifyIfExists;
+}
+
+function addValueInputResidues(data, valueSearch){
+    const verifyIfExists = data.filter(value => value === valueSearch)
+    if(verifyIfExists.length)
+    return data;
+
+    else
+    return [...data, valueSearch]
+}
+
+function splitValueTypeResidue(data){
+    const splitData = data.split(",");
+    return splitData
+}
+
 const inputSelectResidues = document.querySelectorAll(".boxIcon");
+const inputTypeResidues = document.querySelector('[typeResidue]');
 inputSelectResidues.forEach(inputResidues => {
     inputResidues.addEventListener('click', () => {
-        const isClick = inputResidues.classList.contains("handleSelect");
-        console.log(inputResidues.getAttribute('class'))
-        inputResidues.classList.toggle('handleSelect')
+        const nameResidues = inputResidues.getAttribute('residues');
+        const verifyIfChecked = inputResidues.classList.contains(nameResidues);
+        const dataArray = splitValueTypeResidue(inputTypeResidues.value);
+
+        if(verifyIfChecked){
+            inputResidues.classList.remove(nameResidues)
+            const arrayFinalRemoved = removeValueInputResidues(dataArray, nameResidues)
+            inputTypeResidues.value = toStringForInput(arrayFinalRemoved);
+        }
+        else{
+            inputResidues.classList.add(nameResidues)
+            const arrayFinalAdd = addValueInputResidues(dataArray, nameResidues)
+            inputTypeResidues.value = toStringForInput(arrayFinalAdd);
+        }
     })
 })

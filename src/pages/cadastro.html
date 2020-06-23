@@ -62,276 +62,260 @@
             </div>
         </nav>
 
-   <div id="formcadastro" class="container-fuid col-sm-7 formMain">
-            <h1>Formulário de Cadastro</h1>
-            <form formData>
+   <div class="formMain">
+        <h1>Formulário de Cadastro</h1>
+            <div class="form-row">
+                <div class="form-group col-sm-12">
+                    <label for="inputNome"> Tipo de Cadastro: </label>
+                    <select name="registerType" class="form-control" formField>
+                        <option>Gerador de Resíduos</option>
+                        <option>Catador de Resíduos</option>
+                        <option>Comprador de Resíduos</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label for="inputNome"> Nome: </label>
+                    <input name="person_name" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" formField>
+                </div>
 
-                <!-- primeira linha do formulario-->
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="inputNome"> Tipo de Cadastro: </label>
-                        <select name="registerType" class="form-control" >
-                            <option>Gerador de Resíduos</option>
-                            <option>Catador de Resíduos</option>
-                            <option>Comprador de Resíduos</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <label for="inputNome"> Nome: </label>
-                        <input name="personName" type="text" class="form-control" placeholder="Nome Completo" maxlength="60" >
-                    </div>
+                
+                <!-- segunda linha do formulario--> 
+                <div class="form-group col-lg-3 col-md-6 col-sm-6"> 
+                    <label for="exampleRadios1">Tipo de pessoa</label>
+                    <select name='typeDocument' handleFieldDocument class="form-control" formField>
+                        <option value="cpf">CPF</option>
+                        <option value="cnpj">CNPJ</option>
+                    </select>
+                </div>
 
-                    
-                    <!-- segunda linha do formulario--> 
-                    <div class="form-group col-lg-3 col-md-6 col-sm-6"> 
-                        <label for="exampleRadios1">Tipo de pessoa</label>
-                        <select name='typeDocument' handleFieldDocument class="form-control" >
-                            <option value="cpf">CPF</option>
-                            <option value="cnpj">CNPJ</option>
-                        </select>
-                    </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6"> 
+                    <label>Número do seu <span handleTextDocumentIdentification>cpf</span></label>
+                    <input name="numberDocumentChoise" numberDocumentIdentification type="text" class="form-control" id="inputCNPJ"  maxlength="11" placeholder="Somente Números" formField>
+                </div>
+            </div>
+            
+            <div class="form-row">
 
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6"> 
-                        <label>Número do seu <span handleTextDocumentIdentification>cpf</span></label>
-                        <input name="numberDocumentChoise" numberDocumentIdentification type="text" class="form-control" id="inputCNPJ"  maxlength="11
-                        " placeholder="Somente Números">
-                    </div>
+                <div class="form-group col-sm-3">    
+                    <label for="inputTelefone">Whatsapp: </label>
+                    <input name="whatsapp" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" formField>
+                </div>
+
+                <div class="form-group col-sm-9">    
+                    <label for="inputE-mail">E-mail:</label>
+                    <input name="mail" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" formField>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-sm-3">    
+                    <label for="inputCep">CEP:</label>
+                    <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="12345000" formField>
+                </div>
+
+                <div class="form-group col-sm-3">    
+                    <label>Número:</label>
+                    <input name="number_address" type="text" class="form-control" placeholder="Número" maxlength="6" formField>
+                </div>
+
+                <div class="form-group col-sm-6">    
+                    <label for="inputBairro">Bairro:</label>
+                    <input name="neghborhood" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" formField>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label for="inputEndereco"> Endereço:</label>
+                    <input name="address" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" formField>
+                </div>
+            </div>
+
+            <div class="form-row">                          
+
+                <div class="form-group col-sm-8">    
+                    <label for="inputCidade">Cidade:</label>
+                    <input name="city" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" formField>
+                </div>
+
+                <div class="form-group col-sm-4">    
+                    <label for="inputEst" >Estado:</label>
+                    <input name="state" id="inputEst" type="text" class="form-control"  placeholder="Estado" maxlength="40" formField>
+                </div>
+
+                <div class="form-group col-sm-4" >    
+                    <label>Latitude:</label><br>
+                    <input type="text" id="lat" name="latitude" readonly=“true” class="form-control" formField>
+                </div>
+
+                <div class="form-group col-sm-4">    
+                    <label>Longitude:</label><br/>
+                    <input id="long" name="longitude" readonly=“true” class="form-control" formField>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-sm-4">
+                    <label for="inputSenha">Senha:</label>
+                    <input name="senha" id="password" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" formField>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputConfirmasenha">Confirme Sua Senha:</label>
+                    <input name="confirma_senha" id="confirm_password" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" formField>
+                </div>
+
+            </div>
+
+            <h4>Selecione o tipo de resíduo</h4>
+
+            <div class="boxSelectResidues">
+                <input type='hidden' name='residues' typeResidue formField>
+                <div class="boxIcon" residues="papel">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/2-papel.png">
+                    <span>Papel</span>
+                </div>
+                <div class="boxIcon"  residues="plastico">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/9-plastico.png">
+                    <span>Plástico</span>
+                </div>
+                <div class="boxIcon"  residues="vidro">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/8-vidros.png">
+                    <span>Vidro<span>
                 </div>
                 
+                <div class="boxIcon"  residues="metal">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/1-metal.png">
+                    <span>Metal</span>
+                </div>
+                
+                <div class="boxIcon"  residues="pneu">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/11-pneus.png">
+                    <span>Pneus</span>
+                </div>
+                
+                <div class="boxIcon"  residues="pilhas">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/12-pilhas.png">
+                    <span>Pilhas</span>
+                </div>
+                <div class="boxIcon"  residues="madeira">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/6-madeira.png">
+                    <span>Madeira</span>
+                </div>
 
-                <!-- terceira linha do formulario-->
-                <div class="form-row">
+                <div class="boxIcon"  residues="organico">
+                        <img id="imgResidues" class="img-fluid mb-0" src="../assets/5-organicos.png">
+                        <span>Orgânicos</span>
+                </div>
+                <div class="boxIcon"  residues="residuos-perigosos">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/4-residuos-perigosos.png">
+                    <span>Resíduos Perigosos</span>
+                </div>
+                <div class="boxIcon"  residues="residuos-radioativos">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/7-radioativos.png ">
+                    <span>Resíduos Radioativos</span>
+                </div>
+                <div class="boxIcon"  residues="nao-reciclaveis">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/3-nao-reciclaveis.png">
+                    <span>Não Recicláveis</span>
+                </div>
+                <div class="boxIcon"  residues="ferro-velho">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/15-ferro-velho.png">
+                    <span>Ferro Velho</span>
+                </div>
+                <div class="boxIcon"  residues="moveis-usados">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/14-moveis-usados.png">
+                    <span>Moveis Usados</span>
+                </div>
 
-                    <div class="form-group col-sm-3">    
-                        <label for="inputTelefone">Whatsapp: </label>
-                        <input name="whatsapp" type="tel" class="form-control" id="inputTelefone"  maxlength="11" placeholder="(DDD) + Número" >
-                    </div>
+                <div class="boxIcon"  residues="roupas-calcados">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/13-roupascalcados.png">
+                    <span>Roupas/Calçados</span>
+                </div>
 
-                    <div class="form-group col-sm-9">    
-                        <label for="inputE-mail">E-mail:</label>
-                        <input name="mail" type="email" class="form-control" id="inputE-mail" placeholder="E-mail" maxlength="50" >
+                <div class="boxIcon"  residues="lampadas-flourecentes">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/10-lampadas-flourecentes.png">
+                    <span>Lâmpadas Flourecentes</span>
+                </div>
+            </div>
+    
+            <div class="form-row">
+
+                <div class="form-group col-sm-12">                        
+
+                    <div class="form-row text-center my-5">
+
+                        <div class="col-sm-12 " >
+
+                            <button type="submit" class="btn btn-outline-success btn-lg " submitForm>Enviar</button>
+
+                        </div>
+
                     </div>
 
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group col-sm-3">    
-                        <label for="inputCep">CEP:</label>
-                        <input name="cep" id="inputCep" type="text" class="form-control" maxlength="8" placeholder="12345000" >
-                    </div>
+            </div>
+    </div>
 
-                    <div class="form-group col-sm-3">    
-                        <label>Número:</label>
-                        <input name="number_address" type="text" class="form-control" placeholder="Número" maxlength="6" >
-                    </div>
-
-                    <div class="form-group col-sm-6">    
-                        <label for="inputBairro">Bairro:</label>
-                        <input name="neghborhood" type="text" class="form-control" id="inputBairro" placeholder="Bairro" maxlength="35" >
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <label for="inputEndereco"> Endereço:</label>
-                        <input name="address" type="text" class="form-control" id="inputEndereco" placeholder="Rua, Avenida, Travessa..." maxlength="45" >
-                    </div>
-                </div>
-
-                <!--Sexta linha do Formulário-->
-                <div class="form-row">                          
-
-                    <div class="form-group col-sm-8">    
-                        <label for="inputCidade">Cidade:</label>
-                        <input name="city" id="inputCidade" type="text" class="form-control"  placeholder="Cidade" maxlength="40" >
-                    </div>
-
-                    <div class="form-group col-sm-4">    
-                        <label for="inputEst" >Estado:</label>
-                        <input name="state" id="inputEst" type="text" class="form-control"  placeholder="Estado" maxlength="40" >
-                    </div>
-
-                    <div class="form-group col-sm-4" >    
-                        <label>Latitude:</label><br>
-                        <input type="text" id="lat" name="latitude" readonly=“true” class="form-control">
-                    </div>
-
-                    <div class="form-group col-sm-4">    
-                        <label>Longitude:</label><br/>
-                        <input id="long" name="longitude" readonly=“true” class="form-control">
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-sm-4">
-                        <label for="inputSenha">Senha:</label>
-                        <input name="senha" id="password" type="password" class="form-control"  maxlength="8" placeholder="Digite Senha" >
-                    </div>
-
-                    <div class="form-group col-sm-4">
-                        <label for="inputConfirmasenha">Confirme Sua Senha:</label>
-                        <input name="confirma_senha" id="confirm_password" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" >
-                    </div>
-
-                </div>
-
-                    <div class="boxSelectResidues">
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/2-papel.png">
-                            <span>Papel</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/9-plastico.png">
-                            <span>Plástico</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/8-vidros.png">
-                            <span>Vidro<span>
-                        </div>
-                        
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/1-metal.png">
-                            <span>Metal</span>
-                        </div>
-                        
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/11-pneus.png">
-                            <span>Pneus</span>
-                        </div>
-                        
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/12-pilhas.png">
-                            <span>Pilhas</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/6-madeira.png">
-                            <span>Madeira</span>
-                        </div>
-
-                        <div class="boxIcon">
-                                <img id="imgResidues" class="img-fluid mb-0" src="../assets/5-organicos.png">
-                                <span>Orgânicos</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/4-residuos-perigosos.png">
-                            <span>Resíduos Perigosos</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/7-radioativos.png ">
-                            <span>Resíduos Radioativos</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/3-nao-reciclaveis.png">
-                            <span>Não Recicláveis</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/15-ferro-velho.png">
-                            <span>Ferro Velho</span>
-                        </div>
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/14-moveis-usados.png">
-                            <span>Moveis Usados</span>
-                        </div>
-
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/13-roupascalcados.png">
-                            <span>Roupas/Calçados</span>
-                        </div>
-
-                        <div class="boxIcon">
-                            <img id="imgResidues" class="img-fluid mb-0" src="../assets/10-lampadas-flourecentes.png">
-                            <span>Lâmpadas Flourecentes</span>
-                        </div>
-
-                        </div>
-
-                    </div>
         
+    <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
 
+        <div class="modal-dialog" role="document">
 
+            <div class="modal-content bg-light">
 
+                <div class="modal-header btn btn-success">
 
-                <!--Décima Linha do Formulário-->
-                <div class="form-row">
+                    <h5 class="modal-title">Login ReciEco</h5>
 
-                    <div class="form-group col-sm-12">                        
+                    <button type="button" class="close" data-dismiss="modal">
 
-                        <div class="form-row text-center my-5">
+                        <span>&times;</span>
 
-                            <div class="col-sm-12 " >
+                    </button>
 
-                                <button type="submit" class="btn btn-outline-success btn-lg " >Enviar</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form >
+
+                        <!-- primeira linha do formulario-->
+                        <div class="form-row" >
+
+                            <!-- segunda linha do formulario--> 
+                            <div class="form-group col-sm-12">    
+
+                                <label for="inputUsuario">Usuário:</label>
+
+                                <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail "  name=usuario>
+                            </div>
+
+                            <div class="form-group col-sm-12">    
+
+                                <label> Senha:</label>
+
+                                <input id="cpf_cnpj" type="password" class="form-control" maxlength="8" placeholder="Digite Sua Senha"  name=cpf/cnpj>
 
                             </div>
 
                         </div>
 
-                    </div>
+                        <div class="form-row">
 
-                </div>
+                            <div class="form-group col-sm-12">                        
 
-            </form>
-        </div>
+                                <div class="form-row text-center ">
 
-        
-        <div class="modal fade btn" id="telalogin" tabindex="-1" role="dialog">
+                                    <div class="col-sm-12 " >
 
-            <div class="modal-dialog" role="document">
+                                        <button type="submit" class="btn btn-outline-success btn-block" >Entrar</button>
 
-                <div class="modal-content bg-light">
+                                    </div>
 
-                    <div class="modal-header btn btn-success">
+                                    <div class="form-group col-sm-12">    
 
-                        <h5 class="modal-title">Login ReciEco</h5>
-
-                        <button type="button" class="close" data-dismiss="modal">
-
-                            <span>&times;</span>
-
-                        </button>
-
-                    </div>
-
-                    <div class="modal-body">
-
-                        <form >
-
-                            <!-- primeira linha do formulario-->
-                            <div class="form-row" >
-
-                                <!-- segunda linha do formulario--> 
-                                <div class="form-group col-sm-12">    
-
-                                    <label for="inputUsuario">Usuário:</label>
-
-                                    <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário ou E-mail "  name=usuario>
-                                </div>
-
-                                <div class="form-group col-sm-12">    
-
-                                    <label> Senha:</label>
-
-                                    <input id="cpf_cnpj" type="password" class="form-control" maxlength="8" placeholder="Digite Sua Senha"  name=cpf/cnpj>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="form-group col-sm-12">                        
-
-                                    <div class="form-row text-center ">
-
-                                        <div class="col-sm-12 " >
-
-                                            <button type="submit" class="btn btn-outline-success btn-block" >Entrar</button>
-
-                                        </div>
-
-                                        <div class="form-group col-sm-12">    
-
-                                            <a href="cadastro.html">Cadastro</a> | <a href="reculperarsenha">Esqueci Minha Senha</a>
-
-                                        </div>
+                                        <a href="cadastro.html">Cadastro</a> | <a href="reculperarsenha">Esqueci Minha Senha</a>
 
                                     </div>
 
@@ -339,15 +323,17 @@
 
                             </div>
 
-                        </form>
+                        </div>
 
-                    </div>
+                    </form>
 
                 </div>
 
             </div>
 
         </div>
+
+    </div>
 
         <script src='../scripts/cadastro.js'></script>
         <script src="../../node_modules/jquery/dist/jquery.js"></script>
