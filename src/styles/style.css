@@ -128,79 +128,64 @@ html, body, #map {
 }
 
 .papel{
-  border-color: rgb(4, 49, 250);
-  background: rgb(4, 49, 250);
-  color: #fff;
+  border-color: rgb(0, 0, 255);
+  color: rgb(0, 0, 255);
 }
 .plastico{
-  border-color: rgb(150, 0, 0);
-  background: rgb(150, 0, 0);
-  color: #fff;
+  border-color: rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
 }
 .vidro{
-  border-color: rgba(5, 141, 0, 0.959);
-  background: rgb(5, 153, 0);
-  color: #fff;
+  border-color: rgba(39, 78, 19);
+  color: rgb(39, 78, 19);
 }
 .metal{
-  border-color: rgb(178, 190, 0);
-  background: rgb(178, 190, 0);
-  color: #fff;
+  border-color: rgb(255, 255, 0);
+  color: rgb(2, 2, 2);
 }
 .pneu{
   border-color: rgb(129, 116, 57);
-  background: rgb(129, 116, 57);
-  color: #fff;
+  color: rgb(129, 116, 57);
 }
 .pilhas{
-  border-color: rgb(95, 146, 60);
-  background: rgb(95, 146, 60);
-  color: #fff;
+  border-color: rgb(255, 153, 0);
+  color: rgb(255, 153, 0);
 }
 .madeira{
   border-color: rgb(2, 2, 2);
-  background: rgb(2, 2, 2);
-  color: #fff;
+  color: rgb(2, 2, 2);
 }
 .organico{
-  border-color: rgba(88, 70, 8, 0.973);
-  background: rgba(88, 70, 8, 0.973);
-  color: #fff;
+  border-color: rgba(120, 63, 4);
+  color: rgba(120, 63, 4);
 }
 .residuos-perigosos{
-  border-color: rgb(253, 160, 20);
-  background: rgb(253, 160, 20);
-  color: #fff;
+  border-color: rgb(255, 153, 0);
+  color: rgb(255, 153, 0);
 }
 .residuos-radioativos{
-  border-color: rgb(114, 105, 141);
-  background: rgb(114, 105, 141);
-  color: #fff;
+  border-color: rgb(153, 0, 255);
+  color: rgb(153, 0, 255);
 }
 .nao-reciclaveis{
-  border-color: rgb(155, 155, 155);
-  background: rgb(155, 155, 155);
-  color: #fff;
+  border-color: rgb(102, 102, 102);
+  color: rgb(102, 102, 102);
 }
 .ferro-velho{
-  border-color: rgb(142, 199, 135);
-  background: rgb(142, 199, 135);
-  color: #fff;
+  border-color: rgb(109, 194, 97);
+  color: rgb(109, 194, 97);
 }
 .moveis-usados{
-  border-color: rgb(125, 107, 145);
-  background: rgb(125, 107, 145);
-  color: #fff;
+  border-color: rgb(2, 2, 2);
+  color: rgb(2, 2, 2);
 }
 .roupas-calcados{
   border-color: rgb(136, 30, 26);
-  background: rgb(136, 30, 26);
-  color: #fff;
+  color: rgb(136, 30, 26);
 }
 .lampadas-flourecentes{
   border-color: rgb(170, 32, 101);
-  background: rgb(170, 32, 101);
-  color: #fff;
+  color: rgb(170, 32, 101);
 }
 
 .errorFieldForm{
