@@ -79,30 +79,87 @@ handleFieldDocument.addEventListener('change', event => {
     numberDocumentIdentification.maxLength = 14
 })
 
+
+function checkPasswordEqual(password, password_confirm){
+    return password === password_confirm ? password : false;
+}
+
 function handleDataSignUp(data){
-    const {typeDocument, numberDocumentChoise, ...rest} = data;
+    const {typeDocument, numberDocumentChoise, senha, confirma_senha, ...rest} = data;
     const newObject = {}
     newObject[typeDocument] = numberDocumentChoise;
+    const checkPassword = checkPasswordEqual(senha, confirma_senha)
+    if(!checkPassword)
+    return {
+        success: false,
+        message: "Senhas não são iguais!"
+    }
+
+    newObject.password = senha
     return Object.assign(rest, newObject)
 }
 
-function _storageSignUp(data){
-    const url = "https://recieco.herokuapp.com/signup/";
-    // const registerPerson = await axios({
-    //     method: 'post',
-    //     url: url,
-    //     data: data
-    // })
+async function _storageSignUp(data){
+    try {
+        const url = "https://recieco.herokuapp.com/signup/";
+        const responseSignUp = await axios({
+            method: 'post',
+            url: url,
+            data: data
+        })
+
+        const {message, success, token} = responseSignUp.data;
+        localStorage.setItem('token', token);
+
+        return {
+            success: success,
+            message: message
+        };
+    } catch (error) {
+        const {message, success} = error.response.data;
+        return {
+            success: success,
+            message: message
+        }
+    }
+}
+
+async function _storageResidues(data){
+    try {
+        const token = localStorage.get("token");
+        const url = "https://recieco.herokuapp.com/residues/person_residues/";
+        const responseSignUp = await axios({
+            method: 'post',
+            url: url,
+            headers: {
+                auth: token
+            },
+            data: data
+        })
+
+        const {message, success} = responseSignUp.data; 
+        return {success, message};
+    } catch (error) {
+        const {message, success} = error.response.data;
+        return {success, message};
+    }
+}
+
+function submitResidues(residues){
+    const dataResidues = residues.split(",");
+    console.log(dataResidues)
 }
 
 const dataForm = document.querySelectorAll('[formField]');
 const submitForm = document.querySelector('[submitForm]');
 submitForm.addEventListener('click', () => {
+    getPerson()
     const _data = {};
     let errorFill = false;
     for (const key in dataForm) {
         const fieldForm = dataForm[key];
         const {name, value} = fieldForm;
+        
         if(value === '' || value === undefined)
         {
             errorFill = true;
@@ -122,11 +179,32 @@ submitForm.addEventListener('click', () => {
     }
 
     if(!errorFill){
-        const responseHandleDataSignUp = handleDataSignUp(_data)
-        console.log(responseHandleDataSignUp)
-        // _storageSignUp(_data)
+        const contentDataSignUp = handleDataSignUp(_data)
+        const {residues, ...dataSignup} = contentDataSignUp;
+        const responseStorageSignUp = _storageSignUp(dataSignup)
+        console.log(responseStorageSignUp)
+        // submitResidues(residues)
     }
 })
+
+async function getPerson(){
+    try {
+        const token = localStorage.get("token");
+        const url = "https://recieco.herokuapp.com/person/";
+        const responseSignUp = await axios({
+            method: 'get',
+            url: url,
+            headers: {
+                auth: token
+            }
+        })
+
+        console.log(responseSignUp.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 function toStringForInput(arrayData){
     return arrayData.toString();

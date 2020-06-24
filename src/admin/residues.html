@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--  meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../node_modules/bootstrap/compilados/bootstrap.css">
+        <link rel="stylesheet" href="../styles/style.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<title>ReciEco</title>
+
+</head>
+<body class="telaAdmin">
+        
+        <!-- menu de navegação da pagina -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary fixed-top">
+
+            <!--div que fica a logomarca e o nome da aplicação -->
+            <div class="page-sidebar">
+
+                <div class="form-check text-center ml-2 ">
+
+                    <img src="../assets/rec2.png" class="img-fluid mb-0" alt="Responsive image">
+
+                    <a class="navbar-brand h1 mb-0" href="/">ReciEco</a>
+
+                </div>
+
+            </div>
+            <!--Botão que recolhe quando o tamanho da tela e pequeno-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- lista do menu e botao de login a aplicação-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientes.html">Clientes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="residues.html">Residuos</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+   <div id="residues" class="formMain">
+        <h3>Resíduos</h3>
+            <div class="form-row">
+
+                <div class="form-group col-sm-4">
+                    <label for="inputConfirmasenha">Nome de Residuos</label>
+                    <input name="confirma_senha" id="confirm_password" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" formField>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputConfirmasenha">Categoria</label>
+                    <input name="confirma_senha" id="confirm_password" type="password" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" formField>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputConfirmasenha">Imagem</label>
+                    <input name="confirma_senha" id="confirm_password" type="file" class="form-control" maxlength="8" placeholder="Confirme Sua Senha" formField>
+                </div>
+
+            </div>
+
+            <h4>Resíduos Cadastrados</h4>
+
+            <div class="boxSelectResidues">
+                <input type='hidden' name='residues' typeResidue formField>
+                <div class="boxIcon" residues="papel">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/2-papel.png">
+                    <span>Papel</span>
+                </div>
+                <div class="boxIcon"  residues="plastico">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/9-plastico.png">
+                    <span>Plástico</span>
+                </div>
+                <div class="boxIcon"  residues="vidro">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/8-vidros.png">
+                    <span>Vidro<span>
+                </div>
+                
+                <div class="boxIcon"  residues="metal">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/1-metal.png">
+                    <span>Metal</span>
+                </div>
+                
+                <div class="boxIcon"  residues="pneu">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/11-pneus.png">
+                    <span>Pneus</span>
+                </div>
+                
+                <div class="boxIcon"  residues="pilhas">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/12-pilhas.png">
+                    <span>Pilhas</span>
+                </div>
+                <div class="boxIcon"  residues="madeira">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/6-madeira.png">
+                    <span>Madeira</span>
+                </div>
+
+                <div class="boxIcon"  residues="organico">
+                        <img id="imgResidues" class="img-fluid mb-0" src="../assets/5-organicos.png">
+                        <span>Orgânicos</span>
+                </div>
+                <div class="boxIcon"  residues="residuos-perigosos">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/4-residuos-perigosos.png">
+                    <span>Resíduos Perigosos</span>
+                </div>
+                <div class="boxIcon"  residues="residuos-radioativos">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/7-radioativos.png ">
+                    <span>Resíduos Radioativos</span>
+                </div>
+                <div class="boxIcon"  residues="nao-reciclaveis">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/3-nao-reciclaveis.png">
+                    <span>Não Recicláveis</span>
+                </div>
+                <div class="boxIcon"  residues="ferro-velho">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/15-ferro-velho.png">
+                    <span>Ferro Velho</span>
+                </div>
+                <div class="boxIcon"  residues="moveis-usados">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/14-moveis-usados.png">
+                    <span>Moveis Usados</span>
+                </div>
+
+                <div class="boxIcon"  residues="roupas-calcados">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/13-roupascalcados.png">
+                    <span>Roupas/Calçados</span>
+                </div>
+
+                <div class="boxIcon"  residues="lampadas-flourecentes">
+                    <img id="imgResidues" class="img-fluid mb-0" src="../assets/10-lampadas-flourecentes.png">
+                    <span>Lâmpadas Flourecentes</span>
+                </div>
+            </div>
+    
+            <div class="form-row">
+
+                <div class="form-group col-sm-12">                        
+
+                    <div class="form-row text-left my-5">
+
+                        <div class="col-sm-12 " >
+
+                            <button type="submit" class="btn btn-outline-success btn-lg " submitForm>Salvar</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+    </div>
+
+        <script src='../scripts/cadastro.js'></script>
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    </body>
+</html>

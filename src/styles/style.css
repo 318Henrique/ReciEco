@@ -17,9 +17,10 @@ html, body, #map {
   
 }
 
-#forCadastro{
-margin-top: 60px;
+#formcadastro{
+  margin-top: 66px;
 }
+
 
 #iconePerfil{
   width: 106px;
@@ -88,10 +89,13 @@ margin-top: 60px;
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
-  margin: auto;
+  margin: 80px auto;
 }
-.formMain h1{
-  margin: 20px 0px
+.formMain h1:nth-child(1){
+  color: #333;
+}
+.formMain h4:nth-child(1){
+  color: #888;
 }
 
 .boxSelectResidues{
@@ -111,6 +115,7 @@ margin-top: 60px;
   border-color: #ddd;
   border-radius: 10px;
   cursor: pointer;
+  transition: all .25s ease-in-out;
 }
 
 #imgResidues{
@@ -126,64 +131,79 @@ margin-top: 60px;
 }
 
 .papel{
-  border-color: rgb(0, 0, 255);
-  color: rgb(0, 0, 255);
+  border-color: rgb(4, 49, 250);
+  background: rgb(4, 49, 250);
+  color: #fff;
 }
 .plastico{
-  border-color: rgb(255, 0, 0);
-  color: rgb(255, 0, 0);
+  border-color: rgb(150, 0, 0);
+  background: rgb(150, 0, 0);
+  color: #fff;
 }
 .vidro{
-  border-color: rgba(39, 78, 19);
-  color: rgb(39, 78, 19);
+  border-color: rgba(5, 141, 0, 0.959);
+  background: rgb(5, 153, 0);
+  color: #fff;
 }
 .metal{
-  border-color: rgb(255, 255, 0);
-  color: rgb(199, 218, 30);
+  border-color: rgb(178, 190, 0);
+  background: rgb(178, 190, 0);
+  color: #fff;
 }
 .pneu{
   border-color: rgb(129, 116, 57);
-  color: rgb(129, 116, 57);
+  background: rgb(129, 116, 57);
+  color: #fff;
 }
 .pilhas{
-  border-color: rgb(255, 153, 0);
-  color: rgb(255, 153, 0);
+  border-color: rgb(95, 146, 60);
+  background: rgb(95, 146, 60);
+  color: #fff;
 }
 .madeira{
   border-color: rgb(2, 2, 2);
-  color: rgb(2, 2, 2);
+  background: rgb(2, 2, 2);
+  color: #fff;
 }
 .organico{
-  border-color: rgba(120, 63, 4);
-  color: rgba(120, 63, 4);
+  border-color: rgba(88, 70, 8, 0.973);
+  background: rgba(88, 70, 8, 0.973);
+  color: #fff;
 }
 .residuos-perigosos{
-  border-color: rgb(255, 153, 0);
-  color: rgb(255, 153, 0);
+  border-color: rgb(253, 160, 20);
+  background: rgb(253, 160, 20);
+  color: #fff;
 }
 .residuos-radioativos{
-  border-color: rgb(153, 0, 255);
-  color: rgb(153, 0, 255);
+  border-color: rgb(114, 105, 141);
+  background: rgb(114, 105, 141);
+  color: #fff;
 }
 .nao-reciclaveis{
-  border-color: rgb(102, 102, 102);
-  color: rgb(102, 102, 102);
+  border-color: rgb(155, 155, 155);
+  background: rgb(155, 155, 155);
+  color: #fff;
 }
 .ferro-velho{
-  border-color: rgb(109, 194, 97);
-  color: rgb(109, 194, 97);
+  border-color: rgb(142, 199, 135);
+  background: rgb(142, 199, 135);
+  color: #fff;
 }
 .moveis-usados{
-  border-color: rgb(2, 2, 2);
-  color: rgb(2, 2, 2);
+  border-color: rgb(125, 107, 145);
+  background: rgb(125, 107, 145);
+  color: #fff;
 }
 .roupas-calcados{
   border-color: rgb(136, 30, 26);
-  color: rgb(136, 30, 26);
+  background: rgb(136, 30, 26);
+  color: #fff;
 }
 .lampadas-flourecentes{
   border-color: rgb(170, 32, 101);
-  color: rgb(170, 32, 101);
+  background: rgb(170, 32, 101);
+  color: #fff;
 }
 
 .errorFieldForm{
@@ -191,7 +211,6 @@ margin-top: 60px;
   border-style: solid;
   border-color: red;
 }
-
 @media(max-width: 1000px){
   .formMain{
     width: 95vw;
@@ -200,7 +219,7 @@ margin-top: 60px;
 
 @media(max-width: 570px){
   .boxSelectResidues{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -219,11 +238,5 @@ margin-top: 60px;
 @media(min-width: 821px) and (max-width: 999px){
   .boxSelectResidues{
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media(min-width: 1000px){
-  .boxSelectResidues{
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   }
 }
