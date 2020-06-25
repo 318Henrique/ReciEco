@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--  meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../node_modules/bootstrap/compilados/bootstrap.css">
+        <link rel="stylesheet" href="../styles/style.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<title>ReciEco</title>
+
+</head>
+<body class="telaAdmin">
+        
+        <!-- menu de navegação da pagina -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary fixed-top">
+
+            <!--div que fica a logomarca e o nome da aplicação -->
+            <div class="page-sidebar">
+
+                <div class="form-check text-center ml-2 ">
+
+                    <img src="../assets/rec2.png" class="img-fluid mb-0" alt="Responsive image">
+
+                    <a class="navbar-brand h1 mb-0" href="/">ReciEco</a>
+
+                </div>
+
+            </div>
+            <!--Botão que recolhe quando o tamanho da tela e pequeno-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- lista do menu e botao de login a aplicação-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientes.html">Clientes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="residues.html">Residuos</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+
+   <div id="residues" class="formMain">
+        <h3>Resíduos</h3>
+            <div class="form-row">
+            <h4>Clientes Cadastrados</h4>
+
+            <table   class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo de Regitro</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Whatsapp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    
+                  </tr>
+                </tbody>
+              </table>    
+    </div>
+
+        <script src='../scripts/cadastro.js'></script>
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    </body>
+</html>
