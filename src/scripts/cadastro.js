@@ -73,7 +73,7 @@ handleFieldDocument.addEventListener('change', event => {
     const valeuFieldDocument = handleFieldDocument.value;
     handleTextDocumentIdentification.innerHTML = valeuFieldDocument;
     if(valeuFieldDocument === 'cpf')
-    numberDocumentIdentification.maxLength = 11
+    numberDocumentIdentification.maxLength = 11 
 
     else
     numberDocumentIdentification.maxLength = 14
