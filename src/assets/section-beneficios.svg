@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (6e3e5246a0, 2020-05-07)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 361.42083 44.30396"
+   height="167.44803"
+   width="1366"
+   sodipodi:docname="section-beneficios.svg">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1290">
+      <rect
+         style="opacity:0.722151;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.258149;stroke-linecap:round;stroke-linejoin:round"
+         id="rect1292"
+         width="361.42892"
+         height="98.601303"
+         x="43.415211"
+         y="358.36951" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     inkscape:guide-bbox="true"
+     showguides="true"
+     inkscape:showpageshadow="false"
+     units="px"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     inkscape:cy="337.67538"
+     inkscape:cx="838.44085"
+     inkscape:zoom="0.35000001"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#3c3c3c"
+     id="base"
+     inkscape:window-width="1366"
+     inkscape:window-height="690"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       id="guide833"
+       orientation="0,-1"
+       position="-1.1038539e-06,2.1166697" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(-732.17923,-191.46803)">
+    <path
+       sodipodi:nodetypes="sccccs"
+       id="path1318"
+       style="fill:#00360c;fill-opacity:1;stroke:none;stroke-width:0.999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 3712.25,651.1875 C 3422.3445,650.78608 2706.1489,810.63477 2603.1719,810.63477 v 8 h 1366 V 675.00195 C 3946.0026,664.37517 3882.7785,651.42362 3712.25,651.1875 Z"
+       transform="matrix(0.26458334,0,0,0.26458334,43.423313,19.174864)" />
+  </g>
+</svg>
