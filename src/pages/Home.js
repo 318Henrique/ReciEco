@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Components/Header';
 import { Link } from 'react-router-dom';
+import Banner1 from '../assets/banner1.jpg';
 export default function Home(){
     return(
         <>
@@ -12,9 +13,10 @@ export default function Home(){
                     <h3>Recicle hoje, para que exista um amanha sustentável!</h3>
                 </div>
             </section>
-            <section className="section-pattern section-two"></section>
+            <section className="section-pattern section-two">
+                <img src={Banner1} alt=''/>
+            </section>
             <section className="section-pattern section-beneficios">
-                <div className="section-top-image"></div>
                 <div className="section-content-beneficios">
                     <div className='title-section-beneficios'>Benefícios</div>
                     <div className="box-control-beneficios">

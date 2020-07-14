@@ -226,37 +226,31 @@ button{
 
 .section-two{
   display: block;
+  width: 100%;
   height: 450px;
-  background-image:  url("../assets/banner1.jpg");
-  background-attachment: scroll;
-  background-position: top;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.section-two img{
+  width: 100%;
+  min-width: 500px;
+  height: 100%;
+  object-fit: cover;
 }
 .section-beneficios{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-green-dark);
-  padding-bottom: 45px;
-  position: relative;
-}
-.section-beneficios .section-top-image{
   width: 100%;
-  height: 167.448px;
-  background: url("../assets/section-beneficios.svg") no-repeat;
-  background-size: 100%;
-  background-position: top;
-  position: absolute;
-  top: -167px;
-  z-index: 0;
+  height: auto;
+  min-height: 400px;
+  background: var(--color-green-dark);
+  padding: 45px 0px
 }
 .section-beneficios *{color: var(--color-light)}
 .title-section-beneficios{
   text-align: center;
   font-size: 3rem;
   font-weight: 500;
-  transform: translateY(-20px);
 }
 .section-content-beneficios{
   width: 100%;
@@ -271,9 +265,11 @@ button{
 .section-content-beneficios .box-control-beneficios{
   display: flex;
   justify-content: space-between;
-  margin: 25px 0px;
+  margin: 25px auto;
 }
-.section-content-beneficios .box-control-beneficios div{text-align: center;}
+.section-content-beneficios .box-control-beneficios div{
+  text-align: center;
+}
 .box-control-beneficios .box-individual{
   width: 300px;
 }
@@ -306,12 +302,14 @@ button{
   background-size: 100%;
   background-position: center;
   height: 300px;
+  min-height: 300px;
 }
 .section-localizar-residuos .box-with-transparent{
   display: grid;
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 30px;
   background: var(--color-transparent);
 }
 .section-localizar-residuos .box-with-transparent .control{
@@ -503,6 +501,21 @@ color: rgb(136, 30, 26);
   }
   .box-control-banners div{
     background-size: 120%;
+  }
+  .section-content-beneficios .box-control-beneficios{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  .box-control-beneficios .box-individual{
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .section-localizar-residuos{
+    background-size: 200%;
+  }
+  .section-localizar-residuos .box-with-transparent .control div{
+    font-size: 2.5rem;
   }
 }
 
