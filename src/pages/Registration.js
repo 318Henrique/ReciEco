@@ -5,7 +5,7 @@ import Select from '../Components/Select';
 
 export default function Registration(){
     const [dataForm, setDataForm] = useState({});
-    const [residues, setResidues] = useState([
+    const [residues] = useState([
         {
             id: 1,
             imgIcon: '2-papel.png',
@@ -137,7 +137,7 @@ export default function Registration(){
                             const {id, imgIcon, residues_name, residues_name_final} = residue;
                             return(
                                 <div className="boxIcon" residues={residues_name} key={id}>
-                                    <img id="imgResidues" src={require(`../assets/${imgIcon}`)}/>
+                                    <img id="imgResidues" src={require(`../assets/${imgIcon}`)} alt=''/>
                                     <span>{residues_name_final}</span>
                                 </div>
                             )
