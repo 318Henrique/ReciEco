@@ -2,7 +2,10 @@ import React from 'react';
 import LogoBlank from '../assets/logo-blank.svg';
 import {Link, useHistory} from 'react-router-dom';
 import Singin from './Signin';
+import AccountManager from './AccountManager';
 import "../styles/style.css";
+import iconMapLocationWhite from '../assets/icon-map-white.svg';
+import {getToken} from './AuthVerification';
 
 export default function Header(){
     const History = useHistory();
@@ -14,19 +17,15 @@ export default function Header(){
                     ReciEco
                 </div>
             </button>
-            <nav className='menu-main'>
-                <div>
-                    <Link to='/localizar'>
-                        Localizar
-                    </Link>
-                </div>
-                <div>
-                    <Link to='/cadastro'>
-                        Cadastro
-                    </Link>
-                </div>
-            </nav>
-            <Singin/>
+            <div className='link-map'>
+                <Link to='/localizar'>
+                    <img src={iconMapLocationWhite} alt=''/>
+                    Localizar
+                </Link>
+            </div>
+            {
+                getToken.admin !== null ? <Singin/> : <AccountManager/>
+            }
         </header>
     )
 }
