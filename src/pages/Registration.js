@@ -8,19 +8,19 @@ export default function Registration(){
     const [residues] = useState([
         {
             id: 1,
-            imgIcon: '2-papel.png',
+            imgIcon: '2-papel.svg',
             residues_name: 'papel',
             residues_name_final: 'Papel',
         },
         {
             id: 2,
-            imgIcon: '9-plastico.png',
+            imgIcon: '9-plastico.svg',
             residues_name: 'plastico',
             residues_name_final: 'Plástico',
         },
         {
             id: 3,
-            imgIcon: '8-vidros.png',
+            imgIcon: '8-vidros.svg',
             residues_name: 'vidro',
             residues_name_final: 'Vidro',
         },

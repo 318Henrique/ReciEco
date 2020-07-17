@@ -9,7 +9,7 @@ export const getToken = (() => {
     }
 })()
 
-export function addToken(token, admin, name){
+export function addToken(token, admin = false, name = ''){
     localStorage.setItem('a', admin);
     localStorage.setItem('t', token);
     localStorage.setItem('n', name);

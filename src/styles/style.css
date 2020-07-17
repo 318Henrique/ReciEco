@@ -107,16 +107,10 @@ button{
   justify-content: center;
   height: 100%;
 }
-.btnAuth{
-  width: 60px;
-  height: 50%;
+.signin-link{
+  display: block;
+  margin-left: 10px;
   color: var(--color-light);
-  border: none;
-  font-size: 0.9rem;
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
 }
 .modal-signin{
   display: flex;
@@ -699,6 +693,64 @@ color: rgb(136, 30, 26);
   margin: 9px auto;
   height: 30px;
   width: 100%;
+}
+.modal-control-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-transparent);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 9998;
+}
+
+.box-login{
+  background: var(--color-primary);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-login .boxField {
+  position: relative;
+}
+.btnShowPassword{
+  font-size: 0.69rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  color: var(--color-black);
+  position: absolute;
+  bottom: 11px;
+  right: 15px;
+}
+.message-err-form{
+  padding: 10px;
+  text-align: center;
+  border-radius: 7px;
+  margin-top: 15px;
+  color: var(--color-light);
+  animation: animateErr 2s infinite;
+}
+@keyframes animateErr{
+  0%, 100%{
+    background: var(--color-error);
+  }
+  50%{
+    background: var(--color-black);
+  }
+}
+.message-main{
+  text-align: center;
+  width: 100%;
+  height: auto;
+  min-height: 30px;
+  margin: 5px 0px;
 }
 
 @media(max-width: 1000px){

@@ -5,6 +5,7 @@ export default function Select({stateValue = () => {}, name, value, options, ...
 
     function handleValue(content){
         setValueInput(content);
+        console.log(content)
     }
     
     useEffect(() => {

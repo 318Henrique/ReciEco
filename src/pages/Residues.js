@@ -3,22 +3,11 @@ import Header from '../Components/Header';
 import "../styles/style.css";
 import iconAdd from '../assets/icon-add.svg';
 import ListResidues from '../Components/ListResidues';
+import ModalAddResidues from '../Components/ModalResidues';
 
 export default function Residues(){
-  const [list, setList] = useState([
-    {
-      id: 1,
-      person_name: "Bruno",
-      registerType: 'Catador de Resíduos',
-      whatsapp: '65984588087'
-    },
-    {
-      id: 2,
-      person_name: "Henrique",
-      registerType: 'Catador de Resíduos',
-      whatsapp: '65984588087'
-    },
-  ]);
+  const [list, setList] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
 
   function removeItem(id){
@@ -28,10 +17,13 @@ export default function Residues(){
   return(
     <>
     <Header/>
+    {
+      !openModal ? <></> : <ModalAddResidues closeModal={actionModal => setOpenModal(actionModal)}/>
+    }
     <div className='box-main-form'>
       <div className='header-form'>
         <h1>Lista de Redíduos</h1>
-        <button className='add'>
+        <button className='add' onClick={() => setOpenModal(!openModal)}>
           <img src={iconAdd} alt=''/>
         </button>
       </div>

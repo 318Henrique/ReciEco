@@ -1,44 +1,85 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-// import {getToken} from './Components/AuthVerification';
+import {Switch, Route, Redirect } from 'react-router-dom';
+import { getToken } from './Components/AuthVerification';
 
 import Home from './pages/Home';
 import Localizar from './pages/Localizar';
 import People from './pages/Peoples';
 import Residues from './pages/Residues';
-import PageRestrict from './pages/PageRestrict';
+import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
+import Singin from './pages/Signin';
+import PageRestrict from './pages/PageRestrict';
 
-
-// const RoutePrivate = ({children, ...rest}) => {
-//     return (
-//         <Route
-//             {...rest}
-//             render={({location}) =>  getToken.admin !== null ? 
-//                 (children) :
-//                 (
-//                     <Redirect
-//                     to={{
-//                         pathname: "/restrict-access",
-//                         state: { from: location}
-//                     }}
-//                     />
-//                 )
-//             }
-//         />
-//     )
-// }
-
+function PrivateRoute({ children, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          getToken.token_access !== null ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/signin",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+  
+const RoutePrivateAdmin = ({children, admin = false, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            render={({location}) =>  admin && getToken.admin !== null? 
+                (children) :
+                (
+                    <Redirect
+                    to={{
+                        pathname: "/restrict-page",
+                        state: { from: location}
+                    }}
+                    />
+                )
+            }
+        />
+    )
+}
 
 export default function RouterPages(){
     return(
         <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/localizar' component={Localizar}/>
-            <Route exact path='/peoples' component={People}/>
-            <Route exact path='/residues' component={Residues}/>
-            <Route exact path='/restrict-access' component={PageRestrict}/>
-            <Route path='*' component={NotFound}/>
+            <Route exact path='/'>
+                <Home/>
+            </Route>
+            <PrivateRoute exact path='/localizar'>
+                <Localizar/>
+            </PrivateRoute>
+            <PrivateRoute path='/perfil'>
+                <Registration/>
+            </PrivateRoute>
+            <RoutePrivateAdmin exact path='/peoples' admin={true}>
+                <People/>
+            </RoutePrivateAdmin>
+            <RoutePrivateAdmin exact path='/residues' admin={true}>
+                <Residues/>
+            </RoutePrivateAdmin>
+            <Route exact path='/cadastro'>
+                <Registration/>
+            </Route>
+            <Route exact path='/signin'>
+                <Singin/>
+            </Route>
+            <Route exact path='/restrict-page'>
+                <PageRestrict/>
+            </Route>
+            <Route path='*'>
+                <NotFound/>
+            </Route>
         </Switch>
     )
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import LogoBlank from '../assets/logo-blank.svg';
 import {Link, useHistory} from 'react-router-dom';
-import Singin from './Signin';
-import AccountManager from './AccountManager';
 import "../styles/style.css";
 import iconMapLocationWhite from '../assets/icon-map-white.svg';
-import {getToken} from './AuthVerification';
+import IsSignin from './IsSignin';
+
 
 export default function Header(){
     const History = useHistory();
+
     return(
         <header className="headerMenu">
             <button className="header-menu-btn-home" onClick={() => History.push('/')}>
@@ -23,9 +23,7 @@ export default function Header(){
                     Localizar
                 </Link>
             </div>
-            {
-                getToken.admin !== null ? <Singin/> : <AccountManager/>
-            }
+            <IsSignin/>
         </header>
     )
 }
