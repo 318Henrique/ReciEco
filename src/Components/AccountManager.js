@@ -2,14 +2,12 @@ import React,{useState} from 'react';
 import '../styles/style.css';
 import { Link } from 'react-router-dom';
 import iconArrowDown from '../assets/icon-arrow-down.svg';
-import { removeToken } from './AuthVerification';
 
 export default function AccountManager({name = 'Bruno Leandro Guimarães Biana'}){
     const [openModal, setOpenModal] = useState(false);
 
     function logout(event){
         event.preventDefault();
-        removeToken()
     }
 
     return(

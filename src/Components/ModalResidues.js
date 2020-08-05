@@ -4,7 +4,6 @@ import Select from './Select';
 import iconClose from '../assets/icon-close.svg';
 import '../styles/style.css';
 import Api from '../Api/api';
-import { getToken } from './AuthVerification';
 
 export default function ModalResidues({dataInitial, closeModal = () => {}}){
     const [dataForm, setDataForm] = useState(dataInitial || {});
@@ -16,11 +15,7 @@ export default function ModalResidues({dataInitial, closeModal = () => {}}){
 
     async function register(){
         try {
-            const responseRegister = await Api.post('/admin/residues', dataForm, {
-                headers: {
-                    auth: getToken.token_access
-                }
-            })
+            const responseRegister = await Api.post('/admin/residues', dataForm)
             const { message } = responseRegister.data;
             setMessageRequest(message);
 

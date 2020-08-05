@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Switch, Route, Redirect } from 'react-router-dom';
-import { getToken } from './Components/AuthVerification';
 
 import Home from './pages/Home';
 import Localizar from './pages/Localizar';
@@ -10,13 +9,15 @@ import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import Singin from './pages/Signin';
 import PageRestrict from './pages/PageRestrict';
+import { AuthContext } from './Context/Auth';
 
 function PrivateRoute({ children, ...rest }) {
+    const { _isAuthenticate } = useContext(AuthContext)
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          getToken.token_access !== null ? (
+          _isAuthenticate ? (
             children
           ) : (
             <Redirect
@@ -29,25 +30,6 @@ function PrivateRoute({ children, ...rest }) {
         }
       />
     );
-  }
-  
-const RoutePrivateAdmin = ({children, admin = false, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render={({location}) =>  admin && getToken.admin !== null? 
-                (children) :
-                (
-                    <Redirect
-                    to={{
-                        pathname: "/restrict-page",
-                        state: { from: location}
-                    }}
-                    />
-                )
-            }
-        />
-    )
 }
 
 export default function RouterPages(){
@@ -62,12 +44,12 @@ export default function RouterPages(){
             <PrivateRoute path='/perfil'>
                 <Registration/>
             </PrivateRoute>
-            <RoutePrivateAdmin exact path='/peoples' admin={true}>
+            <PrivateRoute adminOnly exact path='/peoples'>
                 <People/>
-            </RoutePrivateAdmin>
-            <RoutePrivateAdmin exact path='/residues' admin={true}>
+            </PrivateRoute>
+            <PrivateRoute adminOnly exact path='/residues'>
                 <Residues/>
-            </RoutePrivateAdmin>
+            </PrivateRoute>
             <Route exact path='/cadastro'>
                 <Registration/>
             </Route>

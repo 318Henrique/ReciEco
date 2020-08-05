@@ -1,17 +1,17 @@
-import React,{useState } from 'react';
+import React,{useState, useContext } from 'react';
 import Input from '../Components/Input';
 import '../styles/style.css';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Api from "../Api/api";
-import { addToken } from '../Components/AuthVerification';
+import { AuthContext } from '../Context/Auth';
+import MessageErrors from '../Utils/MessageErrors';
 
 export default function Singin(){
     const [dataForm, handledataForm] = useState({});
     const [showPassword, setShowPassword] = useState(false);
-    const HistoryNavigator = useHistory();
-    const LocationNavigator = useLocation();
     const [errMessage, setErrMessage] = useState(null);
     const [messageProgress, setMessageProgress] = useState('Entrar');
+    const { _login } = useContext(AuthContext);
 
     function handleStateForm(content){
         const handleContentDataForm = Object.assign(dataForm, content);
@@ -22,18 +22,17 @@ export default function Singin(){
         setMessageProgress('Verificando...');
         try {
             const responseSignin = await Api.post('/signin', dataForm);
-            const {token} = responseSignin.data;
-            addToken(token);
+            const dataUser = responseSignin.data;
+
+            _login(dataUser);
+            
             setMessageProgress('Redirecionando ...');
-            setTimeout(() => {
-                const { from : redirectionPage } = LocationNavigator.state || { from: { pathname: '/localizar' }}
-                HistoryNavigator.replace(redirectionPage);
-            }, 500)
         } catch (error) {
-            const { message } = error.response.data;
+            const message = MessageErrors(error)
             setErrMessage(message)
-            setMessageProgress('Entrar');
         }
+
+        setMessageProgress('Entrar');
     }
 
     return(
