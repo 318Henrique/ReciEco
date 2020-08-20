@@ -729,29 +729,6 @@ color: rgb(136, 30, 26);
   bottom: 11px;
   right: 15px;
 }
-.message-err-form{
-  padding: 10px;
-  text-align: center;
-  border-radius: 7px;
-  margin-top: 15px;
-  color: var(--color-light);
-  animation: animateErr 2s infinite;
-}
-@keyframes animateErr{
-  0%, 100%{
-    background: var(--color-error);
-  }
-  50%{
-    background: var(--color-black);
-  }
-}
-.message-main{
-  text-align: center;
-  width: 100%;
-  height: auto;
-  min-height: 30px;
-  margin: 5px 0px;
-}
 
 @media(max-width: 1000px){
   body, input, select, textarea, button{

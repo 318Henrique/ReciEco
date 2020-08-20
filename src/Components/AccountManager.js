@@ -1,19 +1,17 @@
-import React,{useState} from 'react';
+import React,{ useState, useContext } from 'react';
 import '../styles/style.css';
 import { Link } from 'react-router-dom';
 import iconArrowDown from '../assets/icon-arrow-down.svg';
+import { AuthContext } from '../Context/Auth';
 
-export default function AccountManager({name = 'Bruno Leandro Guimarães Biana'}){
+export default function AccountManager(){
     const [openModal, setOpenModal] = useState(false);
-
-    function logout(event){
-        event.preventDefault();
-    }
+    const { userDetail : { dataUser }, Logout } = useContext(AuthContext);
 
     return(
         <div className='box-control-signin'>
             <button className="btnManagerAccount" onClick={() => setOpenModal(!openModal)}>
-                <span>{name}</span>
+                <span>{ dataUser.person_name }</span>
                 <img src={iconArrowDown} alt=''/>
             </button>
             {!openModal ? <></> : 
@@ -34,7 +32,7 @@ export default function AccountManager({name = 'Bruno Leandro Guimarães Biana'}
                     </Link>
                 </div>
                 <div className='links-manager-account'>
-                    <Link to='/logout' onClick={logout}>
+                    <Link to='/logout' onClick={() => Logout()}>
                         Sair
                     </Link>
                 </div>

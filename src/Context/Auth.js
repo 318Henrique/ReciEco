@@ -1,73 +1,77 @@
 import React, { useState, useEffect, createContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Api from '../Api/api';
-import { useHistory, useLocation } from 'react-router-dom';
+import Loading from '../pages/Loading';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [loading, setLoading] = useState(true);
-    const NavigatorHistory = useHistory();
     const NavigatorLocation = useLocation();
-    const [userInfo, setUserInfo] = useState({
-        authenticate: false,
-        user: null,
+    const NavigatorHistory = useHistory();
+    const [loading, handleLoading] = useState(true);
+    const [userDetail, handleInfoUser] = useState({
+        isAuthenticate: false,
+        dataUser: {}
     })
 
     useEffect(() => {
-        if(userInfo.authenticate)
-        {
-            const dataAccessUser = localStorage.getItem('t');
-            const { token, content } = JSON.parse(dataAccessUser);
-
+        const dataMain = localStorage.getItem('a');
+        if(dataMain){
+            const { token, content } = JSON.parse(dataMain);
             Api.defaults.headers.auth = token;
 
-            setUserInfo({
-                _authenticate: true,
-                user: content
+            handleInfoUser({
+                isAuthenticate: true,
+                dataUser: content
             })
         }
-        setLoading(false)
-    }, [userInfo.authenticate])
 
-    function _login(dataUserAccess){
+        handleLoading(false);
+    }, [])
 
-        localStorage.setItem('t', JSON.stringify(dataUserAccess))
+    function SignIn(data){
+        const { token, content } = data;
+        Api.defaults.headers.auth = token;
 
-        Api.defaults.headers.auth = dataUserAccess.token
+        handleInfoUser({ isAuthenticate: true, dataUser: content })
+        
+        localStorage.setItem('a', JSON.stringify(data));
 
-        setUserInfo({
-            authenticate: true,
-            user: dataUserAccess.content
-        })
-
-        setLoading(true)
-
-        const { from : redirectionPage } = NavigatorLocation.state || { from: { pathname: '/localizar' }}
-        NavigatorHistory.replace(redirectionPage);
+        const { from } = NavigatorLocation.state || { from: { pathname: '/localizar' } };
+        NavigatorHistory.replace(from);
     }
 
-    function _logout(){
+    function Logout(event){
+        event.preventDefault();
+        Api.defaults.headers.auth = null;
 
-        localStorage.removeItem('t')
+        handleInfoUser({ isAuthenticate: false, dataUser: {} })
 
-        setUserInfo({
-            authenticate: false,
-            user: {}
-        })
+        localStorage.removeItem('a');
 
-        setLoading(true)
+        NavigatorHistory.replace('/');
+    }
 
-        NavigatorHistory.push('/signin');
+    function HandleInfo(content){
+        const dataHandledUser = Object.assign(userDetail.dataUser, content);
+        handleInfoUser({ isAuthenticate: true, dataUser: dataHandledUser })
+
+        const dataMain = localStorage.getItem('a');
+        const { token } = JSON.parse(dataMain);
+        const join_data = { token: token, content: dataHandledUser }
+        localStorage.setItem('a', JSON.stringify(join_data));
+
     }
 
     if(loading)
-    return <h1>Caregando dados...</h1>
+    return <Loading/>
 
-    return (
-        <AuthContext.Provider value={{ userInfo, _login, _logout }}>
+    return(
+        <AuthContext.Provider value={{ userDetail, SignIn, Logout, HandleInfo }}>
             { children }
         </AuthContext.Provider>
     )
+    
 }
 
-export { AuthContext, AuthProvider }
+export { AuthContext, AuthProvider };

@@ -5,7 +5,6 @@ export default function Select({stateValue = () => {}, name, value, options, ...
 
     function handleValue(content){
         setValueInput(content);
-        console.log(content)
     }
     
     useEffect(() => {
@@ -15,7 +14,8 @@ export default function Select({stateValue = () => {}, name, value, options, ...
     }, [valueInput, stateValue, name]);
 
     return(
-        <select value={valueInput} name={name} onChange={(content) => handleValue(content.target.value)} {...rest}>
+        <select value={valueInput || 0} name={name} onChange={(content) => handleValue(content.target.value)} {...rest}>
+            <option value={0} disabled>Escolher</option>
             {options.map((option, index) => (
                 <option key={index} value={option.value || option.valueVisible}>{option.valueVisible}</option>
             ))}

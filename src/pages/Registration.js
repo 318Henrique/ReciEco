@@ -2,33 +2,24 @@ import React, { useState } from 'react';
 import Header from '../Components/Header';
 import Input from '../Components/Input';
 import Select from '../Components/Select';
+import Api from '../Api/api';
 
 export default function Registration(){
     const [dataForm, setDataForm] = useState({});
-    const [residues] = useState([
-        {
-            id: 1,
-            imgIcon: '2-papel.svg',
-            residues_name: 'papel',
-            residues_name_final: 'Papel',
-        },
-        {
-            id: 2,
-            imgIcon: '9-plastico.svg',
-            residues_name: 'plastico',
-            residues_name_final: 'Plástico',
-        },
-        {
-            id: 3,
-            imgIcon: '8-vidros.svg',
-            residues_name: 'vidro',
-            residues_name_final: 'Vidro',
-        },
-    ]);
 
     function handleData(content){
         const newDataForm = Object.assign(dataForm, content);
         setDataForm(newDataForm)
+    }
+
+    async function onSubmit(){
+        try {
+            console.log(dataForm);
+            const response = await Api.post('/signup', dataForm);
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
@@ -39,9 +30,10 @@ export default function Registration(){
             <div className="control-main">
                 <div className="box-control-main">
                     <div className="boxField">
-                        <label>Tipo de Cadastro</label>
+                        <label htmlFor='register_type'>Tipo de Cadastro</label>
                         <Select
-                            name="registerType"
+                            name="register_type"
+                            id="register_type"
                             options={[
                                 {
                                     valueVisible: "Gerador de Resíduos",
@@ -66,7 +58,7 @@ export default function Registration(){
                 </div>
                 <div className="box-control-main">
                     <div className="boxField">
-                        <label htmlFor="numberDocumentChoise">Digite seu CPF ou CNPJ</label>
+                        <label htmlFor="numberDocumentChoise">CPF/CNPJ</label>
                         <Input name="numberDocumentChoise" id="numberDocumentChoise" type='number' stateValue={content => handleData(content)}
                         />
                     </div>
@@ -90,31 +82,31 @@ export default function Registration(){
                     </div>
                     <div className="boxField">
                         <label htmlFor="address">Logradouro</label>
-                        <Input name="address" id="address" type='text' stateValue={content => handleData(content)}
+                        <Input name="address" id="address" type='text' maxLength={255} stateValue={content => handleData(content)}
                         />
                     </div>
                 </div>
                 <div className="box-control-main">
                     <div className="boxField boxField20">
                         <label htmlFor="number_address">N° de sua residência</label>
-                        <Input name="number_address" id="number_address" type='text' stateValue={content => handleData(content)}
+                        <Input name="number_address" id="number_address" type='text' maxLength={10} stateValue={content => handleData(content)}
                         />
                     </div>
                     <div className="boxField">
                         <label htmlFor="neghborhood">Bairro</label>
-                        <Input name="neghborhood" id="neghborhood" type='text' stateValue={content => handleData(content)}
+                        <Input name="neghborhood" id="neghborhood" type='text' maxLength={255} stateValue={content => handleData(content)}
                         />
                     </div>
                 </div>
                 <div className="box-control-main">
                     <div className="boxField">
                         <label htmlFor="city">Cidade</label>
-                        <Input name="city" id="city" type='text' stateValue={content => handleData(content)}
+                        <Input name="city" id="city" type='text' maxLength={255} stateValue={content => handleData(content)}
                         />
                     </div>
                     <div className="boxField boxField20">
                         <label htmlFor="state">UF</label>
-                        <Input name="state" id="state" type='text' stateValue={content => handleData(content)}
+                        <Input name="state" id="state" type='text' maxLength={2} stateValue={content => handleData(content)}
                         />
                     </div>
                 </div>
@@ -130,20 +122,7 @@ export default function Registration(){
                         />
                     </div>
                 </div>
-                <div className='box-control-main boxSelectResidues'>
-                    <Input type='hidden' name='residues' typeResidue formField/>
-                    {
-                        residues.map(residue => {
-                            const {id, imgIcon, residues_name, residues_name_final} = residue;
-                            return(
-                                <div className="boxIcon" residues={residues_name} key={id}>
-                                    <img id="imgResidues" src={require(`../assets/${imgIcon}`)} alt=''/>
-                                    <span>{residues_name_final}</span>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                <button onClick={() => onSubmit()}>Salvar</button>
             </div>
         </div>
         </>

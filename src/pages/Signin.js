@@ -1,17 +1,17 @@
-import React,{useState, useContext } from 'react';
+import React,{ useState, useContext } from 'react';
 import Input from '../Components/Input';
 import '../styles/style.css';
 import { Link } from 'react-router-dom';
 import Api from "../Api/api";
 import { AuthContext } from '../Context/Auth';
-import MessageErrors from '../Utils/MessageErrors';
+import Message from '../Components/Message';
 
 export default function Singin(){
     const [dataForm, handledataForm] = useState({});
     const [showPassword, setShowPassword] = useState(false);
-    const [errMessage, setErrMessage] = useState(null);
+    const [message, newMessage] = useState(null);
     const [messageProgress, setMessageProgress] = useState('Entrar');
-    const { _login } = useContext(AuthContext);
+    const { SignIn } = useContext(AuthContext);
 
     function handleStateForm(content){
         const handleContentDataForm = Object.assign(dataForm, content);
@@ -22,20 +22,17 @@ export default function Singin(){
         setMessageProgress('Verificando...');
         try {
             const responseSignin = await Api.post('/signin', dataForm);
-            const dataUser = responseSignin.data;
-
-            _login(dataUser);
+            const dataMainResponse = responseSignin.data;
+            SignIn(dataMainResponse);
             
-            setMessageProgress('Redirecionando ...');
         } catch (error) {
-            const message = MessageErrors(error)
-            setErrMessage(message)
+            newMessage({ content: error.response.data.message || error.message })
         }
-
         setMessageProgress('Entrar');
     }
 
     return(
+        <>
         <div className='box-login'>
            <div className="content-modal-signin">
                 <div className="header-modal">
@@ -55,13 +52,7 @@ export default function Singin(){
                     </button>
                 </div>
                 <button className="btnSubmit" onClick={() => onSubmit()}>{messageProgress}</button>
-
-                {
-                    errMessage === null ? <></> : 
-                    <div className='message-err-form'>
-                        {errMessage}
-                    </div>
-                }
+                
                 <Link to="/cadastro">
                     Cadastrar-se
                 </Link>
@@ -70,5 +61,7 @@ export default function Singin(){
                 </Link>
             </div>
         </div>
+        <Message message={message}/>
+        </>
     )
 }
