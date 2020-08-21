@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Input from '../Components/Input';
 import Select from '../Components/Select';
 import Api from '../Api/api';
+import Message from '../Components/Message';
 
 export default function Registration(){
     const [dataForm, setDataForm] = useState({});
@@ -18,7 +19,7 @@ export default function Registration(){
             const response = await Api.post('/signup', dataForm);
             console.log(response.data)
         } catch (error) {
-            console.log(error)
+            Message({ content: error })
         }
     }
 
