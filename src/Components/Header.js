@@ -11,6 +11,11 @@ export default function Header(){
     return(
         <header className="headerMenu">
             <nav className='header-nav'>
+                <button className={`btnMenu`}>
+                    <div/>
+                    <div/>
+                    <div/>
+                </button>
                 <div className="link-home-logo">
                     <Link to='/'>
                         <img src={LogoBlank} alt="ReciEco"/>
@@ -19,22 +24,23 @@ export default function Header(){
                         </span>
                     </Link>
                 </div>
-
-                <li>
-                    <Link to='/localizar'>
-                        Localizar
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/localizar'>
-                        Contato
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/localizar'>
-                        Sobre
-                    </Link>
-                </li>
+                <div className='links-menu'>
+                    <li>
+                        <Link to='/localizar'>
+                            Localizar
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/contact'>
+                            Contato
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/about'>
+                            Sobre
+                        </Link>
+                    </li>
+                </div>
             </nav>
             
         </header>

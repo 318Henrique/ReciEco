@@ -75,6 +75,24 @@ button{
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 100%;
+}
+.btnMenu{
+  width: 30px;
+  height: 25px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  outline: none;
+  border: none;
+  margin-right: 10px;
+}
+.btnMenu div{
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-light);
 }
 .link-home-logo{
   display: flex;
@@ -94,8 +112,31 @@ button{
   font-weight: 500;
   margin-left: 5px;
 }
-.header-nav {
-  background: red;
+.links-menu {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-left: 20px;
+}
+.links-menu li{
+  list-style: none;
+  width: 90px;
+  height: 100%;
+  text-align: center;
+  border-bottom: 2px solid var(--color-primary);
+  transition: .2s;
+}
+.links-menu li:hover{
+  border-color: var(--color-light);
+}
+.links-menu li a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: var(--color-light);
+  font-size: .98rem;
 }
 
 .modal-signin{

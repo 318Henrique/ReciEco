@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Api from "../Api/api";
 import { AuthContext } from '../Context/Auth';
 import Message from '../Components/Message';
+import Header from '../Components/Header';
 
 export default function Singin(){
     const [dataForm, handledataForm] = useState({});
@@ -33,6 +34,7 @@ export default function Singin(){
 
     return(
         <>
+        <Header/>
         <div className='box-login'>
            <div className="content-modal-signin">
                 <div className="header-modal">
