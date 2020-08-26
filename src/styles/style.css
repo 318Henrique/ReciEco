@@ -71,47 +71,33 @@ button{
   top: 0px;
   z-index: 9998;
 }
-.header-menu-btn-home{
+.header-nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.link-home-logo{
+  display: flex;
+  margin-right: 10px;
+}
+.link-home-logo a{
   display: flex;
   align-items: center;
-  border: none;
-  margin-right: 15px;
 }
-.header-menu-btn-home div{
+.link-home-logo a img{
+  height: 30px;
+}
+.link-home-logo a span{
+  display: flex;
   color: var(--color-light);
   font-size: 1.4rem;
-  margin-left: 10px;
-}
-.link-map{
-  display: flex;
-  width: 120px;
-  height: 100%;
-  border-bottom: 2px solid var(--color-primary);
-  transition: .3s ease-in-out;
-}
-.link-map:hover{
-  border-color: var(--color-light);
-}
-.link-map a{
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 100%;
-  color: var(--color-light);
   font-weight: 500;
+  margin-left: 5px;
 }
-.box-control-signin{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.header-nav {
+  background: red;
 }
-.signin-link{
-  display: block;
-  margin-left: 10px;
-  color: var(--color-light);
-}
+
 .modal-signin{
   display: flex;
   align-items: center;
@@ -184,16 +170,18 @@ button{
 }
 .section-pattern{
   background: var(--color-primary);
-  height: 250px;
+  min-height: 100px;
+  height: auto;
 }
 .section-boas-vindas .section-content{
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 1280px;
-  height: 130px;
+  height: 200px;
+  margin: auto;
 }
 .section-boas-vindas .section-content *{
   text-align: center;
@@ -202,6 +190,7 @@ button{
 .section-boas-vindas .section-content h1{
   font-size: 3rem;
   font-weight: 500;
+  margin-bottom: 15px;
 }
 .section-boas-vindas .section-content h3{
   font-size: 1.3rem;
@@ -543,58 +532,6 @@ color: rgb(136, 30, 26);
 .map{
   width: 100vw;
   height: 100vh;
-}
-
-.btnManagerAccount{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.91rem;
-  border: none;
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-}
-.btnManagerAccount *{display: block;}
-.btnManagerAccount span{
-  color: var(--color-light);
-  margin-right: 10px;
-}
-.btnManagerAccount img{
-  height: 18px;
-  height: 18px;
-}
-
-.modal-manager-account{
-  display: grid;
-  grid-template-columns: 1fr;
-  position: absolute;
-  top: 65px;
-  right: 10px;
-  width: 100px;
-  height: auto;
-  min-height: 30px;
-  background: var(--color-light);
-  box-shadow: 1px 5px 15px var(--color-shadow);
-  border-radius: 7px;
-  padding: 10px;
-}
-.modal-manager-account .links-manager-account{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-.modal-manager-account .links-manager-account a{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 5px 0px;
 }
 
 .box-main-form{

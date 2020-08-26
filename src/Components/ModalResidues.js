@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from './Input';
 import Select from './Select';
-import iconClose from '../assets/icon-close.svg';
+import iconClose from '../assets/icon-close.png';
 import '../styles/style.css';
 import Api from '../Api/api';
 

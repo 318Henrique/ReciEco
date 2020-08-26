@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../Components/Header';
 import "../styles/style.css";
-import iconAdd from '../assets/icon-add.svg';
+import iconAdd from '../assets/icon-add.png';
 import ListPerson from '../Components/ListPerson';
 
 export default function People(){
