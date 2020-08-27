@@ -28,7 +28,7 @@ export default function People(){
   return(
     <>
     <Header/>
-    <div className='box-main-form'>
+    <div className='box-main box-main-form'>
       <div className='header-form'>
         <h1>Lista de Pessoas</h1>
         <button className='add'>

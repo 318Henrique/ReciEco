@@ -41,8 +41,7 @@ const AuthProvider = ({ children }) => {
         NavigatorHistory.replace(from);
     }
 
-    function Logout(event){
-        event.preventDefault();
+    function Logout(){
         Api.defaults.headers.auth = null;
 
         handleInfoUser({ isAuthenticate: false, dataUser: {} })

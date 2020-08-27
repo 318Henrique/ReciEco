@@ -1,45 +1,50 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import iconArrowDown from '../assets/icon-arrow-down.svg';
+import iconArrowDown from '../assets/icon-arrow.png';
 import '../styles/style.css';
 import { AuthContext } from '../Context/Auth';
 
-export default function IsSignin({name = 'bruno'}){
+export default function IsSignin(){
     const [openModal, setOpenModal] = useState(false);
-    const { userInfo: { authenticate } } = useContext(AuthContext);
+    const { userDetail: { isAuthenticate, dataUser }, Logout } = useContext(AuthContext);
     
     return(
         <>
         {
-            !authenticate ?  
-            <Link to='/signin' className='signin-link'>Entrar / Cadastro</Link> :
-            <div className='box-control-signin'>
-                <button className="btnManagerAccount" onClick={() => setOpenModal(!openModal)}>
-                    <span>{name}</span>
-                    <img src={iconArrowDown} alt=''/>
+            !isAuthenticate ?  
+            <div className='btnSignInHeader'>
+                <Link to='/signin' className='signin-link'>Entrar</Link>
+            </div>
+            :
+
+            <div className='logined'>
+                <button className="btnWithNameFoto" onClick={() => setOpenModal(!openModal)}>
+                    <div className='foto-header' style={{ backgroundImage: `url(${dataUser.foto})` }}/>
+                    <span className='name'>{dataUser.name.substr(0, dataUser.name.indexOf(' '))}</span>
+                    <img className='arrow-down' src={iconArrowDown} alt=''/>
                 </button>
                 {!openModal ? <></> : 
                 <div className="modal-manager-account">
-                    <div className='links-manager-account'>
+                    <li className='links-manager-account'>
                         <Link to='/peoples'>
                             Pessoas
                         </Link>
-                    </div>
-                    <div className='links-manager-account'>
+                    </li>
+                    <li className='links-manager-account'>
                         <Link to='/residues'>
                             Resíduos
                         </Link>
-                    </div>
-                    <div className='links-manager-account'>
+                    </li>
+                    <li className='links-manager-account'>
                         <Link to='/perfil'>
                             Perfil
                         </Link>
-                    </div>
-                    <div className='links-manager-account'>
-                        <button>
+                    </li>
+                    <li className='links-manager-account'>
+                        <button type='button' onClick={() => Logout()}>
                             Sair
                         </button>
-                    </div>
+                    </li>
                 </div>
                 }
             </div>

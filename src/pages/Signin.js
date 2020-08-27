@@ -1,40 +1,40 @@
 import React,{ useState, useContext } from 'react';
 import Input from '../Components/Input';
+import { Form } from '@unform/web';
 import '../styles/style.css';
 import { Link } from 'react-router-dom';
 import Api from "../Api/api";
 import { AuthContext } from '../Context/Auth';
 import Message from '../Components/Message';
-import Header from '../Components/Header';
 
 export default function Singin(){
-    const [dataForm, handledataForm] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [message, newMessage] = useState(null);
     const [messageProgress, setMessageProgress] = useState('Entrar');
     const { SignIn } = useContext(AuthContext);
 
-    function handleStateForm(content){
-        const handleContentDataForm = Object.assign(dataForm, content);
-        handledataForm(handleContentDataForm)
-    }
 
-    async function onSubmit(){
+    async function onSubmit(data){
+        const { mail, password } = data;
+        if(mail === "" || mail === null) return newMessage({ content:"E-mail é obrigatório!" });
+
+        if(password === "" || password === null) return newMessage({ content:"Senha é obrigatória!" });
+        
         setMessageProgress('Verificando...');
+        
         try {
-            const responseSignin = await Api.post('/signin', dataForm);
+            const responseSignin = await Api.post('/signin', data);
             const dataMainResponse = responseSignin.data;
             SignIn(dataMainResponse);
             
         } catch (error) {
-            newMessage({ content: error.response.data.message || error.message })
+            newMessage({ content: error })
         }
         setMessageProgress('Entrar');
     }
 
     return(
         <>
-        <Header/>
         <div className='box-login'>
            <div className="content-modal-signin">
                 <div className="header-modal">
@@ -42,24 +42,29 @@ export default function Singin(){
                         Logar-se
                     </h2>
                 </div>
-                <div className="boxField">
-                    <label>E-mail</label>
-                    <Input name="mail" type="email" stateValue={content => handleStateForm(content)} maxLength="255"/> 
-                </div>
-                <div className="boxField">
-                    <label>Senha</label>
-                    <Input name="password" type={showPassword ? 'text' : 'password'} stateValue={content => handleStateForm(content)}/>
-                    <button className='btnShowPassword' onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? 'Esconder' : 'Mostrar'}
-                    </button>
-                </div>
-                <button className="btnSubmit" onClick={() => onSubmit()}>{messageProgress}</button>
+                <Form onSubmit={onSubmit}>
+                    <div className="boxField">
+                        <label htmlFor='mail'>E-mail</label>
+                        <Input name="mail" id="mail" type="email" maxLength="255"/> 
+                    </div>
+                    <div className="boxField">
+                        <label htmlFor="password">Senha</label>
+                        <Input name="password" id="password" type={showPassword ? 'text' : 'password'}/>
+                        <button className='btnShowPassword' type="button" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? 'Esconder' : 'Mostrar'}
+                        </button>
+                    </div>
+                    <button type='submit' className="btnSubmit">{ messageProgress }</button>
+                </Form>
                 
                 <Link to="/cadastro">
                     Cadastrar-se
                 </Link>
                 <Link to="/forgout">
                     Esqueci minha senha!
+                </Link>
+                <Link to="/">
+                    Voltar para home
                 </Link>
             </div>
         </div>

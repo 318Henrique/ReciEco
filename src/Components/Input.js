@@ -1,19 +1,19 @@
-import React,{useState, useEffect} from 'react';
-
-export default function Field({stateValue = () => {}, name, value, ...rest}){
-    const [valueInput, setValueInput] = useState(value || '');
-
-    function handleValue(content){
-        setValueInput(content);
-    }
-    
-    useEffect(() => {
-        const newObjectContent = {};
-        newObjectContent[name] = valueInput
-        stateValue(newObjectContent);
-    }, [valueInput, stateValue, name]);
-
-    return(
-        <input value={valueInput} name={name} onChange={(content) => handleValue(content.target.value)} {...rest}/>
-    )
+import React, { useEffect, useRef } from 'react';
+import { useField } from '@unform/core';
+export default function Input({ name, ...rest }) {
+  const inputRef = useRef(null);
+  const { fieldName, defaultValue, registerField } = useField(name);
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef.current,
+      path: 'value',
+    });
+  }, [fieldName, registerField]);
+  return <input
+    ref={inputRef}
+    defaultValue={defaultValue}
+    onFocus={(event) => event.target.classList.add('focusField')}
+    onBlur={(event) => event.target.classList.remove('focusField')}
+    {...rest} />;
 }

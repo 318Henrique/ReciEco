@@ -1,131 +1,180 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import Header from '../Components/Header';
 import Input from '../Components/Input';
-import Select from '../Components/Select';
+import InputCheckbox from '../Components/InputCheckbox';
+import { Form } from '@unform/web';
 import Api from '../Api/api';
 import Message from '../Components/Message';
+import axios from 'axios';
+import { AuthContext } from '../Context/Auth';
+import ValidationData from '../Components/ValidationData';
 
 export default function Registration(){
-    const [dataForm, setDataForm] = useState({});
+    const formularioCadastro = useRef();
+    const [ messagePage, newMessage ] = useState(null);
+    const [ category, handleCategory ] = useState({});
+    const { SignIn } = useContext(AuthContext);
+    const [ coords, handleCoords ] = useState({
+        coord_lat: null,
+        coord_lng: null,
+    })
 
-    function handleData(content){
-        const newDataForm = Object.assign(dataForm, content);
-        setDataForm(newDataForm)
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+        handleCoords({
+            coord_lat: coords.latitude,
+            coord_lng: coords.longitude
+        })
+    })
+
+    async function onSubmit(event){
+        event.preventDefault();
+        const { password, confirmed_password, ...rest } = formularioCadastro.current.getData();
+        const { error, message } = ValidationData(rest);
+
+        if(error) return newMessage({ content: message })
+
+        try {
+            
+            if(password !== "" && password !== confirmed_password) return newMessage({ content: "As senhas precisam ser iguais!" })
+
+            const categoryStringify = JSON.stringify(category);
+
+            const join_data = Object.assign(rest, { type_person: categoryStringify, password }, coords)
+            const response = await Api.post('/singup', join_data);
+
+            SignIn(response.data);
+        } catch (error) {
+            newMessage({ content: error })
+        }
     }
 
-    async function onSubmit(){
+    function NavigatorCarrossel(event, section){
+        const btnActived = event.target;
+        const carroselCadastro = document.querySelector('.carrosel-cadastro');
+        const btnsCarrossels = document.querySelectorAll('.control-btns-carrossel button');
+        btnsCarrossels.forEach(item => {
+            if(item === btnActived) {
+                item.classList.add('btnActivedCarrossel');
+                carroselCadastro.scrollTo(500 * section, 0);
+                document.querySelector('#root').scrollTo(0, 10)
+            }
+            else item.classList.remove('btnActivedCarrossel');
+        })
+    }   
+
+    async function getCep(cep){
+        if(!/[0-9]{8}/.test(cep)) return;
         try {
-            console.log(dataForm);
-            const response = await Api.post('/signup', dataForm);
-            console.log(response.data)
+            const url = `https://viacep.com.br/ws/${cep}/json/`;
+            const response = await axios.get(url);
+            const { localidade: city, uf:state, bairro: neghborhood } = response.data;
+            
+            formularioCadastro.current.setData({ city, state, neghborhood })
+
         } catch (error) {
-            Message({ content: error })
+            newMessage({ content: error })
         }
+    }
+
+    function categoryPerson(content){
+        handleCategory(prevData => Object.assign(prevData, content));
     }
 
     return(
         <>
         <Header/>
-        <div>
-            <h1>Formulário de cadastro</h1>
-            <div className="control-main">
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor='register_type'>Tipo de Cadastro</label>
-                        <Select
-                            name="register_type"
-                            id="register_type"
-                            options={[
-                                {
-                                    valueVisible: "Gerador de Resíduos",
-                                },
-                                {
-                                    valueVisible: "Catador de Resíduos",
-                                },
-                                {
-                                    valueVisible: "Comprador de Resíduos",
-                                }
-                            ]}
-                            stateValue={content => handleData(content)}
-                        />
+        <div className="control-main control-main-cadastro">
+            <Form ref={formularioCadastro}>
+            <div className='carrosel-cadastro'>
+                <section className='box person-access'>
+                    <h1>Informações de acesso</h1>
+                    <div className='control'>
+                        <div className='boxField'>
+                            <label htmlFor='person_name'>Nome Completo <span>*</span></label>
+                            <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255} />
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='mail'>E-mail <span>*</span></label>
+                            <Input name='mail' id='mail' type='email' required maxLength={255}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='password'>Senha <span>*</span></label>
+                            <Input name='password' type='password' id='password' required maxLength={50}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='confirmed_password'>Repita a senha <span>*</span></label>
+                            <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50}/>
+                        </div>
                     </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor="person_name">Nome completo</label>
-                        <Input name="person_name" id="person_name" type='text' stateValue={content => handleData(content)}
-                        />
+                </section>
+                <section className='box address'>
+                    <h1>Endereço</h1>
+                    <div className='control'>
+                        <div className='boxField'>
+                            <label htmlFor='zipcode'>CEP <span>*</span></label>
+                            <Input name='zipcode' type='text' id='zipcode' required maxLength={8}  onChange={(event) => getCep(event.target.value)}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='address'>Endereço <span>*</span></label>
+                            <Input name='address' type='text' id='address' required maxLength={255}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='address_number'>Número do endereço</label>
+                            <Input name='address_number' type='text' id='address_number' maxLength={10}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='neghborhood'>Bairro <span>*</span></label>
+                            <Input name='neghborhood' type='text' id='neghborhood' required maxLength={100}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='city'>Cidade <span>*</span></label>
+                            <Input name='city' type='text' id='city' required maxLength={255}/>
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='state'>UF <span>*</span></label>
+                            <Input name='state' type='text' id='state' required maxLength={2}/>
+                        </div>
                     </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor="numberDocumentChoise">CPF/CNPJ</label>
-                        <Input name="numberDocumentChoise" id="numberDocumentChoise" type='number' stateValue={content => handleData(content)}
-                        />
+                </section>
+                <section className='box type_person'>
+                    <h1>Últimos detalhes</h1>
+                    <div className='control'>
+                        <div className='boxField'>
+                            <label htmlFor='document'>CPF/CNPJ <span>*</span></label>
+                            <Input name='document' type='text' id='document' required maxLength={14} />
+                        </div>
+                        <div className='boxField'>
+                            <label htmlFor='whatsapp'>Whatsapp</label>
+                            <Input name='whatsapp' type='tel' id='whatsapp' placeholder='DD + número' required maxLength={11}/>
+                        </div>
+
+                        <div>
+                            <h4>Escolha sua categoria</h4>
+                            <div className='boxFieldCheckbox'>
+                                <InputCheckbox name='catador' id='catador' stateValue={content => categoryPerson(content)}/>
+                                <label htmlFor='catador'>Catador de resíduos</label>
+                            </div>
+                            <div className='boxFieldCheckbox'>
+                                <InputCheckbox name='comprador' id='comprador' stateValue={content => categoryPerson(content)}/>
+                                <label htmlFor='comprador'>Comprador de resíduos</label>
+                            </div>
+                            <div className='boxFieldCheckbox'>
+                                <InputCheckbox name='gerador' id='gerador' stateValue={content => categoryPerson(content)}/>
+                                <label htmlFor='gerador'>Gerador de resíduos</label>
+                            </div>
+                        </div>
+                        <button onClick={event => onSubmit(event)} className='btnSubmit' style={{ marginTop: 50 }}>Cadastrar</button>
                     </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor="whatsapp">Whatsapp</label>
-                        <Input name="whatsapp" id="whatsapp" type='tel' maxLength='11' stateValue={content => handleData(content)}
-                        />
-                    </div>
-                    <div className="boxField">
-                        <label htmlFor="mail">E-mail</label>
-                        <Input name="mail" id="mail" type='email' maxLength='255' stateValue={content => handleData(content)}/>
-                    </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField boxField20">
-                        <label htmlFor="zipcode">CEP</label>
-                        <Input name="zipcode" id="zipcode" type='number' stateValue={content => handleData(content)}
-                        />
-                    </div>
-                    <div className="boxField">
-                        <label htmlFor="address">Logradouro</label>
-                        <Input name="address" id="address" type='text' maxLength={255} stateValue={content => handleData(content)}
-                        />
-                    </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField boxField20">
-                        <label htmlFor="number_address">N° de sua residência</label>
-                        <Input name="number_address" id="number_address" type='text' maxLength={10} stateValue={content => handleData(content)}
-                        />
-                    </div>
-                    <div className="boxField">
-                        <label htmlFor="neghborhood">Bairro</label>
-                        <Input name="neghborhood" id="neghborhood" type='text' maxLength={255} stateValue={content => handleData(content)}
-                        />
-                    </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor="city">Cidade</label>
-                        <Input name="city" id="city" type='text' maxLength={255} stateValue={content => handleData(content)}
-                        />
-                    </div>
-                    <div className="boxField boxField20">
-                        <label htmlFor="state">UF</label>
-                        <Input name="state" id="state" type='text' maxLength={2} stateValue={content => handleData(content)}
-                        />
-                    </div>
-                </div>
-                <div className="box-control-main">
-                    <div className="boxField">
-                        <label htmlFor="password">Senha</label>
-                        <Input name="password" id="password" type='password' stateValue={content => handleData(content)}
-                        />
-                    </div>
-                    <div className="boxField">
-                        <label htmlFor="password-repeate">Repetir Senha</label>
-                        <Input name="password-repeate" id="password-repeate" type='password' stateValue={content => handleData(content)}
-                        />
-                    </div>
-                </div>
-                <button onClick={() => onSubmit()}>Salvar</button>
+                </section>
+            </div>
+            </Form>
+            <div className='control-btns-carrossel'>
+                <button onClick={event => NavigatorCarrossel(event, 0)} className='btnActivedCarrossel'></button>
+                <button onClick={event => NavigatorCarrossel(event, 1)}></button>
+                <button onClick={event => NavigatorCarrossel(event, 2)}></button>
             </div>
         </div>
+        <Message message={messagePage}/>
         </>
     )
 }

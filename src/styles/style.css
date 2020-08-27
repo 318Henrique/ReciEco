@@ -10,6 +10,7 @@
   --color-shadow: rgba(0, 0, 0, 0.10);
   --color-error: rgb(102, 5, 5);
   --color-green-dark: rgb(0,54,12);
+  --color-orange: rgb(173, 80, 3);
 }
 *{
   box-sizing: border-box;
@@ -19,9 +20,10 @@
   font-weight: 400;
   color: var(--color-black);
 }
-body{
-  font-size: 14px;
+body, html, #root{
+  font-size: 16px;
   overflow-x: hidden;
+  height: 100vh;
 }
 ::-webkit-scrollbar{
   width: 5px;
@@ -40,14 +42,15 @@ a{
 input,textarea, select{
   background: var(--color-light);
   outline: none;
-  border: 1px solid var(--color-black-light);
+  border: 2px solid var(--color-black-light);
   color: var(--color-black);
-  border-radius: 7px;
+  border-radius: 10px;
   padding: 0px 10px;
   width: 100%;
-  height: 35px;
-  font-weight: 500;
-  font-size: 14px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  transition: .2s ease-in-out;
 }
 button{
   background: none;
@@ -55,6 +58,13 @@ button{
   border: 1px solid var(--color-light);
   cursor: pointer;
   border-radius: 7px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.focusField{
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 #map{
@@ -66,7 +76,7 @@ button{
   background: var(--color-primary);
   width: 100vw;
   height: 60px;
-  padding: 0px 10px;
+  box-shadow: 0 15px 15px var(--color-shadow);
   position: fixed;
   top: 0px;
   z-index: 9998;
@@ -75,28 +85,15 @@ button{
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100%;
-}
-.btnMenu{
-  width: 30px;
-  height: 25px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  outline: none;
-  border: none;
-  margin-right: 10px;
-}
-.btnMenu div{
-  display: block;
-  height: 2px;
   width: 100%;
-  background: var(--color-light);
+  max-width: 1000px;
+  height: 100%;
+  position: relative;
+  margin: auto;
 }
 .link-home-logo{
   display: flex;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 .link-home-logo a{
   display: flex;
@@ -112,11 +109,12 @@ button{
   font-weight: 500;
   margin-left: 5px;
 }
-.links-menu {
+.links-menu{
+  height: 100%;
   display: flex;
   flex-direction: row;
-  height: 100%;
   margin-left: 20px;
+  background: var(--color-primary);
 }
 .links-menu li{
   list-style: none;
@@ -136,7 +134,80 @@ button{
   height: 100%;
   width: 100%;
   color: var(--color-light);
-  font-size: .98rem;
+}
+
+.btnSignInHeader{
+  margin-right: 10px;
+  position: absolute;
+  top: 35%;
+  right: 10px;
+}
+
+.btnSignInHeader a{
+  color: var(--color-light);
+}
+
+.logined{
+  position: absolute;
+  right: 10px;
+  top: 19px
+}
+
+.logined .btnWithNameFoto{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.logined .btnWithNameFoto .foto-header{
+  flex: none;
+  width: 25px;
+  height: 25px;
+  background: var(--color-light);
+  border-radius: 50%;
+}
+
+.logined .btnWithNameFoto .name{
+  display: block;
+  margin: 0 5px;
+  color: var(--color-light);
+}
+
+.logined .btnWithNameFoto .arrow-down{
+  width: 16px;
+  height: 16px;
+}
+
+.modal-manager-account{
+  position: absolute;
+  right: 0;
+  margin-top: 15px;
+  background: var(--color-light);
+  box-shadow: 6px 10px 20px rgba(0,0,0,0.2);
+  padding: 15px 20px;
+  border-radius: 10px;
+  width: 160px;
+}
+
+.modal-manager-account .links-manager-account{
+  list-style: none;
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.modal-manager-account .links-manager-account a, .modal-manager-account .links-manager-account button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
 }
 
 .modal-signin{
@@ -195,10 +266,10 @@ button{
 }
 .btnSubmit{
   width: 100%;
-  height: 40px;
+  height: 45px;
   background: var(--color-primary);
   color: var(--color-light);
-  font-weight: 500;
+  font-weight: 400;
 }
 .fieldError{
   border-color: var(--color-error);
@@ -207,7 +278,6 @@ button{
 .box-control-all{
   width: 100vw;
   height: auto;
-  padding-top: 60px;
 }
 .section-pattern{
   background: var(--color-primary);
@@ -351,11 +421,9 @@ button{
 
 .control-main{
   width: 100vw;
-  max-width: 800px;
-  height: auto;
-  min-height: 150px;
-  padding-top: 60px;
   margin: auto;
+  padding-top: 60px;
+  transition: padding .3s ease-in-out;
 }
 .box-control-main{
   display: flex;
@@ -698,7 +766,7 @@ color: rgb(136, 30, 26);
   position: relative;
 }
 .btnShowPassword{
-  font-size: 0.69rem;
+  font-size: 0.8rem;
   font-weight: 500;
   background: none;
   border: none;
@@ -708,9 +776,113 @@ color: rgb(136, 30, 26);
   right: 15px;
 }
 
+.control-main-cadastro{
+  color: var(--color-black-light);
+}
+.carrosel-cadastro{
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  min-height: 200px;
+  margin: 30px auto;
+  overflow-x: hidden;
+  box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  scroll-behavior: smooth;
+}
+
+.carrosel-cadastro .box{
+  flex: none;
+  width: 100%;
+  padding: 20px;
+}
+
+.carrosel-cadastro .box h1{
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.control-btns-carrossel{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 150px;
+  height: 30px;
+  margin: 10px auto;  
+}
+
+.control-btns-carrossel button{
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  transition: .2s ease-in-out;
+}
+
+.btnActivedCarrossel{
+  background: var(--color-primary);
+}
+/* .person-access{
+} */
+.person-access .control{
+  padding: 10px 0px;
+}
+
+.boxFieldCheckbox{
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.boxFieldCheckbox input{
+  flex: none;
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+}
+
+.box-control-message{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  height: auto;
+  max-height: 80vh;
+  min-height: 50px;
+}
+
+.message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.25);
+  height: auto;
+  min-height: 50px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: var(--color-light);
+  border-radius: 10px;
+  text-align: center;
+  flex: none;
+}
+
+.error{
+  background: var(--color-error);
+}
+.success{
+  background: var(--color-primary);
+}
+.await{
+  background: var(--color-orange);
+}
+
+
 @media(max-width: 1000px){
   body, input, select, textarea, button{
-    font-size: 16px;
+    font-size: 17px;
   }
   .formMain{
     width: 95vw;
@@ -736,14 +908,29 @@ color: rgb(136, 30, 26);
   .section-localizar-residuos .box-with-transparent .control div{
     font-size: 2.5rem;
   }
-  .control-main{
-    padding: 0px 15px;
-  }
   .box-control-main{
     display: block;
   }
   .box-control-main .boxField20{width: 100%;}
   .box-control-main .boxField:nth-child(2){
     margin-left: 0px;
+  }
+}
+
+@media(max-width: 412px){
+  .header-nav{
+    width: 100%;
+  }
+  .links-menu{
+    margin-left: 0;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    justify-content: space-around;
+    box-shadow: 0 15px 15px var(--color-shadow);
+    transition: .2s ease-in-out;
+  }
+  .control-main{
+    padding-top: 120px;
   }
 }

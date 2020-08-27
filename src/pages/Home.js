@@ -6,7 +6,7 @@ export default function Home(){
     return(
         <>
         <Header/>
-        <div className="box-control-all">
+        <div className="control-main box-control-all">
             <section className="section-pattern section-boas-vindas">
                 <div className="section-content">
                     <h1>Seja bem vindo ao ReciEco</h1>
