@@ -11,8 +11,8 @@ export default function Home(){
         <div className="control-main box-control-all">
             <section className="section-pattern section-boas-vindas">
                 <div className="section-content">
-                    <h1>Seja bem vindo ao ReciEco</h1>
-                    <h3>Recicle hoje, para que exista um amanha sustentável!</h3>
+                    <h1>Seja bem-vindo à ReciEco</h1>
+                    <h3>Recicle hoje, para que exista um amanhã sustentável!</h3>
                 </div>
             </section>
             <section className="section-pattern section-two">

@@ -3,6 +3,7 @@ import {Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Localizar from './pages/Localizar';
+import Contact from './pages/Contact';
 import People from './pages/Administrador/Peoples';
 import Residues from './pages/Residues';
 import Registration from './pages/Registration';
@@ -31,6 +32,7 @@ export default function RouterPages(){
     return(
         <Switch>
             <Route exact path='/' component={Home}/>
+            <Route exact path='/Contact' component={Contact}/>
             <PrivateRoute exact path='/localizar' component={Localizar}/>
             <PrivateRoute exact path='/perfil' component={Registration}/>
             <PrivateRoute admin exact path='/peoples' component={People}/>
