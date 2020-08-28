@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import {Switch, Route, Redirect } from 'react-router-dom';
+import { AuthContext } from './Context/Auth';
 
+import Singin from './pages/Signin';
 import Home from './pages/Home';
 import Localizar from './pages/Localizar';
 import Contact from './pages/Contact';
-import People from './pages/Administrador/Peoples';
-import Residues from './pages/Residues';
 import Registration from './pages/Registration';
+
+import People from './pages/Administrador/Peoples';
+import Residues from './pages/Administrador/Residues';
+
 import NotFound from './pages/NotFound';
-import Singin from './pages/Signin';
 import PageRestrict from './pages/PageRestrict';
-import { AuthContext } from './Context/Auth';
 
 function PrivateRoute({ component: Component, admin, ...rest }) {
     const { userDetail: { isAuthenticate, dataUser } } = useContext(AuthContext);

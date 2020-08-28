@@ -76,7 +76,6 @@ button{
   background: var(--color-primary);
   width: 100vw;
   height: 60px;
-  box-shadow: 0 15px 15px var(--color-shadow);
   position: fixed;
   top: 0px;
   z-index: 9998;
@@ -422,7 +421,7 @@ button{
 .control-main{
   width: 100vw;
   margin: auto;
-  padding-top: 60px;
+  padding-top: 70px;
   transition: padding .3s ease-in-out;
 }
 .box-control-main{
@@ -458,54 +457,6 @@ button{
 
 .patternColorResidues{
   border: 1px solid #ddd
-}
-
-.formMain{
-  width: 1000px;
-  min-width: 200px;
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  margin: 80px auto;
-}
-.formMain h1:nth-child(1){
-  color: #333;
-}
-.formMain h4:nth-child(1){
-  color: #888;
-}
-
-.boxSelectResidues{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-.boxIcon{
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
-  height: 190px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all .25s ease-in-out;
-}
-
-#imgResidues{
-  width: 90px;
-  height: 90px;
-  margin: auto;
-}
-
-.boxIcon span{
-  display: block;
-  text-align: center;
-  margin: 10px 0px;
 }
 
 .papel{
@@ -647,24 +598,22 @@ color: rgb(136, 30, 26);
   width: 100vw;
   max-width: 1280px;
   height: auto;
-  min-height: 100px;
-  margin: auto;
-  margin-top: 45px;
-  padding: 20px 10px;
 }
 
 .box-main-form .header-form{
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 50px;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 .box-main-form .header-form h1{
   font-size: 1.4rem;
   font-weight: 500;
-  color: var(--color-title-black)
+  color: var(--color-title-black);
 }
 .box-main-form .header-form .add{
   display: flex;
@@ -672,12 +621,12 @@ color: rgb(136, 30, 26);
   justify-content: center;
   background: none;
   border: none;
-  margin-right: 5px;
   width: 25px;
   height: 25px;
 }
 .box-main-form .header-form .add img{
-  height: 100%;
+  width: 80%;
+  height: 80%;
 }
 
 .content-list{
@@ -693,31 +642,32 @@ color: rgb(136, 30, 26);
   width: 100%;
   height: 50px;
   padding: 0px 20px;
-  margin: 2px 0px;
+  margin: 7px 0px;
   border-radius: 7px;
   position: relative;
   transition: .25s ease-in-out;
 }
-.list:hover{
-  box-shadow: 1px 4px 15px rgba(0,0,0,0.16);
-}
 .list *{
-  font-size: .95rem;
+  font-size: 1rem;
 }
 .btnActions{
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: rows;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: .2s ease-in-out;
 }
+
 .btnActions div{
-  width: 3px;
-  height: 3px;
+  flex: none;
+  width: 4px;
+  height: 4px;
   background: var(--color-black);
   border-radius: 50%;
-  margin: auto;
+  margin: 0 2px;
 }
 .actions-manager{
   display: block;
@@ -740,6 +690,83 @@ color: rgb(136, 30, 26);
   height: 30px;
   width: 100%;
 }
+
+.list:hover, .list-hover{
+  box-shadow: 1px 4px 15px rgba(0,0,0,0.16);
+}
+
+.list-hover .btnActions{
+  background: var(--color-primary);
+  transform: rotateZ(180deg);
+}
+
+.list-hover .btnActions div{ background: var(--color-light); }
+
+.title-search{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputSearch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--color-black-light);
+  overflow: hidden;
+}
+.inputSearch button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 25px;
+  height: 25px;
+}
+.inputSearch button img{
+  width: 80%;
+  height: 80%;
+}
+.inputSearch input{
+  display: none;
+  border: none;
+  border-radius: 0;
+}
+.inputSearchActived{
+  padding-left: 10px;
+  animation: inputSearchActivedAnimation .4s forwards;
+}
+
+@keyframes inputSearchActivedAnimation{
+  0%{
+    width: 40px;
+    border-radius: 50%;
+    border-color: var(--color-black-light);
+  }
+  50%{
+    width: 40px;
+    border-radius: 10px;
+  }
+  100%{
+    border-radius: 10px;
+    width: 500px;
+    border-color: var(--color-primary);
+  }
+}
+
+.inputSearchActived button{
+  justify-content: space-between;
+}
+
+.inputSearchActived input{
+  display: flex;
+}
+
+
 .modal-control-box{
   display: flex;
   align-items: center;
@@ -889,13 +916,14 @@ footer{
   color: var(--color-light);
   font-size: 1.1rem;
 }
-
+@media(max-width: 1200px){
+  .control-main{
+    width: 95vw;
+  }
+}
 @media(max-width: 1000px){
   body, input, select, textarea, button{
     font-size: 17px;
-  }
-  .formMain{
-    width: 95vw;
   }
   .text-logo{
     display: none;
@@ -941,5 +969,12 @@ footer{
     left: -100px;
     display: none;
     transition: .2s ease-in-out;
+  }
+
+  .box-main-form .header-form{
+    flex-direction: column;
+  }
+  .box-main-form .header-form h1{
+    margin-bottom: 20px;
   }
 }

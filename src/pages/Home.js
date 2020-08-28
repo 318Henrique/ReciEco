@@ -8,7 +8,7 @@ export default function Home(){
     return(
         <>
         <Header/>
-        <div className="control-main box-control-all">
+        <div className="box-control-all" style={{ paddingTop: 60 }}>
             <section className="section-pattern section-boas-vindas">
                 <div className="section-content">
                     <h1>Seja bem-vindo à ReciEco</h1>

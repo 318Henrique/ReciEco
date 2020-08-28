@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import iconArrowDown from '../assets/icon-arrow.png';
 import '../styles/style.css';
@@ -7,6 +7,11 @@ import { AuthContext } from '../Context/Auth';
 export default function IsSignin(){
     const [openModal, setOpenModal] = useState(false);
     const { userDetail: { isAuthenticate, dataUser }, Logout } = useContext(AuthContext);
+    const ManagerAdm = useRef();
+
+    document.querySelector('#root').addEventListener('click', (event) => {
+        if(event.srcElement !== ManagerAdm.current) setOpenModal(false);
+    })
     
     return(
         <>
@@ -24,7 +29,7 @@ export default function IsSignin(){
                     <img className='arrow-down' src={iconArrowDown} alt=''/>
                 </button>
                 {!openModal ? <></> : 
-                <div className="modal-manager-account">
+                <div className="modal-manager-account" ref={ManagerAdm}>
                     {
                         !dataUser.admin ? <></> : 
                         <>
