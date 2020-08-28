@@ -15,6 +15,7 @@ export default function Singin(){
 
 
     async function onSubmit(data){
+        setShowPassword(false);
         const { mail, password } = data;
         if(mail === "" || mail === null) return newMessage({ content:"E-mail é obrigatório!" });
 
@@ -25,8 +26,8 @@ export default function Singin(){
         try {
             const responseSignin = await Api.post('/signin', data);
             const dataMainResponse = responseSignin.data;
+
             SignIn(dataMainResponse);
-            
         } catch (error) {
             newMessage({ content: error })
         }

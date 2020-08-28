@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../Components/Header';
 import { Link } from 'react-router-dom';
 import Banner1 from '../assets/banner1.jpg';
+import Footer from '../Components/Footer'
+
 export default function Home(){
     return(
         <>
@@ -56,6 +58,7 @@ export default function Home(){
                 </div>
             </section>
         </div>
+        <Footer/>
         </>
     )
 }

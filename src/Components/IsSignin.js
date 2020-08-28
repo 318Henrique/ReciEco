@@ -25,16 +25,21 @@ export default function IsSignin(){
                 </button>
                 {!openModal ? <></> : 
                 <div className="modal-manager-account">
-                    <li className='links-manager-account'>
-                        <Link to='/peoples'>
-                            Pessoas
-                        </Link>
-                    </li>
-                    <li className='links-manager-account'>
-                        <Link to='/residues'>
-                            Resíduos
-                        </Link>
-                    </li>
+                    {
+                        !dataUser.admin ? <></> : 
+                        <>
+                        <li className='links-manager-account'>
+                            <Link to='/peoples'>
+                                Pessoas
+                            </Link>
+                        </li>
+                        <li className='links-manager-account'>
+                            <Link to='/residues'>
+                                Resíduos
+                            </Link>
+                        </li>
+                        </>
+                    }
                     <li className='links-manager-account'>
                         <Link to='/perfil'>
                             Perfil
