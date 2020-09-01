@@ -6,13 +6,19 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
     const [openActionsManager, handleOpenActionsManager] = useState(false);
 
     document.querySelector('#root').addEventListener('click', (event) => {
-        if(event.srcElement !== AreaManagerActions) handleOpenActionsManager(false);
+        const parent = event.srcElement.parentNode;
+        if(event.srcElement !== AreaManagerActions.current) {
+            if(parent !== AreaManagerActions.current) handleOpenActionsManager(false);
+        }
     })
 
     return(
         <div className={`list ${openActionsManager ? 'list-hover' : ''}`}>
-            <div>
-                {content.residues_name}
+            <div id='main-list'>
+                <div className='image-list'>
+                    <img src={content.icon} alt=''/>
+                </div>
+                <span>{content.residues_name}</span>
             </div>
             <div>
                 {content.category}
@@ -25,10 +31,16 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
             {
                 !openActionsManager ? <></> :
                 <div className='actions-manager' ref={AreaManagerActions}>
-                    <button>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        editItem();
+                    }}>
                         Editar
                     </button>
-                    <button onClick={() => removeItem()}>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        removeItem();
+                    }}>
                         Excluir
                     </button>
                 </div>

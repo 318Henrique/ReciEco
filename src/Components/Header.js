@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import "../styles/style.css";
 import IsSignin from './IsSignin';
 
-export default function Header(){
+export default function Header( props ){
     const linksMenu = useRef();
 
     return(
-        <header className="headerMenu">
+        <header id="headerMenu" {...props}>
             <nav className='header-nav'>
                 <div className="link-home-logo">
                     <Link to='/'>

@@ -33,12 +33,25 @@ export default function People(){
     })()
   }, [])
 
-  function removeItem(id){
-    handleList(prevList => prevList.filter(item => item.id !== id))
+  async function removeItem(id){
+    try {
+      await Api.delete(`/admin/residues/${id}`);
+      handleList(prevList => prevList.filter(item => item.id !== id))
+    } catch (error) {
+      newMessage({ content: error })
+    }
   }
 
   function onCloseModal(data){
     if(data === undefined) handleModal({ open: false, data: {} })
+    else {
+      handleModal({ open: false, data: {} })
+      
+      const { isNew, ...rest } = data;
+
+      if(isNew) return handleList(prevList => [...prevList, rest]);
+      else return handleList(prevList => prevList.map(item => item.id === rest.id ? rest : item))
+    }
   }
 
   function activeSearch(isActive){
@@ -57,8 +70,8 @@ export default function People(){
 
   return(
     <>
-    <Header/>
-    <div className='control-main box-main-form'>
+    <Header className={`${modal.open ? 'blur' : ''}`}/>
+    <div className={`control-main box-main-form ${modal.open ? 'blur' : ''}`}>
       <div className='header-form'>
         <h1>Lista de Resíduos</h1>
         <div className='title-search'>
@@ -86,7 +99,7 @@ export default function People(){
       </div>
     </div>
     {
-      !modal.open ? <></> : <ModalResidues closeModal={ data => onCloseModal(data) }/>
+      !modal.open ? <></> : <ModalResidues dataInitial={modal.data} closeModal={ data => onCloseModal(data) }/>
     }
     <Message message={messagePage}/>
     </>

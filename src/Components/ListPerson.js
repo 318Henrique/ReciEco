@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import '../styles/style.css';
 
-export default function ListPerson({content, removeItem = () => {}}){
+export default function ListPerson({content, removeItem = () => {}, editItem = () => {}}){
     const AreaManagerActions = useRef();
     const [openActionsManager, handleOpenActionsManager] = useState(false);
 
     document.querySelector('#root').addEventListener('click', (event) => {
-        if(event.srcElement !== AreaManagerActions) handleOpenActionsManager(false);
+        if(event.srcElement !== AreaManagerActions.current) handleOpenActionsManager(false);
     })
 
     return(
@@ -26,9 +26,9 @@ export default function ListPerson({content, removeItem = () => {}}){
                 <div></div>
             </button>
             {
-                !openActionsManager ? <></> :
+                !openActionsManager ? <></> : 
                 <div className='actions-manager' ref={AreaManagerActions}>
-                    <button>
+                    <button onClick={() => editItem()}>
                         Editar
                     </button>
                     <button onClick={() => removeItem(content.id)}>
