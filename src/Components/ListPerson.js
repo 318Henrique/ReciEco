@@ -6,18 +6,24 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
     const [openActionsManager, handleOpenActionsManager] = useState(false);
 
     document.querySelector('#root').addEventListener('click', (event) => {
-        if(event.srcElement !== AreaManagerActions.current) handleOpenActionsManager(false);
+        const parent = event.srcElement.parentNode;
+        if(event.srcElement !== AreaManagerActions.current) {
+            if(parent !== AreaManagerActions.current) handleOpenActionsManager(false);
+        }
     })
 
     return(
         <div className={`list ${openActionsManager ? 'list-hover' : ''}`}>
-            <div>
-                {content.person_name}
+            <div className='main-list'>
+                <div className='image-list'>
+                    <img src={content.foto} alt=''/>
+                </div>
+                <span>{content.person_name}</span>
             </div>
-            <div>
-                {content.registerType}
+            <div className='list-item-secundary'>
+                {content.type_person}
             </div>
-            <div>
+            <div className='list-item-secundary'>
                 {content.whatsapp}
             </div>
             <button className='btnActions' onClick={() => handleOpenActionsManager(!openActionsManager)}>
@@ -26,12 +32,18 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
                 <div></div>
             </button>
             {
-                !openActionsManager ? <></> : 
+                !openActionsManager ? <></> :
                 <div className='actions-manager' ref={AreaManagerActions}>
-                    <button onClick={() => editItem()}>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        editItem();
+                    }}>
                         Editar
                     </button>
-                    <button onClick={() => removeItem(content.id)}>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        removeItem();
+                    }}>
                         Excluir
                     </button>
                 </div>

@@ -668,13 +668,19 @@ color: rgb(136, 30, 26);
 .list *{
   font-size: 1rem;
 }
-#main-list{
+.main-list{
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 50%;
 }
-#main-list span{
+.main-list span{
   display: block;
+}
+
+.list-item-secundary{
+  text-align: center;
+  width: 50%;
 }
 
 .image-list{
@@ -1003,6 +1009,23 @@ footer{
   display: none;
 }
 
+.choise-type-person{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.button-choise-type-person{
+  height: 50px;
+  width: 30%;
+  border: 2px solid var(--color-black-light)
+}
+
+.choise-type-person-selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-light);
+}
 
 @media(max-width: 1200px){
   .control-main{

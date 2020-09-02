@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../styles/style.css';
 
-export default function ListPerson({content, removeItem = () => {}, editItem = () => {}}){
+export default function ListResidues({content, removeItem = () => {}, editItem = () => {}}){
     const AreaManagerActions = useRef();
     const [openActionsManager, handleOpenActionsManager] = useState(false);
 
@@ -14,13 +14,13 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
 
     return(
         <div className={`list ${openActionsManager ? 'list-hover' : ''}`}>
-            <div id='main-list'>
+            <div className='main-list'>
                 <div className='image-list'>
                     <img src={content.icon} alt=''/>
                 </div>
                 <span>{content.residues_name}</span>
             </div>
-            <div>
+            <div className='list-item-secundary'>
                 {content.category}
             </div>
             <button className='btnActions' onClick={() => handleOpenActionsManager(!openActionsManager)}>

@@ -6,7 +6,7 @@ import Message from './Message';
 import Input from './InputMy';
 import Select from './Select';
 
-export default function ModalResidues({dataInitial, closeModal = () => {}}){
+export default function ModalPerson({dataInitial, closeModal = () => {}}){
     const [messageRequest, setMessageRequest] = useState(null);
     const formMain = useRef();
     const modal = useRef();

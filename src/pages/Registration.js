@@ -1,7 +1,6 @@
 import React, { useState, useRef, useContext } from 'react';
 import Header from '../Components/Header';
 import Input from '../Components/Input';
-import InputCheckbox from '../Components/InputCheckbox';
 import { Form } from '@unform/web';
 import Api from '../Api/api';
 import Message from '../Components/Message';
@@ -12,7 +11,7 @@ import ValidationData from '../Components/ValidationData';
 export default function Registration(){
     const formularioCadastro = useRef();
     const [ messagePage, newMessage ] = useState(null);
-    const [ category, handleCategory ] = useState({});
+    const [ category, handleCategory ] = useState([]);
     const { SignIn } = useContext(AuthContext);
     const [ coords, handleCoords ] = useState({
         coord_lat: null,
@@ -33,13 +32,13 @@ export default function Registration(){
 
         if(error) return newMessage({ content: message })
 
+        if(!category.length) return newMessage({ content: 'Selecione ao menos um tipo de pessoa!' })
+
         try {
             
             if(password !== "" && password !== confirmed_password) return newMessage({ content: "As senhas precisam ser iguais!" })
 
-            const categoryStringify = JSON.stringify(category);
-
-            const join_data = Object.assign(rest, { type_person: categoryStringify, password }, coords)
+            const join_data = Object.assign(rest, { type_person: category.toString(), password }, coords)
             const response = await Api.post('/singup', join_data);
 
             SignIn(response.data);
@@ -76,8 +75,12 @@ export default function Registration(){
         }
     }
 
-    function categoryPerson(content){
-        handleCategory(prevData => Object.assign(prevData, content));
+    function categoryPerson(event, type){
+        const isIncluded = category.includes(type);
+        if(isIncluded) handleCategory(prevList => prevList.filter(item => item !== type));
+        else handleCategory(prevList => [...prevList, type]);
+
+        event.target.classList.toggle('choise-type-person-selected');
     }
 
     return(
@@ -136,7 +139,7 @@ export default function Registration(){
                         </div>
                     </div>
                 </section>
-                <section className='box type_person'>
+                <section className='box'>
                     <h1>Últimos detalhes</h1>
                     <div className='control'>
                         <div className='boxField'>
@@ -150,17 +153,10 @@ export default function Registration(){
 
                         <div>
                             <h4>Escolha sua categoria</h4>
-                            <div className='boxFieldCheckbox'>
-                                <InputCheckbox name='catador' id='catador' stateValue={content => categoryPerson(content)}/>
-                                <label htmlFor='catador'>Catador de resíduos</label>
-                            </div>
-                            <div className='boxFieldCheckbox'>
-                                <InputCheckbox name='comprador' id='comprador' stateValue={content => categoryPerson(content)}/>
-                                <label htmlFor='comprador'>Comprador de resíduos</label>
-                            </div>
-                            <div className='boxFieldCheckbox'>
-                                <InputCheckbox name='gerador' id='gerador' stateValue={content => categoryPerson(content)}/>
-                                <label htmlFor='gerador'>Gerador de resíduos</label>
+                            <div className='choise-type-person'>
+                                <button className='button-choise-type-person' type='button' onClick={event => categoryPerson(event, 'comprador')}>Comprador</button>
+                                <button className='button-choise-type-person' type='button' onClick={event => categoryPerson(event, 'catador')}>Catador</button>
+                                <button className='button-choise-type-person' type='button' onClick={event => categoryPerson(event, 'gerador')}>Gerador</button>
                             </div>
                         </div>
                         <button onClick={event => onSubmit(event)} className='btnSubmit' style={{ marginTop: 50 }}>Cadastrar</button>

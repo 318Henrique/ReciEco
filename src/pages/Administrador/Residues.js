@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from '../../Components/Header';
 import "../../styles/style.css";
 import iconAdd from '../../assets/icon-add.png';
@@ -8,30 +8,39 @@ import Api from '../../Api/api';
 import Message from '../../Components/Message';
 import ModalResidues from '../../Components/ModalResidues';
 
-export default function People(){
+export default function Residues(){
   const [list, handleList] = useState([]);
   const [ messagePage, newMessage ] = useState(null);
-  const searchRef= useRef();
+  const boxSearchRef = useRef();
+  const [ search, handleSearch ] = useState('');
+  const [ submitSearch, handleSubmitSearch ] = useState(true);
   const [ modal, handleModal ] = useState({
     open: false,
     data: {}
   })
 
-  useEffect(() => {
-    (async () => {
+  const getData = useCallback(() => {
+    async function requestData () {
       try {
-        const response = await Api.get('/admin/residues');
+        const response = await Api.get(`/admin/residues?query=${search}`);
         const { content } = response.data;
         
         if(!content.length) return newMessage({ content: "Nenhum resíduo encontrado!" })
 
         handleList(content);
 
-      } catch (error) {
-        newMessage({ content: error });
-      }
-    })()
-  }, [])
+      } catch (error) { newMessage({ content: error }); }
+
+      handleSubmitSearch(false);
+    }
+
+    if(submitSearch || search === '') return requestData();
+
+  }, [search, submitSearch])
+
+  useEffect(() => {
+    getData();
+  }, [getData])
 
   async function removeItem(id){
     try {
@@ -55,17 +64,24 @@ export default function People(){
   }
 
   function activeSearch(isActive){
-    if(!searchRef) return;
+    if(!boxSearchRef) return;
     
     if(isActive){
       document.querySelector('#root').addEventListener('click', event => {
-        if(event.srcElement !== searchRef.current) return searchRef.current.classList.remove('inputSearchActived');
+        const parent = event.srcElement.parentNode;
+        if(event.srcElement !== boxSearchRef.current){
+          if(parent !== boxSearchRef.current) return boxSearchRef.current.classList.remove('inputSearchActived')
+        };
       })
 
-      searchRef.current.classList.add('inputSearchActived');
+      boxSearchRef.current.classList.add('inputSearchActived');
     }
 
-    else searchRef.current.classList.remove('inputSearchActived');
+    else boxSearchRef.current.classList.remove('inputSearchActived');
+  }
+
+  function captureKeyEnter({ key }){
+    if(key === 'Enter') handleSubmitSearch(true);
   }
 
   return(
@@ -75,11 +91,18 @@ export default function People(){
       <div className='header-form'>
         <h1>Lista de Resíduos</h1>
         <div className='title-search'>
-          <div className='inputSearch' onClick={() => activeSearch(true)} ref={searchRef}>
+          <div className='inputSearch' onClick={() => activeSearch(true)} ref={boxSearchRef}>
             <button>
               <img src={iconSearch} alt=''/>
             </button>
-            <input type='search' name='search' onBlur={() => activeSearch(false)}/>
+            <input
+              type='search'
+              name='search'
+              value={ search }
+              onChange={({ target }) => handleSearch(target.value) }
+              onKeyPress={event => captureKeyEnter(event)}
+              onBlur={() => activeSearch(false)}
+            />
           </div>
           <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
             <img src={iconAdd} alt='' title='Novo'/>
