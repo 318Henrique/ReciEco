@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         handleLoading(false);
     }, [])
 
-    function SignIn(data){
+    function SignIn(data, redirectPage = '/localizar'){
         const { token, content } = data;
         Api.defaults.headers.auth = token;
 
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
         
         localStorage.setItem('a', JSON.stringify(data));
 
-        const { from } = NavigatorLocation.state || { from: { pathname: '/localizar' } };
+        const { from } = NavigatorLocation.state || { from: { pathname: redirectPage } };
         NavigatorHistory.replace(from);
     }
 
@@ -51,15 +51,16 @@ const AuthProvider = ({ children }) => {
         NavigatorHistory.replace('/');
     }
 
-    function HandleInfo(content){
-        const dataHandledUser = Object.assign(userDetail.dataUser, content);
-        handleInfoUser({ isAuthenticate: true, dataUser: dataHandledUser })
-
+    function HandleInfo(newData){
         const dataMain = localStorage.getItem('a');
-        const { token } = JSON.parse(dataMain);
-        const join_data = { token: token, content: dataHandledUser }
-        localStorage.setItem('a', JSON.stringify(join_data));
+        const { token, content } = JSON.parse(dataMain);
 
+        const dataHandledUser = Object.assign(content, userDetail.dataUser, newData);
+        
+        handleInfoUser({ isAuthenticate: true, dataUser: dataHandledUser })
+        
+        const join_data = { token, content: dataHandledUser }
+        localStorage.setItem('a', JSON.stringify(join_data));
     }
 
     if(loading)

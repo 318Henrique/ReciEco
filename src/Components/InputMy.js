@@ -14,6 +14,13 @@ export default function Field({stateValue = () => {}, name, value, ...rest}){
     }, [valueInput, name, stateValue]);
 
     return(
-        <input value={valueInput} name={name} onChange={(content) => handleValue(content.target.value)} {...rest}/>
+        <input
+            value={valueInput}
+            name={name}
+            onChange={(content) => handleValue(content.target.value)}
+            onFocus={(event) => event.target.classList.add('focusField')}
+            onBlur={(event) => event.target.classList.remove('focusField')}
+            {...rest}
+        />
     )
 }

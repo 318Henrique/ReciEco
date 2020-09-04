@@ -112,7 +112,7 @@ export default function ModalResidues({dataInitial, closeModal = () => {}}){
                 <form ref={formMain} onSubmit={event => onSubmit(event)}>
                     <div className='boxField file-input'>
                         <label htmlFor='icon'>
-                            <img src={dataInitial.icon || imagePreview} alt=''/>
+                            <img src={dataInitial.icon || imagePreview || ''} alt=''/>
                         </label>
                         <input name="icon" id='icon' type='file' ref={iconInput} onChange={() => {
                             handleImagePreview()

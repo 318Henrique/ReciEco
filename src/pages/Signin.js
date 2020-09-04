@@ -10,28 +10,35 @@ import Message from '../Components/Message';
 export default function Singin(){
     const [showPassword, setShowPassword] = useState(false);
     const [message, newMessage] = useState(null);
-    const [messageProgress, setMessageProgress] = useState('Entrar');
+    const [ progressing, handleProgress] = useState(false);
     const { SignIn } = useContext(AuthContext);
 
 
     async function onSubmit(data){
         setShowPassword(false);
+
+        if(progressing) return newMessage({ content: "Aguarde enquanto fazemos nossa verificação!" })
+
+        handleProgress(true);
+
         const { mail, password } = data;
         if(mail === "" || mail === null) return newMessage({ content:"E-mail é obrigatório!" });
 
         if(password === "" || password === null) return newMessage({ content:"Senha é obrigatória!" });
         
-        setMessageProgress('Verificando...');
         
         try {
             const responseSignin = await Api.post('/signin', data);
             const dataMainResponse = responseSignin.data;
+            const { content } = dataMainResponse;
+
+            if(content.coords.coord_lat === null) return SignIn(dataMainResponse, '/informacoes-pessoais');
 
             SignIn(dataMainResponse);
         } catch (error) {
             newMessage({ content: error })
         }
-        setMessageProgress('Entrar');
+        handleProgress(false);
     }
 
     return(
@@ -55,11 +62,11 @@ export default function Singin(){
                             {showPassword ? 'Esconder' : 'Mostrar'}
                         </button>
                     </div>
-                    <button type='submit' className="btnSubmit">{ messageProgress }</button>
+                    <button type='submit' className="btnSubmit">{ progressing ? 'Verificando...' : 'Entrar' }</button>
                 </Form>
                 
                 <Link to="/cadastro">
-                    Cadastrar-se
+                    Criar conta
                 </Link>
                 <Link to="/forgout">
                     Esqueci minha senha!

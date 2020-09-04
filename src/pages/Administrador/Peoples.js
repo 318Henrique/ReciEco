@@ -89,8 +89,13 @@ export default function People(){
     <Header className={`${modal.open ? 'blur' : ''}`}/>
     <div className={`control-main box-main-form ${modal.open ? 'blur' : ''}`}>
       <div className='header-form'>
-        <h1>Lista de Pessoas</h1>
-        <div className='title-search'>
+        <div className='title-and-add'>
+          <h1>Lista de Pessoas</h1>
+          <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
+            <img src={iconAdd} alt='' title='Novo'/>
+          </button>
+        </div>
+        <div className='filter-search'>
           <div className='inputSearch' onClick={() => activeSearch(true)} ref={boxSearchRef}>
             <button>
               <img src={iconSearch} alt=''/>
@@ -99,13 +104,14 @@ export default function People(){
               type='search'
               name='search'
               value={ search }
+              placeholder="Digite um nome e aperte Enter"
               onChange={({ target }) => handleSearch(target.value) }
               onKeyPress={event => captureKeyEnter(event)}
               onBlur={() => activeSearch(false)}
             />
           </div>
-          <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
-            <img src={iconAdd} alt='' title='Novo'/>
+          <button className='filter'>
+            <img src={require('../../assets/icon-filter.png')} alt=""/>
           </button>
         </div>
       </div>

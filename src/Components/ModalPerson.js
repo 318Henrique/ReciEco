@@ -4,13 +4,12 @@ import '../styles/style.css';
 import Api from '../Api/api';
 import Message from './Message';
 import Input from './InputMy';
-import Select from './Select';
 
 export default function ModalPerson({dataInitial, closeModal = () => {}}){
     const [messageRequest, setMessageRequest] = useState(null);
     const formMain = useRef();
     const modal = useRef();
-    const iconInput = useRef();
+    const fotoInput = useRef();
     const [ loading, handleLoading ] = useState(false);
     const [ dataInput, handleDataInput ] = useState({});
     const [ imagePreview, newImagePreview ] = useState('');
@@ -87,7 +86,7 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
     }
 
     function handleImagePreview(){
-        const input = iconInput.current.files[0];
+        const input = fotoInput.current.files[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -111,94 +110,54 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                 </div>
                 <form ref={formMain} onSubmit={event => onSubmit(event)}>
                     <div className='boxField file-input'>
-                        <label htmlFor='icon'>
-                            <img src={dataInitial.icon || imagePreview} alt=''/>
+                        <label htmlFor='foto'>
+                            <img src={dataInitial.foto || imagePreview || ''} alt=''/>
                         </label>
-                        <input name="icon" id='icon' type='file' ref={iconInput} onChange={() => {
+                        <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
                             handleImagePreview()
-                            handleValueDataInput({ icon: iconInput.current.value })
+                            handleValueDataInput({ foto: fotoInput.current.value })
                         }}/>
                     </div>
+                    <h3>Informações básicas</h3>
                     <div className='boxField'>
-                        <label htmlFor='residues_name'>Nome do resíduo</label>
+                        <label htmlFor='person_name'>Nome da pessoa</label>
                         <Input
-                            name="residues_name"
-                            id='residues_name'
+                            name="person_name"
+                            id='person_name'
                             type='text'
                             required
-                            value={dataInitial.residues_name}
+                            value={dataInitial.person_name}
                             stateValue={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
-                        <label htmlFor='category'>Categoria</label>
-                        <Select
-                            name="category"
-                            id='category'
+                        <label htmlFor='document'>CPF/CNPJ</label>
+                        <Input
+                            name="document"
+                            id='document'
+                            type='text'
                             required
-                            value={dataInitial.category}
-                            stateValue={content => handleValueDataInput(content)}
-                            options={[
-                                {
-                                    value: 'papel',
-                                    valueVisible: 'Papel',
-                                },
-                                {
-                                    value: 'plastico',
-                                    valueVisible: 'Plástico',
-                                },
-                                {
-                                    value: 'vidro',
-                                    valueVisible: 'Vidro',
-                                },
-                                {
-                                    value: 'metal',
-                                    valueVisible: 'Metal',
-                                },
-                                {
-                                    value: 'pneu',
-                                    valueVisible: 'Pneu',
-                                },
-                                {
-                                    value: 'pilhas',
-                                    valueVisible: 'Pilhas',
-                                },
-                                {
-                                    value: 'madeira',
-                                    valueVisible: 'Madeira',
-                                },
-                                {
-                                    value: 'organico',
-                                    valueVisible: 'Orgânico',
-                                },
-                                {
-                                    value: 'residuos-perigosos',
-                                    valueVisible: 'Resíduos Perigosos',
-                                },
-                                {
-                                    value: 'residuos-radioativos',
-                                    valueVisible: 'Resíduos Radioativos',
-                                },
-                                {
-                                    value: 'nao-reciclaveis',
-                                    valueVisible: 'Não Recicláveis',
-                                },
-                                {
-                                    value: 'ferro-velho',
-                                    valueVisible: 'Ferro Velho',
-                                },
-                                {
-                                    value: 'moveis-usados',
-                                    valueVisible: 'Móveis Usados',
-                                },
-                                {
-                                    value: 'roupas-calcados',
-                                    valueVisible: 'Roupas Calçados',
-                                },
-                                {
-                                    value: 'lampadas-flourecentes',
-                                    valueVisible: 'Lâmpadas Flourecentes',
-                                },
-                            ]}/>
+                            value={dataInitial.document}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='mail'>E-mail</label>
+                        <Input
+                            name="mail"
+                            id='mail'
+                            type='email'
+                            required
+                            value={dataInitial.mail}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='admin'>Admin</label>
+                        <Input
+                            name="admin"
+                            id='admin'
+                            type='text'
+                            required
+                            value={dataInitial.admin}
+                            stateValue={content => handleValueDataInput(content)}/>
                     </div>
                     <button type='submit' className="btnSubmit">{loading ? 'Salvando' : 'Salvar'}</button>
                 </form>

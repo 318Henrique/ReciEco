@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../Context/Auth';
 
 export default function Message({ message }){
     const [listMessage, setListMessage] = useState([]);
     const NavigatorHistory = useHistory();
+    const { Logout } = useContext(AuthContext);
 
     function removeMessage (idMessage){
         setListMessage(removeListMessage => removeListMessage.filter( list => list.idMessage !== idMessage ))
@@ -17,7 +19,7 @@ export default function Message({ message }){
             if(content.message !== undefined) messageContent = content.message;
             if(content.response !== undefined) messageContent =  content.response.data.message
 
-            if(messageContent === 'redirect') return NavigatorHistory.push('/signin');
+            if(messageContent === 'redirect') return Logout('/signin');
             if(messageContent === 'restrict') return NavigatorHistory.push('/restrict-page');
 
             const idMessage = new Date().getTime();
@@ -33,7 +35,7 @@ export default function Message({ message }){
 
             setListMessage(list => [newMessage, ...list])
         }
-    }, [message, NavigatorHistory]);
+    }, [message, NavigatorHistory, Logout]);
 
     return(
         <>

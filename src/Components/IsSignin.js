@@ -9,8 +9,14 @@ export default function IsSignin(){
     const { userDetail: { isAuthenticate, dataUser }, Logout } = useContext(AuthContext);
     const ManagerAdm = useRef();
 
+    if(openModal)
     document.querySelector('#root').addEventListener('click', (event) => {
-        if(event.srcElement !== ManagerAdm.current) setOpenModal(false);
+        const parent = event.srcElement.parentNode;
+        if(event.srcElement !== ManagerAdm.current){
+            if(parent !== ManagerAdm.current)
+                if(parent.parentNode !== ManagerAdm.current) setOpenModal(false);
+            document.querySelector('#root').removeEventListener('click', this)
+        }
     })
     
     return(
