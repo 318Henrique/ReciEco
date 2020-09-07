@@ -12,6 +12,19 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
         }
     })
 
+    function SplitTypePerson(typePerson){
+        const items = typePerson.split(',');
+        return (
+            <div className='split-residues-from-person'>
+            {
+                items.map(item => <div className={`type-residues-from-person ${item}`} key={ item }>
+                    { item }
+                </div>)
+            }
+            </div>
+        )
+    }
+
     return(
         <div className={`list ${openActionsManager ? 'list-hover' : ''}`}>
             <div className='main-list'>
@@ -21,7 +34,9 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
                 <span>{content.person_name}</span>
             </div>
             <div className='list-item-secundary'>
-                {content.type_person}
+                {
+                    SplitTypePerson(content.type_person)
+                }
             </div>
             <div className='list-item-secundary'>
                 {content.whatsapp}

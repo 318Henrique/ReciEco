@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from '../../Components/Header';
 import "../../styles/style.css";
-import iconAdd from '../../assets/icon-add.png';
 import iconSearch from '../../assets/icon-search.png';
 import ListPerson from '../../Components/ListPerson';
 import Api from '../../Api/api';
@@ -63,23 +62,6 @@ export default function People(){
     }
   }
 
-  function activeSearch(isActive){
-    if(!boxSearchRef) return;
-    
-    if(isActive){
-      document.querySelector('#root').addEventListener('click', event => {
-        const parent = event.srcElement.parentNode;
-        if(event.srcElement !== boxSearchRef.current){
-          if(parent !== boxSearchRef.current) return boxSearchRef.current.classList.remove('inputSearchActived')
-        };
-      })
-
-      boxSearchRef.current.classList.add('inputSearchActived');
-    }
-
-    else boxSearchRef.current.classList.remove('inputSearchActived');
-  }
-
   function captureKeyEnter({ key }){
     if(key === 'Enter') handleSubmitSearch(true);
   }
@@ -91,12 +73,9 @@ export default function People(){
       <div className='header-form'>
         <div className='title-and-add'>
           <h1>Lista de Pessoas</h1>
-          <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
-            <img src={iconAdd} alt='' title='Novo'/>
-          </button>
         </div>
         <div className='filter-search'>
-          <div className='inputSearch' onClick={() => activeSearch(true)} ref={boxSearchRef}>
+          <div className='inputSearch' ref={boxSearchRef}>
             <button>
               <img src={iconSearch} alt=''/>
             </button>
@@ -107,7 +86,8 @@ export default function People(){
               placeholder="Digite um nome e aperte Enter"
               onChange={({ target }) => handleSearch(target.value) }
               onKeyPress={event => captureKeyEnter(event)}
-              onBlur={() => activeSearch(false)}
+              onFocus={() => boxSearchRef.current.classList.add('inputSearchActived')}
+              onBlur={() => boxSearchRef.current.classList.remove('inputSearchActived')}
             />
           </div>
           <button className='filter'>

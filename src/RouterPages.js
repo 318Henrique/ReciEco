@@ -7,7 +7,8 @@ import Home from './pages/Home';
 import Localizar from './pages/Localizar';
 import Contact from './pages/Contact';
 import Registration from './pages/Registration';
-import RegistrationParty2 from './pages/RegistrationParty2';
+import RegistrationInformationPerson from './pages/RegistrationInformationPerson';
+import RegistrationResiduesFromPerson from './pages/RegistrationResiduesFromPerson';
 
 import People from './pages/Administrador/Peoples';
 import Residues from './pages/Administrador/Residues';
@@ -41,7 +42,8 @@ export default function RouterPages(){
             <PrivateRoute admin exact path='/peoples' component={People}/>
             <PrivateRoute admin exact path='/residues' component={Residues}/>
             <Route exact path='/cadastro' component={Registration}/>
-            <PrivateRoute exact path='/informacoes-pessoais' component={RegistrationParty2}/>
+            <PrivateRoute exact path='/informacoes-pessoais' component={RegistrationInformationPerson}/>
+            <Route exact path='/meus-residuos' component={RegistrationResiduesFromPerson}/>
             <Route exact path='/signin' component={Singin}/>
             <Route exact path='/restrict-page' component={PageRestrict}/>
             <Route path='*' component={NotFound}/>

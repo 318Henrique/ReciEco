@@ -63,23 +63,6 @@ export default function Residues(){
     }
   }
 
-  function activeSearch(isActive){
-    if(!boxSearchRef) return;
-    
-    if(isActive){
-      document.querySelector('#root').addEventListener('click', event => {
-        const parent = event.srcElement.parentNode;
-        if(event.srcElement !== boxSearchRef.current){
-          if(parent !== boxSearchRef.current) return boxSearchRef.current.classList.remove('inputSearchActived')
-        };
-      })
-
-      boxSearchRef.current.classList.add('inputSearchActived');
-    }
-
-    else boxSearchRef.current.classList.remove('inputSearchActived');
-  }
-
   function captureKeyEnter({ key }){
     if(key === 'Enter') handleSubmitSearch(true);
   }
@@ -89,9 +72,14 @@ export default function Residues(){
     <Header className={`${modal.open ? 'blur' : ''}`}/>
     <div className={`control-main box-main-form ${modal.open ? 'blur' : ''}`}>
       <div className='header-form'>
-        <h1>Lista de Resíduos</h1>
-        <div className='title-search'>
-          <div className='inputSearch' onClick={() => activeSearch(true)} ref={boxSearchRef}>
+        <div className='title-and-add'>
+          <h1>Lista de Pessoas</h1>
+          <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
+            <img src={iconAdd} alt='' title='Novo'/>
+          </button>
+        </div>
+        <div className='filter-search'>
+          <div className='inputSearch' ref={boxSearchRef}>
             <button>
               <img src={iconSearch} alt=''/>
             </button>
@@ -99,13 +87,15 @@ export default function Residues(){
               type='search'
               name='search'
               value={ search }
+              placeholder="Digite um nome e aperte Enter"
               onChange={({ target }) => handleSearch(target.value) }
               onKeyPress={event => captureKeyEnter(event)}
-              onBlur={() => activeSearch(false)}
+              onFocus={() => boxSearchRef.current.classList.add('inputSearchActived')}
+              onBlur={() => boxSearchRef.current.classList.remove('inputSearchActived')}
             />
           </div>
-          <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
-            <img src={iconAdd} alt='' title='Novo'/>
+          <button className='filter'>
+            <img src={require('../../assets/icon-filter.png')} alt=""/>
           </button>
         </div>
       </div>
