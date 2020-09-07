@@ -10,8 +10,8 @@ export default function Localizar(){
     const { userDetail: { dataUser } } = useContext(AuthContext);
     const [ messagePage, newMessage ] = useState(null);
     const [location, handleLocation] = useState({
-        lat: dataUser.coords.coord_lat,
-        lng: dataUser.coords.coord_lng,
+        lat: dataUser.coord_lat,
+        lng: dataUser.coord_lng,
     })
     const [key] = useState('AIzaSyCKb5RlQfAw2DiQb_Gq0rIwCsiJv8P1bsQ');
     const [zoom] = useState(15);

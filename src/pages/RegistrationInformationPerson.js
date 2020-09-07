@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useCallback, useEffect } from 'react';
 import Input from '../Components/Input';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
@@ -20,12 +20,16 @@ export default function Registration(){
         coord_lng: null,
     })
 
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-        handleCoords({
-            coord_lat: coords.latitude,
-            coord_lng: coords.longitude
+    const getPosition = useCallback(() => {
+        navigator.geolocation.getCurrentPosition(({ coords }) => {
+            handleCoords({
+                coord_lat: coords.latitude,
+                coord_lng: coords.longitude
+            })
         })
-    })
+    }, [])
+
+    useEffect(() => getPosition(), [getPosition])
 
     async function onSubmit(event){
         event.preventDefault();
@@ -47,7 +51,7 @@ export default function Registration(){
 
             HandleInfo(coords);
 
-            NavigatorHistory.push('/localizar');
+            NavigatorHistory.push('/meus-residuos');
 
         } catch (error) {
             newMessage({ content: error })

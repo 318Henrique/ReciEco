@@ -22,7 +22,7 @@ export default function Residues(){
   const getData = useCallback(() => {
     async function requestData () {
       try {
-        const response = await Api.get(`/admin/residues?query=${search}`);
+        const response = await Api.get(`/residues?query=${search}`);
         const { content } = response.data;
         
         if(!content.length) return newMessage({ content: "Nenhum resíduo encontrado!" })
