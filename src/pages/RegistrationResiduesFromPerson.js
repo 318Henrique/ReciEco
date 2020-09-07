@@ -48,7 +48,7 @@ export default function Registration(){
                     {
                         [0, 1, 2, 1,1,1,1,1,1].map(item => (
                             <div className='choise-residues-item' onClick={(event) => selectResidues(event)}>
-                                <img src={require('../assets/icons-residues/ferro-velho.svg')} alt=''/>
+                                <img src='' alt=''/>
                                 <span>
                                     Pneu
                                 </span>
