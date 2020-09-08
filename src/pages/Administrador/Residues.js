@@ -73,7 +73,7 @@ export default function Residues(){
     <div className={`control-main box-main-form ${modal.open ? 'blur' : ''}`}>
       <div className='header-form'>
         <div className='title-and-add'>
-          <h1>Lista de Pessoas</h1>
+          <h1>Lista de Resíduos</h1>
           <button className='add' onClick={() => handleModal({ open: true, data: {} }) }>
             <img src={iconAdd} alt='' title='Novo'/>
           </button>
