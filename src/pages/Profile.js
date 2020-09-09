@@ -31,27 +31,28 @@ export default function Profile(){
                     <div className="foto-profile">
                         <img src={'https://avatars2.githubusercontent.com/u/61211576?s=460&u=c6735688882014b6d93bda918f892b94b79bdc1a&v=4'} alt='Foto do perfil'/>
                     </div>
-                    <div className='igp'>
-                        <span className='igp-name'>{dataUser.name}</span>
+                    <div className='igp'>{ dataUser.name }</div>
+                </section>
+                <section className='section-pattern-profile'>
+                    <h2 className='title-section'>Contato</h2>
+                    <div>
                         <span>{dataProfile.mail}</span>
+                        <span><a href={`https://api.whatsapp.com/send?phone=${dataProfile.whatsapp}&text=Ola`}>{dataProfile.whatsapp}</a></span>
                     </div>
                 </section>
-                <div>
-                    <section className='btn-of-moviment-between-sections'>
-                        <div className='circle'/>
-                        <h2 className='title-section'>Informações pessoais</h2>
-                    </section>
+                <section className='section-pattern-profile'>
+                    <h2 className='title-section'>Endereço</h2>
+                    <div>
+                        <span>{dataProfile.address} - {dataProfile.address_number}</span>
+                        <span>Bairro {dataProfile.neghborhood}</span>
+                        <span>{dataProfile.city} - {dataProfile.state}</span>
+                        <span>Coordenadas {dataProfile.coord_lat}, {dataProfile.coord_lng}</span>
+                    </div>
+                </section>
 
-                    <section className='btn-of-moviment-between-sections'>
-                        <div className='circle'/>
-                        <h2 className='title-section'>Meus Resíduos</h2>
-                    </section>
-
-                </div>
-                <div>
-                    <section>
-                    </section>
-                </div>
+                <section className='section-pattern-profile'>
+                    <h2 className='title-section'>Meus Resíduos</h2>
+                </section>
             </div>
         </div>
         <Message message={message}/>

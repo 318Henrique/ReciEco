@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 :root{
   --color-primary: #28A745;
+  --color-primary-opacity: #28a74681;
   --color-black-light: #ced4da;
   --color-light: #fff;
   --color-black: #444;
@@ -1073,6 +1074,45 @@ footer{
 .gerador{ background: var(--color-blue);}
 .catador{ background: var(--color-roxo);}
 
+.overlay-view-my-position{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  position: relative;
+  z-index: 9997;
+}
+
+.overlay-view-my-position::before{
+  content: "";
+  display: block;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--color-primary-opacity);
+  border: 2px solid var(--color-primary);
+  animation: overlay-view-my-position-animation 1.2s ease-in-out infinite;
+}
+
+@keyframes overlay-view-my-position-animation{
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.control-main-map{
+  padding-top: 60px;
+  height: calc(100vh - 60px);
+}
+
 .overlay-view{
   display: flex;
   align-items: center;
@@ -1088,6 +1128,7 @@ footer{
   padding: 5px;
   font-size: .85rem;
   cursor: pointer;
+  transform: translateY(20px);
 }
 .overlay-view::after{
   content: '';
@@ -1128,12 +1169,12 @@ footer{
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   height: auto;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid var(--color-black-light);
   border-radius: 10px;
+  box-shadow: 6px 6px 30px var(--color-shadow);
 }
 
 .fpigpfirst{
@@ -1152,7 +1193,6 @@ footer{
   overflow: hidden;
   flex:none;
   background: var(--color-black-light);
-  margin-right: 20px;
 }
 
 .fpigpfirst .foto-profile img{
@@ -1165,15 +1205,25 @@ footer{
   justify-content: center;
   width: 100%;
   height: 100%;
-}
-
-.fpigpfirst .igp span{
+  font-size: 1.8rem;
+  margin: 10px 0;
   text-align: center;
 }
 
-.igp-name{
-  font-size: 1.8rem;
+.section-pattern-profile{
   margin: 10px 0;
+  padding: 10px 0;
+}
+
+.section-pattern-profile .title-section{
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.section-pattern-profile span{
+  display: block;
+  margin-bottom: 5px;
 }
 
 @media(max-width: 1200px){
@@ -1187,6 +1237,7 @@ footer{
     width: 90%;
     margin: 0 auto;
   }
+  .control-main-map{ width: 100vw }
 }
 @media(max-width: 1000px){
   body, input, select, textarea, button{

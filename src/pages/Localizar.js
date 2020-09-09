@@ -52,7 +52,7 @@ export default function Localizar(){
 
         const geolocationOptions = {
             enableHighAccuracy: true,
-            timeout: 1000,
+            timeout: 10000,
             maximumAge: 1000,
         }
 
@@ -63,30 +63,35 @@ export default function Localizar(){
     return(
         <>
         <Header/>
-        <LoadScript googleMapsApiKey={key}>
-            <GoogleMap
-                mapContainerClassName="map"
-                center={location}
-                zoom={zoom}
-            >
-                {
-                    listPeoples.map((item) => {
-                        const { id, person_name, coord_lat, coord_lng, foto } = item;
-                        const positionPersonCurrent = { lat: parseFloat(coord_lat), lng: parseFloat(coord_lng) };
-                        return (
-                        <OverlayView key={id} position={positionPersonCurrent} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                            <div className='overlay-view'>
-                                <div className='perfil-map'>
-                                    <img src={foto} alt=''/>
+        <div className='control-main control-main-map'>
+            <LoadScript googleMapsApiKey={key}>
+                <GoogleMap
+                    mapContainerClassName="map"
+                    center={location}
+                    zoom={zoom}
+                >
+                    <OverlayView position={location} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                        <div className='overlay-view-my-position'/>
+                    </OverlayView>
+                    {
+                        listPeoples.map((item) => {
+                            const { id, person_name, coord_lat, coord_lng, foto } = item;
+                            const positionPersonCurrent = { lat: parseFloat(coord_lat), lng: parseFloat(coord_lng) };
+                            return (
+                            <OverlayView key={id} position={positionPersonCurrent} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                                <div className='overlay-view'>
+                                    <div className='perfil-map'>
+                                        <img src={foto} alt=''/>
+                                    </div>
+                                    <span>{ person_name }</span>
                                 </div>
-                                <span>{ person_name }</span>
-                            </div>
-                        </OverlayView>
-                        )
-                })
-                }
-            </GoogleMap>
-        </LoadScript>
+                            </OverlayView>
+                            )
+                    })
+                    }
+                </GoogleMap>
+            </LoadScript>
+        </div>
         <Message message={messagePage}/>
         </>
     )
