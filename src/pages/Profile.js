@@ -21,20 +21,21 @@ export default function Profile(){
             }
         })()
     }, [])
-    console.log(dataProfile)
 
     return(
         <>
         <Header/>
         <div className='control-main'>
             <div className='control-box-profile'>
-                <div>
-                    <img src={dataUser} alt='Foto do perfil'/>
+                <div className="foto-profile">
+                    <img src={'https://avatars2.githubusercontent.com/u/61211576?s=460&u=c6735688882014b6d93bda918f892b94b79bdc1a&v=4'} alt='Foto do perfil'/>
                 </div>
                 <div>
                     <div className='btn-of-moviment-between-sections'>
                         <div className='circle'/>
                         <span className='title-section'>Informações pessoais</span>
+                        { dataUser.person_name}
+                        { dataProfile.address}
                     </div>
 
                     <div className='btn-of-moviment-between-sections'>

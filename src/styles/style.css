@@ -1124,11 +1124,29 @@ footer{
 }
 
 .control-box-profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   height: auto;
   margin: 0 auto;
   padding: 10px;
+  border: 1px solid var(--color-black-light);
+  border-radius: 10px;
+}
+
+.control-box-profile .foto-profile{
+  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-black-light);
+}
+
+.control-box-profile .foto-profile img{
+  width: 100%;
 }
 
 @media(max-width: 1200px){
