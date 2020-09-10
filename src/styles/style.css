@@ -1202,6 +1202,10 @@ footer{
   color: var(--color-primary);
 }
 
+.fpigpfirst .document{
+  margin-top: 10px;
+}
+
 .section-contact{
   width: 100%;
   height: auto;
@@ -1286,6 +1290,15 @@ footer{
 .section-residues h2{
   text-align: center;
   color: var(--color-primary);
+}
+.section-residues .choise-rediues{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 @media(max-width: 1200px){

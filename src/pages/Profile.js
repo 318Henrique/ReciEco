@@ -42,15 +42,21 @@ export default function Profile(){
 
     }, [getDataPersonaProfile, getResidueesPersonProfile])
 
+    const whatDocument = (document) => {
+        if(document === undefined) return;
+        return document.length === 11 ? `CPF ${document}` : `CNPJ ${document}`;
+    }
+
     return(
         <>
         <Header/>
         <div className='control-main'>
             <section className='fpigpfirst'>
                 <div className="foto-profile">
-                    <img src={'https://avatars2.githubusercontent.com/u/61211576?s=460&u=c6735688882014b6d93bda918f892b94b79bdc1a&v=4'} alt='Foto do perfil'/>
+                    <img src={dataProfile.foto || require('../assets/icon-person.svg')} alt='Foto do perfil'/>
                 </div>
                 <div className='igp'>{ dataUser.name }</div>
+                <div className='document'>{ whatDocument(dataProfile.document) }</div>
             </section>
             <section className='section-contact'>
                 <div className='section-contact-title'>
@@ -59,7 +65,7 @@ export default function Profile(){
                 <div className='section-contact-content'>
                     <div>
                         <span>{dataProfile.mail}</span>
-                        <span><a href={`https://api.whatsapp.com/send?phone=${dataProfile.whatsapp}&text=Ola`}>{dataProfile.whatsapp}</a></span>
+                        <span><a href={`https://api.whatsapp.com/send?phone=${dataProfile.whatsapp}&text=Ola`} target="_blank" rel="noopener noreferrer">{dataProfile.whatsapp}</a></span>
                     </div>
                 </div>
             </section>
@@ -74,11 +80,11 @@ export default function Profile(){
 
             <section className='section-residues'>
                 <h2 className='title-section'>Meus Resíduos</h2>
-                <div className='control choise-rediues'>
+                <div className='choise-rediues'>
                     {
-                        residuesProfile.map(({ id, residues_name, icon }) => (
+                        residuesProfile.map(({ residues_id, residues_name, icon }) => (
                             <div
-                                key={ id }
+                                key={ residues_id }
                                 className="choise-residues-item"
                             >
                                 <img src={ icon } alt=''/>
