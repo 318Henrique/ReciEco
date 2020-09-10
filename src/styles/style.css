@@ -1164,34 +1164,24 @@ footer{
   color: var(--color-light);
 }
 
-.control-box-profile{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 6px 6px 30px var(--color-shadow);
-}
-
 .fpigpfirst{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  height: auto;
+  padding: 20px;
 }
 
 .fpigpfirst .foto-profile{
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   overflow: hidden;
   flex:none;
+  border: 3px solid var(--color-light);
+  box-shadow: 5px 5px 15px var(--color-transparent);
   background: var(--color-black-light);
 }
 
@@ -1205,9 +1195,17 @@ footer{
   justify-content: center;
   width: 100%;
   height: 100%;
-  font-size: 1.8rem;
-  margin: 10px 0;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 20px;
   text-align: center;
+  color: var(--color-primary);
+}
+
+.section-contact{
+  width: 100%;
+  height: auto;
+  background: var(--color-primary);
 }
 
 .section-pattern-profile{
