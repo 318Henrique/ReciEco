@@ -801,6 +801,7 @@ color: rgb(136, 30, 26);
   padding: 0 10px;
   border-radius: 10px;
   border: 2px solid var(--color-black-light);
+  background: var(--color-light);
   transition: .4s ease-in-out;
 }
 .inputSearch button{
@@ -821,6 +822,36 @@ color: rgb(136, 30, 26);
 }
 .inputSearchActived{
   border-color: var(--color-primary);
+}
+
+.filter-search-map{
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  z-index: 9999;
+}
+
+.filter-search-map .inputSearch{
+  width: 100%;
+  margin: 0;
+}
+
+.filter-search-map .btns-filter-map-search{
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+}
+
+.filter-search-map .btns-filter-map-search button{
+  background: var(--color-primary);
+  color: var(--color-light);
+  padding: 5px 10px;
+  font-size: 0.95rem;
+  margin-right: 5px;
+  border: none;
 }
 
 .filter{
@@ -1112,7 +1143,9 @@ footer{
 
 .control-main-map{
   padding-top: 60px;
-  height: calc(100vh - 60px);
+  height: 100vh;
+  background: red;
+  overflow: hidden;
 }
 
 .overlay-view{

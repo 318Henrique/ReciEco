@@ -1,47 +1,37 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
-import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
+import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
+import MapMain, { Marker,  } from 'react-map-gl';
 import Header from '../Components/Header';
 import '../styles/style.css';
 import { AuthContext } from '../Context/Auth';
 import Message from '../Components/Message';
 import Api from '../Api/api';
+import iconSearch from '../assets/icon-search.png';
 
 export default function Localizar(){
     const { userDetail: { dataUser } } = useContext(AuthContext);
+    const boxSearchRef = useRef();
+    const [ search, handleSearch ] = useState('');
+    const [ submitSearch, handleSubmitSearch ] = useState(true);
     const [ messagePage, newMessage ] = useState(null);
-    const [location, handleLocation] = useState({
-        lat: dataUser.coord_lat,
-        lng: dataUser.coord_lng,
+
+    const [viewport, handleViewport] = useState({
+        width: "100vw",
+        height: "100vh",
+        latitude: -12.211501,
+        longitude: -55.571655,
+        zoom: 6,
     })
-    const [key] = useState('AIzaSyCKb5RlQfAw2DiQb_Gq0rIwCsiJv8P1bsQ');
-    const [zoom] = useState(15);
     const [ listPeoples, handleListPeoples ] = useState([]);
-
-    const getPeoples = useCallback(() => {
-        async function getList(){
-            try {
-                const response = await Api.get('/map/list/peoples/');
-                const { content } = response.data;
-                
-                if(!content.length) return newMessage({ content: 'Nenhuma pessoa ou empresa encontrada!' })
-
-                handleListPeoples(content);
-
-            } catch (error) {
-                newMessage({ content: error })
-            }
-        }
-
-        getList()
-    },[])
-
-    useEffect(() => getPeoples(), [getPeoples]);
+    const [currentPosition, handleCurrentPosition] = useState({
+        latitude: dataUser.coords.coord_lat,
+        longitude: dataUser.coords.coord_lng,
+    })
 
     useEffect(() => {
         const geolocationSuccess = ({ coords }) => {
-            handleLocation({
-                lat: coords.latitude,
-                lng: coords.longitude
+            handleCurrentPosition({
+                latitude: coords.latitude,
+                longitude: coords.longitude
             })
         }
 
@@ -60,37 +50,91 @@ export default function Localizar(){
         
     }, [])
 
+    const getPeoples = useCallback(() => {
+        async function getList(){
+            try {
+                const response = await Api.get(`/map/list/peoples/?query=${search}`);
+                const { content } = response.data;
+                
+                if(!content.length) return newMessage({ content: 'Nenhuma resultado!' })
+
+                handleListPeoples(content);
+
+            } catch (error) { newMessage({ content: error })}
+
+            handleSubmitSearch(false);
+        }
+
+        if(submitSearch || search === '') return getList();
+    }, [search, submitSearch])
+
+    useEffect(() => {
+        getPeoples()
+    }, [getPeoples]);
+
+    function captureKeyEnter({ key }) { if(key === 'Enter') handleSubmitSearch(true);}
+
+    function personClicked({ coord_lat, coord_lng }){
+        handleViewport(oldData => Object.assign(oldData, {
+            latitude: coord_lat,
+            longitude: coord_lng,
+            zoom: 15
+        }))
+    }
+
     return(
         <>
         <Header/>
+        <div className='filter-search filter-search-map'>
+          <div className='inputSearch' ref={boxSearchRef}>
+            <button>
+              <img src={iconSearch} alt=''/>
+            </button>
+            <input
+              type='search'
+              name='search'
+              value={ search }
+              placeholder="Digite um nome e aperte Enter"
+              onChange={({ target }) => handleSearch(target.value) }
+              onKeyPress={event => captureKeyEnter(event)}
+              onFocus={() => boxSearchRef.current.classList.add('inputSearchActived')}
+              onBlur={() => boxSearchRef.current.classList.remove('inputSearchActived')}
+            />
+          </div>
+          <div className="btns-filter-map-search">
+              <button>Geradores</button>
+              <button>Compradores</button>
+              <button>Catadores</button>
+          </div>
+        </div>
         <div className='control-main control-main-map'>
-            <LoadScript googleMapsApiKey={key}>
-                <GoogleMap
-                    mapContainerClassName="map"
-                    center={location}
-                    zoom={zoom}
+            <MapMain
+                {...viewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN_ACCESS}
+                mapStyle="mapbox://styles/solucaocriativaoficial/ckfcy4i9j5tk519tb9u7yxetv"
+                onViewportChange={(viewport) => {
+                    handleViewport(viewport)
+                }}
                 >
-                    <OverlayView position={location} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                        <div className='overlay-view-my-position'/>
-                    </OverlayView>
                     {
-                        listPeoples.map((item) => {
-                            const { id, person_name, coord_lat, coord_lng, foto } = item;
-                            const positionPersonCurrent = { lat: parseFloat(coord_lat), lng: parseFloat(coord_lng) };
-                            return (
-                            <OverlayView key={id} position={positionPersonCurrent} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                                <div className='overlay-view'>
-                                    <div className='perfil-map'>
-                                        <img src={foto} alt=''/>
-                                    </div>
-                                    <span>{ person_name }</span>
-                                </div>
-                            </OverlayView>
-                            )
-                    })
+                        currentPosition.latitude === null ? <></> : 
+                        <Marker latitude={currentPosition.latitude} longitude={currentPosition.longitude}>
+                            <div className='overlay-view-my-position'/>
+                        </Marker>
                     }
-                </GoogleMap>
-            </LoadScript>
+                    {
+                        listPeoples.map(person => (
+                            <Marker key={person.id} latitude={ person.coord_lat } longitude={ person.coord_lng }>
+                                <div className='overlay-view' onClick={() => personClicked(person)}>
+                                    <div className='perfil-map'>
+                                        <img src={ person.foto } alt=''/>
+                                    </div>
+                                    <span>{ person.person_name }</span>
+                                </div>
+                            </Marker>
+                        ))
+                    }
+            </MapMain>
         </div>
         <Message message={messagePage}/>
         </>
