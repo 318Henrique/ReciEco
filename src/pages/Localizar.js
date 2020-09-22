@@ -152,7 +152,7 @@ export default function Localizar(){
                     }
             </MapMain>
         </div>
-        <ModalPersonSelectedMap person={showPerson}/>
+        <ModalPersonSelectedMap person={showPerson} closeModal={() => handleShowPerson(null)}/>
         <Message message={messagePage}/>
         </>
     )
