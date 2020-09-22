@@ -1172,7 +1172,6 @@ footer{
 .modal-marker{
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background: var(--color-transparent);
@@ -1187,7 +1186,7 @@ footer{
   width: 500px;
   height: auto;
   min-height: 150px;
-  margin: 10px 0px;
+  margin: 20px 0px;
   border-radius: 50px;
   animation: marker-actived-animation 1s forwards;
   background: var(--color-light);

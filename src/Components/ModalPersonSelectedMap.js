@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import iconClose from '../assets/icon-close.png';
+import Api from '../Api/api';
+import Message from './Message';
 
 export default function ModalPersonSelectedMap({ person, closeModal = () => {} }){
-    if(person === null) return <></>
+    const [ residuesProfile, handleResiduesProfile ] = useState([]);
+    const [ message, newMessage ] = useState(null);
+    const [ loadingResidues, handleLoadingResidues ] = useState(true);
+
+    const getResidueesPersonProfile = useCallback(() => {
+        (async () => {
+            try {
+                const response = await Api.get(`/residues/person/${person.id}`);
+                const { content } = response.data;
+
+                handleResiduesProfile(content)
+            } catch (error) {
+                newMessage({ content: error })
+            }
+
+            handleLoadingResidues(false)
+        })()
+    }, [person.id])
+
+    useEffect(() => {
+        getResidueesPersonProfile();
+    }, [getResidueesPersonProfile])
 
     return(
         <div className="modal-marker">
@@ -36,8 +59,28 @@ export default function ModalPersonSelectedMap({ person, closeModal = () => {} }
                             }
                         </div>
                     </div>
+                    <section className='section-residues'>
+                <h2 className='title-section'>Meus Resíduos</h2>
+                <div className='choise-rediues'>
+                    {
+                        loadingResidues ? <div className="choise-residues-item loading-residues"/>
+                        :
+                        !residuesProfile.length ? <h3>Nenhum resíduo encontrado dessa pessoa</h3> :
+                        residuesProfile.map(({ residues_id, residues_name, icon }) => (
+                            <div
+                                key={ residues_id }
+                                className="choise-residues-item"
+                            >
+                                <img src={ icon } alt=''/>
+                                <span> { residues_name } </span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
                 </section>
             </div>
+            <Message message={message} />
         </div>
     )
 }
