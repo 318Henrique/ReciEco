@@ -35,6 +35,7 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
             </div>
             <div className='list-item-secundary'>
                 {
+                    content.type_person === null ? <></> :
                     SplitTypePerson(content.type_person)
                 }
             </div>

@@ -830,8 +830,9 @@ color: rgb(136, 30, 26);
   max-width: 500px;
   position: absolute;
   top: 65px;
-  right: 10px;
-  z-index: 9999;
+  right: 0;
+  padding: 0 10px;
+  z-index: 9980;
 }
 
 .filter-search-map .inputSearch{
@@ -1144,59 +1145,81 @@ footer{
 .control-main-map{
   padding-top: 60px;
   height: 100vh;
-  background: red;
-  overflow: hidden;
+}
+.mapboxgl-marker{
+  width: 30px;
+  height: 30px;
+  transition: .15s ease-in-out;
+  cursor: pointer !important;
 }
 
-.overlay-view{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: auto;
-  max-width: 170px;
-  min-width: 30px;
-  height: auto;
-  max-height: 60px;
-  border-radius: 0 10px 10px 10px;
-  background: var(--color-black);
-  box-shadow: -5px 5px 10px var(--color-shadow);
-  padding: 5px;
-  font-size: .85rem;
-  cursor: pointer;
-  transform: translateY(20px);
-}
-.overlay-view::after{
-  content: '';
-  background: var(--color-black);
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  top: -4px;
-  left: 0px;
-  border-radius: 0 60px 0 0;
-}
-
-.overlay-view .perfil-map{
-  width: 25px;
-  height: 25px;
+.perfil-map{
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: var(--color-black-light);
+  background: var(--color-primary);
+  border: 2px solid var(--color-light);
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
   overflow: hidden;
   flex: none;
-  margin-right: 5px;
 }
 
-.overlay-view .perfil-map img{
+.perfil-map img{
   width: 100%;
   object-fit: cover;
 }
 
-.overlay-view span{
-  display: block;
-  width: 100%;
-  height: 100%;
+.modal-marker{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-transparent);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  z-index: 9999;
+}
+
+.marker-actived{
+  width: 500px;
+  height: auto;
+  min-height: 150px;
+  margin: 10px 0px;
+  border-radius: 50px;
+  animation: marker-actived-animation 1s forwards;
+}
+
+@keyframes marker-actived-animation{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.marker-actived .perfil-map{
+  height: 230px;
+  border-radius: 0%;
+  border: none;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+  flex: none;
+}
+
+.marker-actived .information-person-map{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-light);
+}
+
+.information-person-map-personName{
+  font-size: 2rem;
   text-align: center;
-  color: var(--color-light);
 }
 
 .fpigpfirst{

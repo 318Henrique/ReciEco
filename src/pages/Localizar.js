@@ -6,6 +6,7 @@ import { AuthContext } from '../Context/Auth';
 import Message from '../Components/Message';
 import Api from '../Api/api';
 import iconSearch from '../assets/icon-search.png';
+import ModalPersonSelectedMap from '../Components/ModalPersonSelectedMap';
 
 export default function Localizar(){
     const { userDetail: { dataUser } } = useContext(AuthContext);
@@ -13,10 +14,7 @@ export default function Localizar(){
     const [ search, handleSearch ] = useState('');
     const [ submitSearch, handleSubmitSearch ] = useState(true);
     const [ messagePage, newMessage ] = useState(null);
-
     const [viewport, handleViewport] = useState({
-        width: "100vw",
-        height: "100vh",
         latitude: -12.211501,
         longitude: -55.571655,
         zoom: 6,
@@ -26,6 +24,7 @@ export default function Localizar(){
         latitude: dataUser.coords.coord_lat,
         longitude: dataUser.coords.coord_lng,
     })
+    const [ showPerson, handleShowPerson ] = useState(null);
 
     useEffect(() => {
         const geolocationSuccess = ({ coords }) => {
@@ -74,13 +73,25 @@ export default function Localizar(){
 
     function captureKeyEnter({ key }) { if(key === 'Enter') handleSubmitSearch(true);}
 
-    function personClicked({ coord_lat, coord_lng }){
+    function personClicked(data){
+        handleShowPerson(data);
         handleViewport(oldData => Object.assign(oldData, {
-            latitude: coord_lat,
-            longitude: coord_lng,
+            latitude: data.coord_lat,
+            longitude: data.coord_lng,
             zoom: 15
         }))
     }
+
+    useEffect(() =>{
+        function removeEvent(e){
+            if(e.key === "Escape") {
+                handleShowPerson(null);
+                window.removeEventListener('keydown', () => {})
+            }
+        }
+
+        if(showPerson !== null) window.addEventListener('keydown', removeEvent)
+    }, [showPerson])
 
     return(
         <>
@@ -94,7 +105,7 @@ export default function Localizar(){
               type='search'
               name='search'
               value={ search }
-              placeholder="Digite um nome e aperte Enter"
+              placeholder="Ex: Luiz, Colniza..."
               onChange={({ target }) => handleSearch(target.value) }
               onKeyPress={event => captureKeyEnter(event)}
               onFocus={() => boxSearchRef.current.classList.add('inputSearchActived')}
@@ -110,9 +121,12 @@ export default function Localizar(){
         <div className='control-main control-main-map'>
             <MapMain
                 {...viewport}
+                width="100vw"
+                height="100vh"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN_ACCESS}
                 mapStyle="mapbox://styles/solucaocriativaoficial/ckfcy4i9j5tk519tb9u7yxetv"
                 onViewportChange={(viewport) => {
+                    handleShowPerson(null)
                     handleViewport(viewport)
                 }}
                 >
@@ -124,18 +138,21 @@ export default function Localizar(){
                     }
                     {
                         listPeoples.map(person => (
-                            <Marker key={person.id} latitude={ person.coord_lat } longitude={ person.coord_lng }>
-                                <div className='overlay-view' onClick={() => personClicked(person)}>
-                                    <div className='perfil-map'>
-                                        <img src={ person.foto } alt=''/>
-                                    </div>
-                                    <span>{ person.person_name }</span>
+                            <Marker
+                                key={person.id}
+                                className={`marker${person.id}`}
+                                latitude={ person.coord_lat }
+                                longitude={ person.coord_lng }
+                            >
+                                <div className='perfil-map' onClick={() => personClicked(person)}>
+                                    <img src={ person.foto } alt=''/>
                                 </div>
                             </Marker>
                         ))
                     }
             </MapMain>
         </div>
+        <ModalPersonSelectedMap person={showPerson}/>
         <Message message={messagePage}/>
         </>
     )
