@@ -847,12 +847,17 @@ color: rgb(136, 30, 26);
 }
 
 .filter-search-map .btns-filter-map-search button{
-  background: var(--color-primary);
+  background: var(--color-black);
   color: var(--color-light);
   padding: 5px 10px;
   font-size: 0.95rem;
   margin-right: 5px;
   border: none;
+  transition: .3s ease-in-out;
+}
+
+.btns-filter-map-search-actived{
+  background: var(--color-primary) !important;
 }
 
 .filter{
@@ -1186,7 +1191,7 @@ footer{
   width: 500px;
   height: auto;
   min-height: 150px;
-  margin: 20px 0px;
+  margin: 20px 0px; 
   border-radius: 50px;
   animation: marker-actived-animation 1s forwards;
   background: var(--color-light);

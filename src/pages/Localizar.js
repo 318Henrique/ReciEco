@@ -25,6 +25,7 @@ export default function Localizar(){
         longitude: dataUser.coords.coord_lng,
     })
     const [ showPerson, handleShowPerson ] = useState(null);
+    const [ type_person_map, handleTypePersonMap ] = useState('');
 
     useEffect(() => {
         const geolocationSuccess = ({ coords }) => {
@@ -52,7 +53,7 @@ export default function Localizar(){
     const getPeoples = useCallback(() => {
         async function getList(){
             try {
-                const response = await Api.get(`/map/list/peoples/?query=${search}`);
+                const response = await Api.get(`/map/list/peoples/?query=${search}&type_person=${type_person_map}`);
                 const { content } = response.data;
                 
                 if(!content.length) return newMessage({ content: 'Nenhuma resultado!' })
@@ -65,7 +66,7 @@ export default function Localizar(){
         }
 
         if(submitSearch || search === '') return getList();
-    }, [search, submitSearch])
+    }, [search, submitSearch, type_person_map])
 
     useEffect(() => {
         getPeoples()
@@ -78,7 +79,7 @@ export default function Localizar(){
         handleViewport(oldData => Object.assign(oldData, {
             latitude: data.coord_lat,
             longitude: data.coord_lng,
-            zoom: 15
+            zoom: 16
         }))
     }
 
@@ -92,6 +93,10 @@ export default function Localizar(){
 
         if(showPerson !== null) window.addEventListener('keydown', removeEvent)
     }, [showPerson])
+
+    function selectedTypePeoples(type){
+        handleTypePersonMap(prevData => type === type_person_map ? '' : type)
+    }
 
     return(
         <>
@@ -113,9 +118,18 @@ export default function Localizar(){
             />
           </div>
           <div className="btns-filter-map-search">
-              <button>Geradores</button>
-              <button>Compradores</button>
-              <button>Catadores</button>
+            <button
+                className={`${type_person_map === 'gerador' ? 'btns-filter-map-search-actived' : ''}`}
+                onClick={() => selectedTypePeoples('gerador')}>Geradores
+            </button>
+            <button
+                className={`${type_person_map === 'comprador' ? 'btns-filter-map-search-actived' : ''}`}
+                onClick={() => selectedTypePeoples('comprador')}>Compradores
+            </button>
+            <button
+                className={`${type_person_map === 'catador' ? 'btns-filter-map-search-actived' : ''}`}
+                onClick={() => selectedTypePeoples('catador')}>Catadores
+            </button>
           </div>
         </div>
         <div className='control-main control-main-map'>
