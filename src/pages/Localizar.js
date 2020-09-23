@@ -95,7 +95,7 @@ export default function Localizar(){
     }, [showPerson])
 
     function selectedTypePeoples(type){
-        handleTypePersonMap(prevData => type === type_person_map ? '' : type)
+        handleTypePersonMap(() => type === type_person_map ? '' : type)
     }
 
     return(
