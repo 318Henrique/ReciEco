@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import iconClose from '../assets/icon-close.png';
 import Api from '../Api/api';
 import Message from './Message';
+import iconWhatsapp from '../assets/icon-whatsapp.png';
 
 export default function ModalPersonSelectedMap({ person, closeModal = () => {} }){
     const [ residuesProfile, handleResiduesProfile ] = useState([]);
@@ -42,9 +43,20 @@ export default function ModalPersonSelectedMap({ person, closeModal = () => {} }
                 <section className="information-person-map">
                     <div className="contact-address">
                         <span>{person.mail}</span>
-                        <span>
-                            <a about="Link do Whatsapp" title={`Falar com ${person.person_name} pelo whatsapp!`} href={`https://api.whatsapp.com/send?phone=${person.whatsapp}&text=Oi,%20estou%20vindo%20do%20recieco,%20e%20gostaria%20de%20falar%20com%20voc%C3%AA`} target="_blank" rel="noopener noreferrer">
-                                {person.whatsapp}
+                        <span style={{
+                            height: 'auto',
+                            padding: '2px 0',
+                        }}>
+                            <a
+                                about="Link do Whatsapp"
+                                title={`Falar com ${person.person_name} pelo whatsapp!`}
+                                href={`https://api.whatsapp.com/send?phone=${person.whatsapp}&text=Oi,%20estou%20vindo%20do%20recieco,%20e%20gostaria%20de%20falar%20com%20voc%C3%AA`} target="_blank" rel="noopener noreferrer"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <img src={iconWhatsapp} alt="" style={{ width: 20, height: 20, marginRight: 5 }}/> {person.whatsapp}
                             </a>
                         </span>
                         <span>{person.address}, {person.address_number} - {person.neghborhood}</span>
