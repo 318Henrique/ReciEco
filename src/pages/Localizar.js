@@ -138,7 +138,7 @@ export default function Localizar(){
                 width="100vw"
                 height="100vh"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN_ACCESS}
-                mapStyle="mapbox://styles/solucaocriativaoficial/ckfcy4i9j5tk519tb9u7yxetv"
+                mapStyle="mapbox://styles/recieco/ckfeqqjie0jh219m96qmhr9rp"
                 onViewportChange={(viewport) => {
                     handleShowPerson(null)
                     handleViewport(viewport)
