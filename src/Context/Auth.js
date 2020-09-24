@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useCallback } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Api from '../Api/api';
 import Loading from '../pages/Loading';
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         handleLoading(false);
     }, [])
 
-    function SignIn(data, redirectPage = '/localizar'){
+    const SignIn = useCallback((data, redirectPage = '/localizar') => {
         const { token, content } = data;
         Api.defaults.headers.auth = token;
 
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
 
         const { from } = NavigatorLocation.state || { from: { pathname: redirectPage } };
         NavigatorHistory.replace(from);
-    }
+    }, [ NavigatorHistory, NavigatorLocation.state ])
 
     function Logout(){
         Api.defaults.headers.auth = null;
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
         NavigatorHistory.replace('/');
     }
 
-    function HandleInfo(newData){
+    const HandleInfo = useCallback((newData) => {
         const dataMain = localStorage.getItem('a');
         const { token, content } = JSON.parse(dataMain);
 
@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
         
         const join_data = { token, content: dataHandledUser }
         localStorage.setItem('a', JSON.stringify(join_data));
-    }
+    }, [ userDetail.dataUser ])
 
     if(loading)
     return <Loading/>

@@ -177,6 +177,8 @@ button img{
   height: 25px;
   background: var(--color-light);
   border-radius: 50%;
+  background-size: 100%;
+  border: 2px solid var(--color-light);
 }
 
 .logined .btnWithNameFoto .name{
@@ -1378,13 +1380,13 @@ footer{
   justify-content: space-around;
   flex-direction: column;
   width: 500px;
-  height: 120px;
+  height: 140px;
   background: var(--color-light);
   box-shadow: 4px 4px 15px var(--color-shadow);
   border-radius: 10px;
   padding: 20px;
   position: absolute;
-  top: -25px;
+  top: -35px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1463,6 +1465,14 @@ footer{
   50%{
     opacity: 0.3;
   }
+}
+
+.editProfile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-top: 5px;
 }
 
 @media(max-width: 1200px){

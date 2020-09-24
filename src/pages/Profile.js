@@ -4,12 +4,15 @@ import Api from '../Api/api';
 import Message from '../Components/Message';
 import { AuthContext } from '../Context/Auth';
 
+import ModalProfile from '../Components/ModalProfile';
+
 export default function Profile(){
     const [ dataProfile, handleDataProfile ] = useState({});
     const [ residuesProfile, handleResiduesProfile ] = useState([]);
     const [ message, newMessage ] = useState(null);
     const { userDetail: { dataUser } } = useContext(AuthContext);
     const [ loading, handleLoading ] = useState(false);
+    const [ modalData, handleModalData ] = useState(null);
 
     const getDataPersonaProfile = useCallback(() => {
         (async () => {
@@ -18,7 +21,8 @@ export default function Profile(){
                 const response = await Api.get('/profile/i/');
                 const { content } = response.data;
 
-                handleDataProfile(content[0])
+                handleDataProfile(content[0]);
+
             } catch (error) {
                 newMessage({ content: error })
             }
@@ -41,6 +45,15 @@ export default function Profile(){
     }, [])
 
     useEffect(() => {
+        if(loading)  {
+            handleDataProfile({
+                foto: dataUser.foto,
+                person_name: dataUser.name
+            })
+        }
+    }, [dataUser, loading])
+
+    useEffect(() => {
         getDataPersonaProfile();
         getResidueesPersonProfile();
 
@@ -51,6 +64,14 @@ export default function Profile(){
         return document.length === 11 ? `CPF ${document}` : `CNPJ ${document}`;
     }
 
+    function onCloseModal(data){
+        if(data !== undefined) {
+            handleDataProfile(oldData => Object.assign(oldData, data));
+        }
+
+        handleModalData(null);
+    }
+
     return(
         <>
         <Header/>
@@ -59,8 +80,12 @@ export default function Profile(){
                 <div className="foto-profile">
                     <img src={dataProfile.foto || require('../assets/icon-person.svg')} alt='Foto do perfil'/>
                 </div>
-                <div className='igp'>{ dataUser.name }</div>
+                <div className='igp'>{ dataProfile.person_name }</div>
                 <div className={`document ${loading ? 'loading-field' : ''}`}>{ whatDocument(dataProfile.document) }</div>
+                {
+                    loading ? <></> : 
+                    <button className="editProfile" onClick={() => handleModalData(dataProfile)}>Editar perfil</button>
+                }
             </section>
             <section className='section-contact'>
                 <div className='section-contact-title'>
@@ -102,6 +127,8 @@ export default function Profile(){
             </section>
         </div>
         <Message message={message}/>
+
+        <ModalProfile dataInitial={ modalData } closeModal={content => onCloseModal(content) }/>
         </>
     )
 }
