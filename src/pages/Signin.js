@@ -33,6 +33,7 @@ export default function Singin(){
             const { content } = dataMainResponse;
 
             if(content.coords.coord_lat === null) return SignIn(dataMainResponse, '/informacoes-pessoais');
+            console.log('aqui')
 
             SignIn(dataMainResponse);
         } catch (error) {
@@ -44,7 +45,7 @@ export default function Singin(){
     return(
         <>
         <div className='box-login'>
-           <div className="content-modal-signin">
+           <div className="content-modal-signin" style={{ overflow: 'hidden' }}>
                 <div className="header-modal">
                     <h2>
                         Logar-se
@@ -53,7 +54,7 @@ export default function Singin(){
                 <Form onSubmit={onSubmit}>
                     <div className="boxField">
                         <label htmlFor='mail'>E-mail</label>
-                        <Input name="mail" id="mail" type="email" maxLength="255"/> 
+                        <Input name="mail" id="mail" type="email" maxLength="255" autoFocus/> 
                     </div>
                     <div className="boxField">
                         <label htmlFor="password">Senha</label>

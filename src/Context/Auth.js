@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     const [userDetail, handleInfoUser] = useState({
         isAuthenticate: false,
         dataUser: {}
-    })
+    });
 
     useEffect(() => {
         const dataMain = localStorage.getItem('a');
@@ -29,7 +29,8 @@ const AuthProvider = ({ children }) => {
         handleLoading(false);
     }, [])
 
-    const SignIn = useCallback((data, redirectPage = '/localizar') => {
+    const SignIn = (data, redirectPage = '/localizar') => {
+        console.log('aquis')
         const { token, content } = data;
         Api.defaults.headers.auth = token;
 
@@ -39,7 +40,7 @@ const AuthProvider = ({ children }) => {
 
         const { from } = NavigatorLocation.state || { from: { pathname: redirectPage } };
         NavigatorHistory.replace(from);
-    }, [ NavigatorHistory, NavigatorLocation.state ])
+    }
 
     function Logout(){
         Api.defaults.headers.auth = null;

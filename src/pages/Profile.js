@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../Components/Header';
 import Api from '../Api/api';
 import Message from '../Components/Message';
@@ -13,6 +14,7 @@ export default function Profile(){
     const { userDetail: { dataUser } } = useContext(AuthContext);
     const [ loading, handleLoading ] = useState(false);
     const [ modalData, handleModalData ] = useState(null);
+    const History = useHistory();
 
     const getDataPersonaProfile = useCallback(() => {
         (async () => {
@@ -109,6 +111,10 @@ export default function Profile(){
 
             <section className='section-residues'>
                 <h2 className='title-section'>Meus Resíduos</h2>
+                {
+                    loading ? <></> : 
+                    <button className="editProfile" style={{ margin: "10px auto 0 auto" }} onClick={() => History.push('/perfil/meus-residuos')}>Editar meus resíduos</button>
+                }
                 <div className='choise-rediues'>
                     {
                         !residuesProfile.length ? <div className="choise-residues-item loading-residues"/>

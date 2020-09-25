@@ -1,18 +1,36 @@
 import React, { useState, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '../Components/Input';
-import { Form } from '@unform/web';
 import Api from '../Api/api';
 import Message from '../Components/Message';
 import { AuthContext } from '../Context/Auth';
 import ValidationData from '../Components/ValidationData';
+import Input from '../Components/InputMy';
 
 export default function Registration(){
     const formularioCadastro = useRef();
     const [ messagePage, newMessage ] = useState(null);
     const { SignIn, userDetail: { isAuthenticate }, Logout } = useContext(AuthContext);
     const [ saving, handleSave ] = useState(false);
+    const fotoInput = useRef();
+    const [ imagePreview, newImagePreview ] = useState('');
+    const [ dataForm, handleDataForm ] = useState({});
+    
+    function handleDataFormMain(content){
+        handleDataForm(oldData => Object.assign(oldData, content))
+    }
 
+    function handleImagePreview(){
+        const input = fotoInput.current.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            newImagePreview(reader.result);
+        }
+
+        if(input) reader.readAsDataURL(input)
+        else newImagePreview('');
+    }
+    
     async function onSubmit(event){
         event.preventDefault();
 
@@ -20,17 +38,24 @@ export default function Registration(){
 
         handleSave(true);
 
-        const { password, confirmed_password, ...rest } = formularioCadastro.current.getData();
-        const { error, message } = ValidationData(rest);
+        const form = new FormData(formularioCadastro.current);
 
-        if(error) return newMessage({ content: message })
-        if(password !== "" && password !== confirmed_password) return newMessage({ content: "As senhas precisam ser iguais!" })
+        const { password, confirmed_password } = dataForm;
+        const { error, message } = ValidationData(dataForm);
+
+        if(error){
+            handleSave(false);
+            return newMessage({ content: message })
+        }
+        if(password !== "" && password !== confirmed_password) {
+            handleSave(false)
+            return newMessage({ content: "As senhas precisam ser iguais!" })
+        }
 
         try {
-            const join_data = Object.assign(rest, { password })
-            const response = await Api.post('/singup', join_data);
-
-            SignIn(response.data, '/informacoes-pessoais');
+            form.delete('confirmed_password');
+            const response = await Api.post('/singup', form);
+            SignIn(response.data, '/cadastro/informacoes-pessoais');
         } catch (error) {
             newMessage({ content: error })
         }
@@ -59,27 +84,35 @@ export default function Registration(){
     return(
         <>
         <div className="control-main control-main-cadastro">
-            <Form ref={formularioCadastro}>
+            <form ref={formularioCadastro}>
             <div className='carrosel-cadastro'>
                 <div className='header-box'>
                     <h1>Criar conta</h1>
                 </div>
                 <div className='control'>
+                    <div className='boxField file-input'>
+                        <label htmlFor='foto'>
+                            <img src={imagePreview} alt=''/>
+                        </label>
+                        <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
+                            handleImagePreview()
+                        }}/>
+                    </div>
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
-                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255} />
+                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  stateValue={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='mail'>E-mail <span>*</span></label>
-                        <Input name='mail' id='mail' type='email' required maxLength={255}/>
+                        <Input name='mail' id='mail' type='email' required maxLength={255} stateValue={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='password'>Senha <span>*</span></label>
-                        <Input name='password' type='password' id='password' required maxLength={50}/>
+                        <Input name='password' type='password' id='password' required maxLength={50} stateValue={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='confirmed_password'>Repita a senha <span>*</span></label>
-                        <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50}/>
+                        <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50} stateValue={content => handleDataFormMain(content)}/>
                     </div>
                     <button type='button' className='btnSubmit' onClick={event => onSubmit(event)}>{ saving ? 'Salvando' : "Salvar" }</button>
                 </div>
@@ -87,7 +120,7 @@ export default function Registration(){
                     Já tenho conta!
                 </Link>
             </div>
-            </Form>
+            </form>
         </div>
         <Message message={messagePage}/>
         </>

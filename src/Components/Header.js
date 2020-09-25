@@ -25,12 +25,12 @@ export default function Header( props ){
                         </Link>
                     </li>
                     <li>
-                        <Link to='/Contact'>
+                        <Link to='/contato'>
                             Contato
                         </Link>
                     </li>
                     <li>
-                        <Link to='/about'>
+                        <Link to='/sobre'>
                             Sobre
                         </Link>
                     </li>

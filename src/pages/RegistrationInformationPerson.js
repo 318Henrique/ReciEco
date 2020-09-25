@@ -49,9 +49,9 @@ export default function Registration(){
             const join_data = Object.assign(dataFormCurrent, { type_person: category.toString() }, coords)
             await Api.post('/singup/informacao-pessoal/', join_data);
 
-            HandleInfo(coords);
+            HandleInfo({ coords });
 
-            NavigatorHistory.push('/meus-residuos');
+            NavigatorHistory.push('/cadastro/meus-residuos');
 
         } catch (error) {
             newMessage({ content: error })

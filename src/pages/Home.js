@@ -9,14 +9,11 @@ export default function Home(){
         <>
         <Header/>
         <div className="box-control-all" style={{ paddingTop: 60 }}>
-            <section className="section-pattern section-boas-vindas">
-                <div className="section-content">
-                    <h1>Seja bem-vindo à ReciEco</h1>
-                    <h3>Recicle hoje, para que exista um amanhã sustentável!</h3>
-                </div>
-            </section>
             <section className="section-pattern section-two">
                 <img src={Banner1} alt=''/>
+                <div className="section-content">
+                    <h3>Recicle hoje, para que exista um amanhã sustentável!</h3>
+                </div>
             </section>
             <section className="section-pattern section-beneficios">
                 <div className="section-content-beneficios">

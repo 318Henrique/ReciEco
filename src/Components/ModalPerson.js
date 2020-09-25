@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import iconClose from '../assets/icon-close.png';
 import '../styles/style.css';
 import Api from '../Api/api';
@@ -13,63 +13,13 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
     const [ loading, handleLoading ] = useState(false);
     const [ dataInput, handleDataInput ] = useState({});
     const [ imagePreview, newImagePreview ] = useState('');
+
+    useEffect(() => {
+        if(dataInitial !== null) newImagePreview(dataInitial.foto || '');
+    }, [dataInitial])
     
     function handleValueDataInput(content){
         handleDataInput(prevData => Object.assign(prevData, content));
-    }
-
-    async function saveNewItem(){
-        const { residues_name, category } = dataInput;
-        if(residues_name === '' || category === '') return setMessageRequest({ content: 'Todos os campos são obrigatórios!' });
-
-        try {
-            const dataFormCurrent = formMain.current
-            const formulario = new FormData(dataFormCurrent);
-
-            const { name: nameIcon, size: sizeIcon } = formulario.get('icon');
-            
-            if(nameIcon === '' && sizeIcon === 0) return setMessageRequest({ content: 'É obrigatório escolher uma imagem para o resíduo!' });
-            if(sizeIcon > (5 * 1024 * 1024)) return setMessageRequest({ content: 'Está imagem é maior que 5 MB!' })
-
-            const responseRegister = await Api.post('/admin/residues', formulario)
-            const { content: { idNewElement, urlIcon } } = responseRegister.data;
-
-            closeModal({
-                id: idNewElement,
-                residues_name: dataFormCurrent.residues_name.value,
-                icon: urlIcon,
-                category: dataFormCurrent.category.value,
-                isNew: true
-            })
-
-        } catch (error) {
-            setMessageRequest({ content: error });
-        }
-    }
-
-    async function saveUpdateItem(){
-        try {
-            const formulario = new FormData(formMain.current);
-            const { name: nameIcon, size: sizeIcon } = formulario.get('icon');
-
-            if(nameIcon === '' && sizeIcon === 0) formulario.delete('icon');
-
-            if(sizeIcon > (5 * 1024 * 1024)) return setMessageRequest({ content: 'Está imagem é maior que 5 MB!' })
-
-            const responseRegister = await Api.put(`/admin/residues/${dataInitial.id}`, formulario)
-            const { urlIcon } = responseRegister.data;
-
-            closeModal({
-                id: dataInitial.id,
-                residues_name: dataInput.residues_name,
-                icon: urlIcon || dataInitial.icon,
-                category: dataInput.category,
-                isNew: false
-            })
-
-        } catch (error) {
-            setMessageRequest({ content: error });
-        }
     }
 
     async function onSubmit(event){
@@ -79,8 +29,30 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
 
         handleLoading(true);
 
-        if(dataInitial.id === undefined) await saveNewItem();
-        else await saveUpdateItem();
+        try {
+            const formulario = new FormData(formMain.current);
+
+            const { name: nameFoto, size: sizeFoto } = formulario.get('foto');
+            if(nameFoto === '' && sizeFoto === 0) formulario.delete('foto');
+            if(sizeFoto > (5 * 1024 * 1024)) return setMessageRequest({ content: 'Está imagem é maior que 5 MB!' })
+
+            for (const field in dataInitial) {
+                if(dataInitial[field] === dataInput[field]) formulario.delete(field);
+            }
+
+            const response = await Api.put("/profile/my/", formulario)
+            const { message } = response.data;
+
+            setMessageRequest({ content: message, type: "success" });
+
+            closeModal(Object.assign({
+                id: dataInitial.id,
+                isNew: false
+            }, dataInput))
+
+        } catch (error) {
+            setMessageRequest({ content: error });
+        }
 
         handleLoading(false)
     }
@@ -97,12 +69,14 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
         else newImagePreview('');
     }
 
+    if(dataInitial === null ) return <></>;
+
     return(
         <div className='modal-control-box'>
             <div className='content-modal-signin' ref={modal}>
                 <div className="header-modal">
                     <h2>
-                        Resíduos
+                        Perfil
                     </h2>
                     <button className='close-modal' onClick={() => closeModal()}>
                         <img src={iconClose} alt="x"/>
@@ -111,14 +85,13 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                 <form ref={formMain} onSubmit={event => onSubmit(event)}>
                     <div className='boxField file-input'>
                         <label htmlFor='foto'>
-                            <img src={dataInitial.foto || imagePreview || ''} alt=''/>
+                            <img src={imagePreview} alt=''/>
                         </label>
                         <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
                             handleImagePreview()
                             handleValueDataInput({ foto: fotoInput.current.value })
                         }}/>
                     </div>
-                    <h3>Informações básicas</h3>
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome da pessoa</label>
                         <Input
@@ -127,16 +100,6 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             type='text'
                             required
                             value={dataInitial.person_name}
-                            stateValue={content => handleValueDataInput(content)}/>
-                    </div>
-                    <div className='boxField'>
-                        <label htmlFor='document'>CPF/CNPJ</label>
-                        <Input
-                            name="document"
-                            id='document'
-                            type='text'
-                            required
-                            value={dataInitial.document}
                             stateValue={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
@@ -150,13 +113,93 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             stateValue={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
-                        <label htmlFor='admin'>Admin</label>
+                        <label htmlFor='document'>CPF/CNPJ</label>
                         <Input
-                            name="admin"
-                            id='admin'
+                            name="document"
+                            id='document'
                             type='text'
                             required
-                            value={dataInitial.admin}
+                            value={dataInitial.document}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='whatsapp'>Whatsapp</label>
+                        <Input
+                            name="whatsapp"
+                            id='whatsapp'
+                            type='text'
+                            required
+                            value={dataInitial.whatsapp}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='zipcode'>CEP</label>
+                        <Input
+                            name="zipcode"
+                            id='zipcode'
+                            type='text'
+                            required
+                            value={dataInitial.zipcode}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='address'>Logradouro</label>
+                        <Input
+                            name="address"
+                            id='address'
+                            type='text'
+                            required
+                            value={dataInitial.address}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='address_number'>N° da residência</label>
+                        <Input
+                            name="address_number"
+                            id='address_number'
+                            type='text'
+                            required
+                            value={dataInitial.address_number}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='city'>Cidade</label>
+                        <Input
+                            name="city"
+                            id='city'
+                            type='text'
+                            required
+                            value={dataInitial.city}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='state'>UF</label>
+                        <Input
+                            name="state"
+                            id='state'
+                            type='text'
+                            required
+                            value={dataInitial.state}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='coord_lat'>Latitude</label>
+                        <Input
+                            name="coord_lat"
+                            id='coord_lat'
+                            type='text'
+                            required
+                            value={dataInitial.coord_lat}
+                            stateValue={content => handleValueDataInput(content)}/>
+                    </div>
+                    <div className='boxField'>
+                        <label htmlFor='coord_lng'>Longitude</label>
+                        <Input
+                            name="coord_lng"
+                            id='coord_lng'
+                            type='text'
+                            required
+                            value={dataInitial.coord_lng}
                             stateValue={content => handleValueDataInput(content)}/>
                     </div>
                     <button type='submit' className="btnSubmit">{loading ? 'Salvando' : 'Salvar'}</button>

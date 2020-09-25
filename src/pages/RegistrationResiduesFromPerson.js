@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Api from '../Api/api';
 import Message from '../Components/Message';
 
-export default function Registration(){
+export default function RegistrationResiduesFromPerson(){
     const [ messagePage, newMessage ] = useState(null);
     const [ saving, handleSave ] = useState(false);
     const NavigatorHistory = useHistory();
@@ -29,6 +29,26 @@ export default function Registration(){
 
         getData();
     }, [])
+
+    // const MyResidues = useCallback(() => {
+    //     async function getData () {
+    //         try {
+    //             const responseContent = await Api.get('/profile/residues/');
+    //             const { content } = responseContent.data;
+
+    //             if(content.length) return;
+
+    //             const newContent = content.map(item => Object.assign(item, { checked: !item.checked }))
+
+    //             handleList(oldData => Object.assign(oldData, newContent))
+
+    //         } catch (error) {
+    //             newMessage({ content: error })
+    //         }
+    //     }
+
+    //     if(Location.pathname === '/perfil/meus-residuos') getData();
+    // }, [Location])
 
     useEffect(() => {
         getResidues();
@@ -71,12 +91,12 @@ export default function Registration(){
 
     return(
         <>
-        <div className="control-main control-main-cadastro">
+        <div className="control-main control-main-cadastro rediues">
             <div className='carrosel-cadastro'>
                 <div className='header-box'>
                     <h1>Meus tipos de Resíduos</h1>
                 </div>
-                <div className='control choise-rediues'>
+                <div className='control'>
                     {
                         list.map(({ id, residues_name, icon, checked }) => (
                             <div

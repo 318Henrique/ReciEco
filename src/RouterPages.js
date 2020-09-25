@@ -37,16 +37,17 @@ export default function RouterPages(){
     return(
         <Switch>
             <Route exact path='/' component={Home}/>
-            <Route exact path='/Contact' component={Contact}/>
+            <Route exact path='/contato' component={Contact}/>
             <PrivateRoute exact path='/localizar' component={Localizar}/>
             <PrivateRoute exact path='/perfil' component={Profile}/>
+            <PrivateRoute exact path='/perfil/meus-residuos' component={RegistrationResiduesFromPerson}/>
 
             <PrivateRoute admin exact path='/peoples' component={People}/>
             <PrivateRoute admin exact path='/residues' component={Residues}/>
 
             <Route exact path='/cadastro' component={Registration}/>
-            <PrivateRoute exact path='/informacoes-pessoais' component={RegistrationInformationPerson}/>
-            <Route exact path='/meus-residuos' component={RegistrationResiduesFromPerson}/>
+            <PrivateRoute exact path='/cadastro/informacoes-pessoais' component={RegistrationInformationPerson}/>
+            <Route exact path='/cadastro/meus-residuos' component={RegistrationResiduesFromPerson}/>
             
             <Route exact path='/signin' component={Singin}/>
             <Route exact path='/restrict-page' component={PageRestrict}/>

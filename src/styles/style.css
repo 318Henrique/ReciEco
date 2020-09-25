@@ -30,14 +30,13 @@ body, html, #root{
   min-height: 100vh;
 }
 ::-webkit-scrollbar{
-  width: 5px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track{
   background: var(--color-transparent);
 }
 ::-webkit-scrollbar-thumb{
-  background: var(--color-primary);
-  border-radius: 10px;
+  background: var(--color-black);
 }
 a{
   text-decoration: none;
@@ -635,6 +634,8 @@ color: rgb(136, 30, 26);
   max-width: 1280px;
   height: auto;
   margin-bottom: 100px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .box-main-form .header-form{
@@ -1046,13 +1047,23 @@ footer{
   color: var(--color-light);
 }
 
-.choise-rediues{
+.residues .carrosel-cadastro{
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 60px;
+}
+
+.residues .btnSubmit{
+  width: 200px;
+  margin: 20px auto;
+}
+
+.residues .control, .choise-rediues{
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 500px;
   margin: auto;
 }
 
@@ -1219,7 +1230,7 @@ footer{
 }
 
 .marker-actived .perfil-map{
-  height: 230px;
+  height: 300px;
   border-radius: 0%;
   border: none;
   box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
@@ -1227,6 +1238,7 @@ footer{
   flex: none;
   margin-bottom: 20px;
   position: relative;
+  background: var(--color-black);
 }
 
 .black-shadow-name{
@@ -1539,5 +1551,7 @@ footer{
   }
   .box-main-form .header-form h1{
     margin-bottom: 20px;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
