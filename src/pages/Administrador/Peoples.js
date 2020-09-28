@@ -5,7 +5,8 @@ import iconSearch from '../../assets/icon-search.png';
 import ListPerson from '../../Components/ListPerson';
 import Api from '../../Api/api';
 import Message from '../../Components/Message';
-import ModalPerson from '../../Components/ModalPerson';
+import ModalPersonSelectedMap from '../../Components/ModalPersonSelectedMap';
+import ModalBlockPerson from '../../Components/ModalBlockPerson';
 
 export default function People(){
   const [list, handleList] = useState([]);
@@ -13,10 +14,8 @@ export default function People(){
   const boxSearchRef = useRef();
   const [ search, handleSearch ] = useState('');
   const [ submitSearch, handleSubmitSearch ] = useState(true);
-  const [ modal, handleModal ] = useState({
-    open: false,
-    data: {}
-  })
+  const [ modal, handleModal ] = useState(null);
+  const [ modalBlock, handleModalBlock ] = useState(null)
 
   const getData = useCallback(() => {
     async function requestData () {
@@ -50,16 +49,22 @@ export default function People(){
     }
   }
 
-  function onCloseModal(data){
-    if(data === undefined) handleModal({ open: false, data: {} })
-    else {
-      handleModal({ open: false, data: {} })
-      
-      const { isNew, ...rest } = data;
+  async function handleAdmin({ id, admin }){
+    try {
+      await Api.put('/access/handle/admin/', {
+        person: id,
+        admin : !admin
+      });
 
-      if(isNew) return handleList(prevList => [...prevList, rest]);
-      else return handleList(prevList => prevList.map(item => item.id === rest.id ? rest : item))
+      handleList(prevList => prevList.map(item => item.id !== id ? item : Object.assign(item, { admin: !admin }) ))
+    } catch (error) {
+      newMessage({ content: error })
     }
+  }
+
+  const handleBlockAccessPerson = (data = null) => {
+    if(data !== null) handleList(prevList => prevList.map(item => item.id === data.id ? data : item ))
+    handleModalBlock(null);
   }
 
   function captureKeyEnter({ key }){
@@ -68,8 +73,8 @@ export default function People(){
 
   return(
     <>
-    <Header className={`${modal.open ? 'blur' : ''}`}/>
-    <div className={`control-main box-main-form ${modal.open ? 'blur' : ''}`}>
+    <Header className={`${modal !== null ? 'blur' : ''}`}/>
+    <div className={`control-main box-main-form ${modal !== null ? 'blur' : ''}`}>
       <div className='header-form'>
         <div className='title-and-add'>
           <h1>Lista de Pessoas</h1>
@@ -101,15 +106,20 @@ export default function People(){
             content={content}
             key={content.id}
             removeItem={() => removeItem(content.id)}
-            editItem={() => handleModal({ open: true, data: content }) }
+            openProfile={() => handleModal(content) }
+            setAdmin={ () => handleAdmin(content) }
+            blockPerson={ () => handleModalBlock(content)}
             />
           )
         }
       </div>
     </div>
     {
-      !modal.open ? <></> : <ModalPerson dataInitial={modal.data} closeModal={ data => onCloseModal(data) }/>
+      modal === null ? <></> : <ModalPersonSelectedMap person={modal} admin={true} closeModal={ () => handleModal(null) }/>
     }
+
+    <ModalBlockPerson dataInitial={ modalBlock } closeModal={ content => handleBlockAccessPerson(content) } />
+
     <Message message={messagePage}/>
     </>
   )

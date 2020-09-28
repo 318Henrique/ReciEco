@@ -1,6 +1,10 @@
 import axios from 'axios';
+const serverUrl = {
+    local: "http://localhost:3333",
+    web: "https://recieco.herokuapp.com"
+}
 const api = axios.create({
-    baseURL: "https://recieco.herokuapp.com"
+    baseURL: serverUrl.local
 })
 
 export default api;

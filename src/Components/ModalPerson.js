@@ -99,8 +99,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='person_name'
                             type='text'
                             required
-                            value={dataInitial.person_name}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.person_name}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='mail'>E-mail</label>
@@ -109,8 +109,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='mail'
                             type='email'
                             required
-                            value={dataInitial.mail}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.mail}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='document'>CPF/CNPJ</label>
@@ -119,8 +119,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='document'
                             type='text'
                             required
-                            value={dataInitial.document}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.document}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='whatsapp'>Whatsapp</label>
@@ -129,8 +129,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='whatsapp'
                             type='text'
                             required
-                            value={dataInitial.whatsapp}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.whatsapp}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='zipcode'>CEP</label>
@@ -139,8 +139,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='zipcode'
                             type='text'
                             required
-                            value={dataInitial.zipcode}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.zipcode}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='address'>Logradouro</label>
@@ -149,8 +149,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='address'
                             type='text'
                             required
-                            value={dataInitial.address}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.address}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='address_number'>N° da residência</label>
@@ -159,8 +159,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='address_number'
                             type='text'
                             required
-                            value={dataInitial.address_number}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.address_number}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='city'>Cidade</label>
@@ -169,8 +169,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='city'
                             type='text'
                             required
-                            value={dataInitial.city}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.city}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='state'>UF</label>
@@ -179,8 +179,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='state'
                             type='text'
                             required
-                            value={dataInitial.state}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.state}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='coord_lat'>Latitude</label>
@@ -189,8 +189,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='coord_lat'
                             type='text'
                             required
-                            value={dataInitial.coord_lat}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.coord_lat}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='coord_lng'>Longitude</label>
@@ -199,8 +199,8 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
                             id='coord_lng'
                             type='text'
                             required
-                            value={dataInitial.coord_lng}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.coord_lng}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <button type='submit' className="btnSubmit">{loading ? 'Salvando' : 'Salvar'}</button>
                 </form>

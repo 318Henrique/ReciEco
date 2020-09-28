@@ -1,20 +1,27 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-export default function Field({stateValue = () => {}, name, value = true, required, ...rest}){
-    const [valueInput, setValueInput] = useState(value || false);
-    const [error] = useState(false);
+export default function InputCheckBox({ name, defaultValue, getData = () => {}, ...props }){
+    const [ checked, handleCheck ] = useState(false);
+    const InputRef = useRef();
 
-    function handleValue(content){
-        setValueInput(content);
+    const handleDataField = () => {
+
+        handleCheck(InputRef.current.checked)
+        getData({ [name]: InputRef.current.checked })
+
     }
-    
-    useEffect(() => {
-        const newObjectContent = {};
-        newObjectContent[name] = valueInput
-        stateValue(newObjectContent);
-    }, [valueInput, name, stateValue]);
 
-    return(
-        <input className={error ? 'errorField' : ''} type='checkbox' required={required} checked={valueInput} name={name} onChange={() => handleValue(!valueInput)} {...rest}/>
+    useEffect(() => {
+        handleCheck(defaultValue)
+    }, [ defaultValue ])
+    
+    return (
+        <input
+            ref={InputRef}
+            checked={ checked }
+            name={name}
+            onChange={ () => handleDataField() }
+            {...props}
+        />
     )
 }

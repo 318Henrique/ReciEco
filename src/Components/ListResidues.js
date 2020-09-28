@@ -15,12 +15,12 @@ export default function ListResidues({content, removeItem = () => {}, editItem =
     return(
         <div className={`list ${openActionsManager ? 'list-hover' : ''}`}>
             <div className='main-list'>
-                <div className='image-list'>
+                <div className="image-list">
                     <img src={content.icon} alt=''/>
                 </div>
                 <span>{content.residues_name}</span>
             </div>
-            <div className='list-item-secundary'>
+            <div className={`list-item-secundary ${ content.category }`}>
                 {content.category}
             </div>
             <button className='btnActions' onClick={() => handleOpenActionsManager(!openActionsManager)}>

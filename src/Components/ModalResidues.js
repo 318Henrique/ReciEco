@@ -126,8 +126,8 @@ export default function ModalResidues({dataInitial, closeModal = () => {}}){
                             id='residues_name'
                             type='text'
                             required
-                            value={dataInitial.residues_name}
-                            stateValue={content => handleValueDataInput(content)}/>
+                            defaultValue={dataInitial.residues_name}
+                            getData={content => handleValueDataInput(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='category'>Categoria</label>

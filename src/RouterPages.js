@@ -5,7 +5,6 @@ import { AuthContext } from './Context/Auth';
 import Singin from './pages/Signin';
 import Home from './pages/Home';
 import Localizar from './pages/Localizar';
-import Contact from './pages/Contact';
 import Registration from './pages/Registration';
 import RegistrationInformationPerson from './pages/RegistrationInformationPerson';
 import RegistrationResiduesFromPerson from './pages/RegistrationResiduesFromPerson';
@@ -37,7 +36,6 @@ export default function RouterPages(){
     return(
         <Switch>
             <Route exact path='/' component={Home}/>
-            <Route exact path='/contato' component={Contact}/>
             <PrivateRoute exact path='/localizar' component={Localizar}/>
             <PrivateRoute exact path='/perfil' component={Profile}/>
             <PrivateRoute exact path='/perfil/meus-residuos' component={RegistrationResiduesFromPerson}/>

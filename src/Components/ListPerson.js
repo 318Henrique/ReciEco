@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../styles/style.css';
 
-export default function ListPerson({content, removeItem = () => {}, editItem = () => {}}){
+export default function ListPerson({content, removeItem = () => {}, setAdmin = () => {}, blockPerson = () => {}, openProfile = () => {}}){
     const AreaManagerActions = useRef();
     const [openActionsManager, handleOpenActionsManager] = useState(false);
 
@@ -49,12 +49,28 @@ export default function ListPerson({content, removeItem = () => {}, editItem = (
             </button>
             {
                 !openActionsManager ? <></> :
-                <div className='actions-manager' ref={AreaManagerActions}>
+                <div className='actions-manager' ref={AreaManagerActions} style={{ width: 200 }}>
                     <button onClick={() => {
                         handleOpenActionsManager(false);
-                        editItem();
+                        openProfile();
                     }}>
-                        Editar
+                        Ver perfil
+                    </button>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        setAdmin();
+                    }}>
+                        {
+                            content.admin ? "Remover privilégio" : "Tornar administrador"
+                        }
+                    </button>
+                    <button onClick={() => {
+                        handleOpenActionsManager(false);
+                        blockPerson();
+                    }}>
+                        {
+                            content.blocked ? "Desbloquear acesso" : "Bloquear acesso"
+                        }
                     </button>
                     <button onClick={() => {
                         handleOpenActionsManager(false);

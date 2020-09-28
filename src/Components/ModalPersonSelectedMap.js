@@ -4,7 +4,7 @@ import Api from '../Api/api';
 import Message from './Message';
 import iconWhatsapp from '../assets/icon-whatsapp.png';
 
-export default function ModalPersonSelectedMap({ person, closeModal = () => {} }){
+export default function ModalPersonSelectedMap({ person, closeModal = () => {}, admin = false }){
     const [ residuesProfile, handleResiduesProfile ] = useState([]);
     const [ message, newMessage ] = useState(null);
     const [ loadingResidues, handleLoadingResidues ] = useState(true);
@@ -43,6 +43,9 @@ export default function ModalPersonSelectedMap({ person, closeModal = () => {} }
                 <section className="information-person-map">
                     <div className="contact-address">
                         <span>{person.mail}</span>
+                        {
+                            !admin ? <></> : <span>{person.document}</span>
+                        }
                         <span style={{
                             height: 'auto',
                             padding: '2px 0',

@@ -33,7 +33,6 @@ export default function Singin(){
             const { content } = dataMainResponse;
 
             if(content.coords.coord_lat === null) return SignIn(dataMainResponse, '/informacoes-pessoais');
-            console.log('aqui')
 
             SignIn(dataMainResponse);
         } catch (error) {

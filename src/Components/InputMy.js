@@ -1,25 +1,24 @@
-import React,{useState, useCallback} from 'react';
+import React, { useRef, useCallback } from 'react';
 
-export default function Field({stateValue = () => {}, name, value, ...rest}){
-    const [valueInput, setValueInput] = useState(value || '');
+export default function Input({ name, defaultValue, getData = () => {}, ...props }){
+    const InputRef = useRef();
 
-    const handleData = useCallback((content) => {
-        (async () => {
-            const newObjectContent = {};
-            newObjectContent[name] = valueInput
-            stateValue(newObjectContent);
-            setValueInput(content);
-        })()
-    }, [valueInput, name, stateValue])
+    const handleDataField = useCallback(() => {
+        const fieldComplete = {};
+        fieldComplete[name] = InputRef.current.value;
 
-    return(
+        getData(fieldComplete)
+    }, [getData, name ])
+    
+    return (
         <input
-            value={valueInput}
+            ref={InputRef}
+            defaultValue={ defaultValue }
             name={name}
-            onChange={(content) => handleData(content.target.value)}
+            onChange={ () => handleDataField() }
             onFocus={(event) => event.target.classList.add('focusField')}
             onBlur={(event) => event.target.classList.remove('focusField')}
-            {...rest}
+            {...props}
         />
     )
 }
