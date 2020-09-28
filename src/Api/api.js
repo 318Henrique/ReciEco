@@ -4,7 +4,7 @@ const serverUrl = {
     web: "https://recieco.herokuapp.com"
 }
 const api = axios.create({
-    baseURL: serverUrl.local
+    baseURL: serverUrl.web
 })
 
 export default api;
