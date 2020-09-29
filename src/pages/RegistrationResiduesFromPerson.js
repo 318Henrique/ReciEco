@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import Api from '../Api/api';
 import Message from '../Components/Message';
 
 export default function RegistrationResiduesFromPerson(){
     const [ messagePage, newMessage ] = useState(null);
-    const [ saving, handleSave ] = useState(false);
-    const NavigatorHistory = useHistory();
     const [ list, handleList ] = useState([]);
     const [ loading, handleLoading ] = useState(true);
     const LocationNavigator = useLocation();
+    const NavigatorHistory = useHistory();
 
     const getResidues = useCallback(() => {
+
         async function getMyResidues() {
 
             if(LocationNavigator.pathname !== '/perfil/meus-residuos') return;
@@ -30,6 +30,8 @@ export default function RegistrationResiduesFromPerson(){
             } catch (error) {
                 newMessage({ content: error })
             }
+
+            handleLoading(false);
         }
 
         async function getData () {
@@ -41,12 +43,14 @@ export default function RegistrationResiduesFromPerson(){
                     handleList([]);
                     return newMessage({ content: 'Nenhum resíduo encontrado!' })
                 }
-                const newContent = content.map(({ id, residues_name, icon, category }) => {
+                const newContent = content.map(({ id, residues_id, residues_name, icon, category }) => {
                     return {
                         id,
+                        residues_id,
                         residues_name,
                         icon,
-                        category
+                        category,
+                        checked: false,
                     }
                 })
                 
@@ -56,8 +60,6 @@ export default function RegistrationResiduesFromPerson(){
             } catch (error) {
                 newMessage({ content: error })
             }
-
-            handleLoading(false);
         }
 
         getData();
@@ -67,47 +69,57 @@ export default function RegistrationResiduesFromPerson(){
         getResidues();
     }, [getResidues])
 
-    async function saveRegistration(residues_id){
+    async function saveResidue(dataResidue){
         try {
-            await Api.post('/residues/person/my/', { residues: residues_id });
+            const url = "/residues/person/my/";
+            await Api.post(url, { residues: dataResidue.id });
+
         } catch (error) {
             newMessage({ content: error })
         }
     }
 
-    async function onSubmit(){
-
-        if(saving) return newMessage({ content: 'Aguarde enquanto salvamos seus dados!' })
-
-        handleSave(true);
-
-        
-        for await (const item of list) {
-            if(item.checked !== undefined && item.checked) await saveRegistration(item.id)
+    async function removeResidue(dataResidue){
+        try {
+            const url = `/residues/person/${dataResidue.id}`;
+            await Api.delete(url);
+        } catch (error) {
+            newMessage({ content: error })
         }
-
-        NavigatorHistory.push('/localizar');
-
-        handleSave(false)
     }
 
-    function selectResidues(id){
-        handleList(prevList => prevList.map(item =>{
+    async function selectResidues(residue){
+        handleList(prevList => prevList.map(item => {
 
-            if(item.id === id){
-                if(item.checked === undefined) return Object.assign(item, { checked: true });
-                else return Object.assign(item, { checked: !item.checked })
+            if(item.id === residue.id){
+                if(item.checked) {
+                    removeResidue(residue)
+                }
+                else {
+                    saveResidue(residue)
+                }
+
+                return Object.assign(item, { checked: !item.checked })
             }
             else return item;
         }))
+    }
+
+    function finalRegistration(){
+        const isCheckedItem = list.filter(item => item.checked)
+
+        if(isCheckedItem.length) return NavigatorHistory.push('/localizar')
+
+        newMessage({ content: "Você precisa selecionar ao menos um resíduo para continuar!" })
     }
 
     return(
         <>
         <div className="control-main control-main-cadastro">
             <div className='carrosel-cadastro box-controller-residues'>
-                <div className='header-box'>
+                <div className='header-box' style={{ flexDirection: "column" }}>
                     <h1>Meus tipos de Resíduos</h1>
+                    <h3 style={{ margin: "6px 0" }}>Clique para selecionar seus resíduos</h3>
                 </div>
                 <div className='control'>
                     {
@@ -115,24 +127,28 @@ export default function RegistrationResiduesFromPerson(){
                         <>
                             <div className="choise-residues-item loading-residues"/>
                             <div className="choise-residues-item loading-residues"/>
+                            <div className="choise-residues-item loading-residues"/>
                         </>
                     }
                     {
-                        list.map(({ id, residues_name, icon, checked }) => (
-                            <div
-                                key={ id }
-                                className={`choise-residues-item ${checked && checked !== undefined ? 'choise-residues-item-selected' : ''}`}
-                                onClick={() => selectResidues(id)}
-                            >
-                                <img src={ icon } alt=''/>
-                                <span> { residues_name } </span>
-                            </div>
-                        ))
+                        list.map((item) => {
+                            const { id, residues_name, icon, checked } = item;
+                            return (
+                                <div
+                                    key={ id }
+                                    className={`choise-residues-item ${checked && checked !== undefined ? 'choise-residues-item-selected' : ''}`}
+                                    onClick={() => selectResidues(item)}
+                                >
+                                    <img src={ icon } alt=''/>
+                                    <span> { residues_name } </span>
+                                </div>
+                            )
+                        })
                     }
                 </div>
                 {
-                    !list.length ? <></> :
-                    <button onClick={() => onSubmit()} className='btnSubmit'>{ saving ? 'Salvando' : "Salvar" }</button>
+                    loading ? <></> : 
+                    <button className="btnSubmit" onClick={() => finalRegistration()}>Finalizar cadastro</button>
                 }
             </div>
         </div>
