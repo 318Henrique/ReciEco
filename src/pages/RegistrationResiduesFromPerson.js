@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Api from '../Api/api';
 import Message from '../Components/Message';
 
@@ -8,8 +8,30 @@ export default function RegistrationResiduesFromPerson(){
     const [ saving, handleSave ] = useState(false);
     const NavigatorHistory = useHistory();
     const [ list, handleList ] = useState([]);
+    const [ loading, handleLoading ] = useState(true);
+    const LocationNavigator = useLocation();
 
     const getResidues = useCallback(() => {
+        async function getMyResidues() {
+
+            if(LocationNavigator.pathname !== '/perfil/meus-residuos') return;
+
+            try {
+                const responseContent = await Api.get('/profile/residues');
+                const { content } = responseContent.data;
+
+                if(!content.length) return;
+
+                handleList(oldData => oldData.map(residue => {
+                    const isSelected = content.filter(myResidue => myResidue.residues_id === residue.id)
+                    return isSelected.length ? Object.assign(residue, { checked: true }) : residue
+                }))
+
+            } catch (error) {
+                newMessage({ content: error })
+            }
+        }
+
         async function getData () {
             try {
                 const responseContent = await Api.get('/residues');
@@ -19,36 +41,27 @@ export default function RegistrationResiduesFromPerson(){
                     handleList([]);
                     return newMessage({ content: 'Nenhum resíduo encontrado!' })
                 }
-
-                handleList(content);
+                const newContent = content.map(({ id, residues_name, icon, category }) => {
+                    return {
+                        id,
+                        residues_name,
+                        icon,
+                        category
+                    }
+                })
+                
+                handleList(newContent);
+                getMyResidues();
 
             } catch (error) {
                 newMessage({ content: error })
             }
+
+            handleLoading(false);
         }
 
         getData();
-    }, [])
-
-    // const MyResidues = useCallback(() => {
-    //     async function getData () {
-    //         try {
-    //             const responseContent = await Api.get('/profile/residues/');
-    //             const { content } = responseContent.data;
-
-    //             if(content.length) return;
-
-    //             const newContent = content.map(item => Object.assign(item, { checked: !item.checked }))
-
-    //             handleList(oldData => Object.assign(oldData, newContent))
-
-    //         } catch (error) {
-    //             newMessage({ content: error })
-    //         }
-    //     }
-
-    //     if(Location.pathname === '/perfil/meus-residuos') getData();
-    // }, [Location])
+    }, [ LocationNavigator.pathname ])
 
     useEffect(() => {
         getResidues();
@@ -91,12 +104,19 @@ export default function RegistrationResiduesFromPerson(){
 
     return(
         <>
-        <div className="control-main control-main-cadastro rediues">
-            <div className='carrosel-cadastro'>
+        <div className="control-main control-main-cadastro">
+            <div className='carrosel-cadastro box-controller-residues'>
                 <div className='header-box'>
                     <h1>Meus tipos de Resíduos</h1>
                 </div>
                 <div className='control'>
+                    {
+                        !loading ? <></> :
+                        <>
+                            <div className="choise-residues-item loading-residues"/>
+                            <div className="choise-residues-item loading-residues"/>
+                        </>
+                    }
                     {
                         list.map(({ id, residues_name, icon, checked }) => (
                             <div
@@ -110,7 +130,10 @@ export default function RegistrationResiduesFromPerson(){
                         ))
                     }
                 </div>
-                <button onClick={() => onSubmit()} className='btnSubmit'>{ saving ? 'Salvando' : "Salvar" }</button>
+                {
+                    !list.length ? <></> :
+                    <button onClick={() => onSubmit()} className='btnSubmit'>{ saving ? 'Salvando' : "Salvar" }</button>
+                }
             </div>
         </div>
         <Message message={messagePage}/>
