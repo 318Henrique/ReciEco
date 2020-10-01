@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import iconClose from '../assets/icon-close.png';
 import Api from '../Api/api';
 import Message from './Message';
 import iconWhatsapp from '../assets/icon-whatsapp.png';
+import { AuthContext } from '../Context/Auth';
 
 export default function ModalPersonSelectedMap({ person, closeModal = () => {}, admin = false }){
     const [ residuesProfile, handleResiduesProfile ] = useState([]);
     const [ message, newMessage ] = useState(null);
     const [ loadingResidues, handleLoadingResidues ] = useState(true);
+    const { userDetail: { dataUser } } = useContext(AuthContext);
 
     const getResidueesPersonProfile = useCallback(() => {
         (async () => {
@@ -53,7 +55,9 @@ export default function ModalPersonSelectedMap({ person, closeModal = () => {}, 
                             <a
                                 about="Link do Whatsapp"
                                 title={`Falar com ${person.person_name} pelo whatsapp!`}
-                                href={`https://api.whatsapp.com/send?phone=${person.whatsapp}&text=Oi,%20estou%20vindo%20do%20recieco,%20e%20gostaria%20de%20falar%20com%20voc%C3%AA`} target="_blank" rel="noopener noreferrer"
+                                href={`https://api.whatsapp.com/send?phone=55${ person.whatsapp }&text=Oi,%20meu%20nome%20%C3%A9%20${ dataUser.name }!%20Encontrei%20seu%20contato%20no%20Recieco%20e%20gostaria%20de%20falar%20com%20voc%C3%AA`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 style={{
                                     display: 'flex',
                                     alignItems: 'center'
