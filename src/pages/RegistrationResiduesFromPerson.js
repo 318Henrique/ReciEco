@@ -30,8 +30,6 @@ export default function RegistrationResiduesFromPerson(){
             } catch (error) {
                 newMessage({ content: error })
             }
-
-            handleLoading(false);
         }
 
         async function getData () {
@@ -60,6 +58,8 @@ export default function RegistrationResiduesFromPerson(){
             } catch (error) {
                 newMessage({ content: error })
             }
+
+            handleLoading(false);
         }
 
         getData();

@@ -100,19 +100,19 @@ export default function Registration(){
                     </div>
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
-                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  stateValue={content => handleDataFormMain(content)}/>
+                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='mail'>E-mail <span>*</span></label>
-                        <Input name='mail' id='mail' type='email' required maxLength={255} stateValue={content => handleDataFormMain(content)}/>
+                        <Input name='mail' id='mail' type='email' required maxLength={255} getData={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='password'>Senha <span>*</span></label>
-                        <Input name='password' type='password' id='password' required maxLength={50} stateValue={content => handleDataFormMain(content)}/>
+                        <Input name='password' type='password' id='password' required maxLength={50} getData={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='confirmed_password'>Repita a senha <span>*</span></label>
-                        <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50} stateValue={content => handleDataFormMain(content)}/>
+                        <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50} getData={content => handleDataFormMain(content)}/>
                     </div>
                     <button type='button' className='btnSubmit' onClick={event => onSubmit(event)}>{ saving ? 'Salvando' : "Salvar" }</button>
                 </div>
