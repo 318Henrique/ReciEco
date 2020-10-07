@@ -30,7 +30,11 @@ export default function IsSignin(){
 
             <div className='logined'>
                 <button className="btnWithNameFoto" onClick={() => setOpenModal(!openModal)}>
-                    <div className='foto-header' style={{ backgroundImage: `url(${dataUser.foto})` }}/>
+                    <div className='foto-header'>
+                        {
+                            dataUser.foto === null || dataUser.foto === undefined ? '' : <img src={ dataUser.foto } alt=""/>
+                        }
+                    </div>
                     <span className='name'>{dataUser.name.substr(0, dataUser.name.indexOf(' '))}</span>
                     <img className='arrow-down' src={iconArrowDown} alt=''/>
                 </button>
