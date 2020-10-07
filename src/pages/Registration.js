@@ -47,9 +47,22 @@ export default function Registration(){
             handleSave(false);
             return newMessage({ content: message })
         }
+
         if(password !== "" && password !== confirmed_password) {
             handleSave(false)
             return newMessage({ content: "As senhas precisam ser iguais!" })
+        }
+
+        const mimetype_reveiced = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/svg'];
+        const { name: nameFoto, size: sizeFoto, type: typeFile } = form.get('foto');
+        if(nameFoto === '' && sizeFoto === 0) form.delete('foto');
+        if(sizeFoto > (5 * 1024 * 1024)){
+            handleSave(false)
+            return newMessage({ content: 'Está imagem é maior que 5 MB!' })
+        }
+        if(!mimetype_reveiced.includes(typeFile)) {
+            handleSave(false)
+            return newMessage({ content: "Este arquivo selecionado não é permitido! Selecione outro formato." })
         }
 
         try {
