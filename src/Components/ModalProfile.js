@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import iconClose from '../assets/icon-close.png';
 import '../styles/style.css';
 import Api from '../Api/api';
 import Message from './Message';
 import Input from './InputMy';
+import { AuthContext } from '../Context/Auth';
 
 export default function ModalPerson({dataInitial, closeModal = () => {}}){
     const [messageRequest, setMessageRequest] = useState(null);
@@ -13,6 +14,7 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
     const [ loading, handleLoading ] = useState(false);
     const [ dataInput, handleDataInput ] = useState({});
     const [ imagePreview, newImagePreview ] = useState('');
+    const { HandleInfo } = useContext(AuthContext);
 
     useEffect(() => {
         if(dataInitial !== null) newImagePreview(dataInitial.foto || '');
@@ -37,18 +39,20 @@ export default function ModalPerson({dataInitial, closeModal = () => {}}){
             if(sizeFoto > (5 * 1024 * 1024)) return setMessageRequest({ content: 'Está imagem é maior que 5 MB!' })
 
             for (const field in dataInitial) {
-                if(dataInitial[field] === dataInput[field]) formulario.delete(field);
+                if(dataInitial[field] === field) formulario.delete(field);
             }
 
             const response = await Api.put("/profile/my/", formulario)
-            const { message } = response.data;
+            const { fotoCurrent } = response.data;
 
-            setMessageRequest({ content: message, type: "success" });
+            setMessageRequest({ content: "Perfil atualizado com sucesso!", type: "success" });
+
+            if(fotoCurrent !== undefined || fotoCurrent !== null) { HandleInfo({ foto: fotoCurrent }) }
 
             closeModal(Object.assign({
                 id: dataInitial.id,
                 isNew: false
-            }, dataInput))
+            }, dataInput, { foto: fotoCurrent }))
 
         } catch (error) {
             setMessageRequest({ content: error });
