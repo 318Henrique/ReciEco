@@ -53,7 +53,7 @@ export default function Registration(){
             return newMessage({ content: "As senhas precisam ser iguais!" })
         }
 
-        const mimetype_reveiced = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/svg'];
+        const mimetype_reveiced = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/svg', "application/octet-stream"];
         const { name: nameFoto, size: sizeFoto, type: typeFile } = form.get('foto');
         if(nameFoto === '' && sizeFoto === 0) form.delete('foto');
         if(sizeFoto > (5 * 1024 * 1024)){
