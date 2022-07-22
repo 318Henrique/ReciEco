@@ -37,7 +37,7 @@ export default function Home(){
                             <div className='title-box-individual'>Alcance</div>
                             <div className="separator-title-content"></div>
                             <div className='content-box-individual'>
-                                Encontre ou distribua resíduos em todo o terrítorio nacional para todo público. 
+                                o netlify ta buscando aqui direto ou distribua resíduos em todo o terrítorio nacional para todo público. 
                             </div>
                         </div>
                     </div>
