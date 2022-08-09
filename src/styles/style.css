@@ -946,7 +946,7 @@ color: rgb(136, 30, 26);
   color: var(--color-primary);
   font-weight: 500;
 }
-.carrosel-fotoperfil .header-box h1{
+.carrosel-fotoperfil .header-box h4{
   color: var(--color-primary);
   font-weight: 500;
 }
