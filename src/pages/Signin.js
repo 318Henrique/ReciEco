@@ -66,7 +66,7 @@ export default function Singin(){
                 </Form>
                 
                 <Link to="/cadastro">
-                    Criar conta
+                    Seja Bem-Vindo, Vamos Criar Sua conta, é Super Fácil!
                 </Link>
                 <Link to="/forgout">
                     Esqueci minha senha!
