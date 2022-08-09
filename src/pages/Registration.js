@@ -104,7 +104,7 @@ export default function Registration(){
                 </div>
                 
                 <div className='control'>
-                    <div className='carrosel-fotoperfil'>
+                    
                     <div className='boxField file-input'>
                         <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
@@ -114,8 +114,7 @@ export default function Registration(){
                         }}/>
                         
                     </div>
-                    <h4>Foto de Perfil</h4>
-                    </div>
+                    
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
                         <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
