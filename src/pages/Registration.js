@@ -102,6 +102,8 @@ export default function Registration(){
                 <div className='header-box'>
                     <h1>Seja Bem-Vindo! vamos criar sua conta, é super fácil!</h1>
                 </div>
+                <div>
+                <h3>Foto de Perfil</h3>
                 <div className='control'>
                     <div className='boxField file-input'>
                         <label htmlFor='foto'>
@@ -110,7 +112,7 @@ export default function Registration(){
                         <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
                             handleImagePreview()
                         }}/>
-                        <h3>Foto de perfil</h3>
+                        
                     </div>
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
@@ -129,6 +131,7 @@ export default function Registration(){
                         <Input name='confirmed_password' type='password' id='confirmed_password' required maxLength={50} getData={content => handleDataFormMain(content)}/>
                     </div>
                     <button type='button' className='btnSubmit' onClick={event => onSubmit(event)}>{ saving ? 'Salvando' : "Salvar" }</button>
+                </div>
                 </div>
                 <Link to="/signin" style={{ margin: 'auto', marginTop: 20 }}>
                     Já tenho conta!
