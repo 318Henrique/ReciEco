@@ -112,7 +112,7 @@ export default function Registration(){
                         <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
                             handleImagePreview()
                         }}/>
-                        Foto de Perfil
+                        <h5>Foto de Perfil</h5>
                     </div>
                     
                     <div className='boxField'>
