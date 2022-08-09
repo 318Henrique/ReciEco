@@ -103,8 +103,8 @@ export default function Registration(){
                     <h1>Seja Bem-Vindo! vamos criar sua conta, é super fácil!</h1>
                 </div>
                 <div className='control'>
-                <h1>Foto de perfil</h1>
                     <div className='boxField file-input'>
+                    <h3>Foto de perfil</h3>
                         <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
                         </label>
