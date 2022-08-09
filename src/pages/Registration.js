@@ -104,7 +104,7 @@ export default function Registration(){
                 </div>
                 
                 <div className='control'>
-                    <div>
+                    <div className='carrosel-fotoperfil'>
                     <h4>Foto de Perfil</h4>
                     <div className='boxField file-input'>
                         <label htmlFor='foto'>
