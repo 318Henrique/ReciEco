@@ -104,6 +104,7 @@ export default function Registration(){
                 </div>
                 <div className='control'>
                     <div className='boxField file-input'>
+                    <h3>Insira uma foto de perfil</h3>
                         <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
                         </label>
