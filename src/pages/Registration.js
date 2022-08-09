@@ -116,7 +116,7 @@ export default function Registration(){
                     
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
-                        <Input name='person_name' type='text' id='person_name' placeholder="Foto de Perfil" autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
+                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='mail'>E-mail <span>*</span></label>
