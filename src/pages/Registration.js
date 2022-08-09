@@ -100,7 +100,7 @@ export default function Registration(){
             <form ref={formularioCadastro}>
             <div className='carrosel-cadastro'>
                 <div className='header-box'>
-                    <h1>Criar conta</h1>
+                    <h1>Seja Bem-Vindo, Vamos Criar Sua conta, é Super Fácil!</h1>
                 </div>
                 <div className='control'>
                     <div className='boxField file-input'>
