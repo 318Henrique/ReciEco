@@ -107,10 +107,10 @@ export default function Registration(){
                         <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
                         </label>
-                        <h3>Foto de perfil</h3>
                         <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
                             handleImagePreview()
                         }}/>
+                        <h3>Foto de perfil</h3>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
