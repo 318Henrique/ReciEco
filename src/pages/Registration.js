@@ -109,14 +109,14 @@ export default function Registration(){
                         <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
                         </label>
-                        <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
+                        <input name="foto" id='foto' type='file' placeholder="Foto de Perfil" ref={fotoInput} onChange={() => {
                             handleImagePreview()
                         }}/>
                     </div>
                     
                     <div className='boxField'>
                         <label htmlFor='person_name'>Nome Completo <span>*</span></label>
-                        <Input name='person_name' type='text' id='person_name' placeholder='Foto de Perfil' autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
+                        <Input name='person_name' type='text' id='person_name' autoFocus required maxLength={255}  getData={content => handleDataFormMain(content)}/>
                     </div>
                     <div className='boxField'>
                         <label htmlFor='mail'>E-mail <span>*</span></label>
