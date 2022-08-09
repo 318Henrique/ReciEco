@@ -106,10 +106,10 @@ export default function Registration(){
                 <div className='control'>
                     
                     <div className='boxField file-input'>
-                        <label placeholder='Foto de Perfil' htmlFor='foto'>
+                        <label htmlFor='foto'>
                             <img src={imagePreview} alt=''/>
                         </label>
-                        <input name="foto" id='foto' type='file' ref={fotoInput} onChange={() => {
+                        <input name="foto" id='foto' type='file' placeholder='Foto de Perfil' ref={fotoInput} onChange={() => {
                             handleImagePreview()
                         }}/>
                     </div>
