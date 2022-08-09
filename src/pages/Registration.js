@@ -103,7 +103,6 @@ export default function Registration(){
                     <h1>Seja Bem-Vindo! vamos criar sua conta, é super fácil!</h1>
                 </div>
                 <div>
-                <h3>Foto de Perfil</h3>
                 <div className='control'>
                     <div className='boxField file-input'>
                         <label htmlFor='foto'>
@@ -132,6 +131,7 @@ export default function Registration(){
                     </div>
                     <button type='button' className='btnSubmit' onClick={event => onSubmit(event)}>{ saving ? 'Salvando' : "Salvar" }</button>
                 </div>
+                <h4>Foto de Perfil</h4>
                 </div>
                 <Link to="/signin" style={{ margin: 'auto', marginTop: 20 }}>
                     Já tenho conta!
